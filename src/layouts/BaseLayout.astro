@@ -14,10 +14,11 @@ const {pageTitle} = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <ViewTransitions />
+    <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
   </head>
   <body>
     <Header />
-    <h1 transition:animate="slide">{pageTitle}</h1>
+    <h1 class="font-display">{pageTitle}</h1>
     <slot />
     <Footer />
     <script>

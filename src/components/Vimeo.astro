@@ -1,0 +1,101 @@
+  ---
+  const {vimeoId} = Astro.props;
+  ---
+
+  <astro-vimeo data-message={vimeoId} class="">
+          <!-- <iframe 
+          id={vimeoId}
+          class="vimeo-frame absolute top-0 left-0 h-screen w-full " 
+          src=`https://player.vimeo.com/video/${vimeoId}?portrait=0&muted=1&autoplay=1&loop=1&autopause=0&title=0&controls=0` 
+          allow="autoplay; fullscreen; picture-in-picture"    
+          title="">
+      </iframe> -->
+      <div id={vimeoId} class="video-wrapper relative w-full h-screen ">
+        <button class="play-button absolute z-10">PLAY</button>
+        <button class="mute-button absolute z-10 top-8">MUTE</button>
+      </div>
+  </astro-vimeo>
+
+
+  <script is:inline src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+
+      // Define the behaviour for our new type of HTML element.
+    class AstroVimeo extends HTMLElement {
+      constructor() {
+        super();
+
+        const message = this.dataset.message;
+
+        const options = {
+          id: message,
+          loop: true,
+          portrait:0,
+          muted:0,
+          autoplay:0,
+          autopause:0,
+          title:0,
+          controls:0,
+          responsive: 1,
+          width: 480
+      };
+
+      // const iframe = document.querySelector(message);
+      const player = new Vimeo.Player(message, options);
+
+     const playButton = this.querySelector('button.play-button');
+     const muteButton = this.querySelector('button.mute-button');
+
+      playButton.addEventListener("click", () => {
+        if(playButton.innerHTML == "PLAY" ){
+
+          player.play();
+          playButton.innerHTML = "PAUSE"; 
+        }
+        else{
+          player.pause();
+          playButton.innerHTML = "PLAY"; 
+
+        }
+});
+
+      muteButton.addEventListener("click", () => {
+        if(muteButton.innerHTML == "MUTE" ){
+
+          player.setVolume(0);
+          muteButton.innerHTML = "UNMUTE"; 
+        }
+        else{
+          player.setVolume(1);
+          muteButton.innerHTML = "MUTE"; 
+
+        }
+});
+
+      
+
+      player.on('play', function() {
+          console.log('played the video!');
+      });
+      
+
+    }
+  }
+    // Tell the browser to use our AstroVimeo class for <astro-heart> elements.
+    customElements.define('astro-vimeo', AstroVimeo);
+  </script>
+
+  <style>
+
+    
+      .video-wrapper iframe {
+        width: 100vw;
+   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+   min-height: 100vh;
+   min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+      }
+  </style>

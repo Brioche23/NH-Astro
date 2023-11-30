@@ -1,11 +1,9 @@
 ---
-const {title, url, imgUrl} = Astro.props
+const {title, url, imgUrl, vimeoId} = Astro.props
+
+import Vimeo from './Vimeo.astro';
 ---
 
-<li ><a href={url}>
-    <p>
-    <img  src={imgUrl} width="300" />
-     {title}
-     </p>
-     </a>
+<li >
+     <Vimeo {vimeoId} />
 </li>

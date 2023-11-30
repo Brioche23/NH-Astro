@@ -8,6 +8,7 @@ const postsCollection = defineCollection({
     pubDate: z.date(),
     description: z.string(),
     author: z.string(),
+    vimeoId: z.number(),
     image: z.object({
       url: z.string(),
       alt: z.string(),

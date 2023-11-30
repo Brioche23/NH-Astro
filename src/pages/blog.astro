@@ -7,9 +7,7 @@ const allPosts = await getCollection('posts');
 const pageTitle = "Blog Posts";
 ---
 <BaseLayout {pageTitle}>
-        <p>This is where I will post about my journey learning Astro.</p>
         <ul>
-           {allPosts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} imgUrl={post.data.image.url} />)}
+           {allPosts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} imgUrl={post.data.image.url} vimeoId = {post.data.vimeoId} />)}
           </ul>
-
 </BaseLayout>
