@@ -1,13 +1,16 @@
 ---
-title: "My First Blog Post"
+title: "FIAT 600"
 pubDate: 2022-07-01
-description: "This is the first post of my new Astro blog."
-author: "Astro Learner"
+description: "Lorem Ipsum Eccetera eccetera"
+agenzia: "Nome Cognome"
+regista: "Nome Cognome"
+casa: "Nome Cognome"
 vimeoId: 796267985
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "The full Astro logo."
-tags: ["astro", "blogging", "learning in public"]
+credits: "director / Nome Cognome – Photographer / Nome Cognome"
+tags: ["servizi"]
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.

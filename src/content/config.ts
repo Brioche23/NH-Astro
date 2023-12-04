@@ -7,12 +7,15 @@ const postsCollection = defineCollection({
     title: z.string(),
     pubDate: z.date(),
     description: z.string(),
-    author: z.string(),
+    agenzia: z.string(),
+    regista: z.string(),
+    casa: z.string(),
     vimeoId: z.number(),
     image: z.object({
       url: z.string(),
       alt: z.string(),
     }),
+    credits: z.string(),
     tags: z.array(z.string()),
   }),
 });

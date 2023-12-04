@@ -1,7 +1,34 @@
 ---
+import { getCollection } from "astro:content";
+import { Image } from 'astro:assets';
+
+
+import heroImage from '../img/hero.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Noise Heroes";
+import BlogPost from '../components/BlogPost.astro';
+const allPosts = await getCollection('posts');
+const pageTitle = "NOISE HEROES";
+
+const servizi = ["post produzione audio", "sound design", "consulenza e produzione","licensing"]
 ---
 <BaseLayout {pageTitle}>
-  <h2>My awesome blog subtitle</h2>
+  <p class="text-white text-3xl">
+    Siamo una casa di produzione audio che <span class="text-purple">bang.</span> 
+    &nbsp;Con un’esperienza che <span class="text-orange">wow</span> e un’ambizione che <span class="text-purple">roar.  &nbsp;</span>Se volete un sound che <span class="text-orange">clap clap</span>, avete bisogno di eroi: o meglio, avete bisogno di noi.
+  </p>  
+
+  <Image src={heroImage} alt="A bird sitting on a nest of eggs."/>
+
+  <section class="servizi text-3xl">
+   { servizi.map((servizio)=> <span class="after:content-['/']  after:pr-1">{servizio}</span>)}
+
+  </section>
+
+  <section class="work pt-10">
+    <h2 class="before:content-['/'] before:pr-2">Work</h2>
+
+    <ul class="video-list grid gap-5 pb-5">
+      {allPosts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} imgUrl={post.data.image.url} vimeoId = {post.data.vimeoId} categorie = {post.data.tags}/>)}
+    </ul>
+  </section>
 </BaseLayout>

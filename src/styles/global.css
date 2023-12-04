@@ -20,12 +20,12 @@ html {
   font-family: "Neue Haas Grotesk", sans-serif;
   font-weight: 700;
   font-style: normal;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0 auto;
   width: 100%;
-  max-width: 120ch;
   padding: 1rem;
   line-height: 1.5;
 }
@@ -34,12 +34,16 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
+/* h1 {
   margin: 1rem 0;
-  font-size: 10rem;
+  font-size: 5rem;
   color: #ff4600;
-}
+} */
 
+h2 {
+  font-size: 30px;
+  color: #ffffff;
+}
 /* nav styles */
 
 .hamburger {

@@ -1,12 +1,15 @@
 ---
 title: My Third Blog Post
-author: Astro Learner
+agenzia: "Nome Cognome"
+regista: "Nome Cognome"
+casa: "Nome Cognome"
 description: "I had some challenges, but asking in the community really helped!"
 vimeoId: 712102481
 image:
   url: "https://docs.astro.build/assets/rays.webp"
   alt: "Thumbnail of Astro rays."
 pubDate: 2022-07-15
+credits: "director / Nome Cognome – Photographer / Nome Cognome"
 tags: ["astro", "learning in public", "setbacks", "community"]
 ---
 
