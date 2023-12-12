@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import { Image } from 'astro:assets';
 
 
-import heroImage from '../img/hero.png';
+import heroImage from '../img/hero.svg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
 const allPosts = await getCollection('posts');
@@ -12,23 +12,73 @@ const pageTitle = "NOISE HEROES";
 const servizi = ["post produzione audio", "sound design", "consulenza e produzione","licensing"]
 ---
 <BaseLayout {pageTitle}>
-  <p class="text-white text-3xl">
-    Siamo una casa di produzione audio che <span class="text-purple">bang.</span> 
-    &nbsp;Con un’esperienza che <span class="text-orange">wow</span> e un’ambizione che <span class="text-purple">roar.  &nbsp;</span>Se volete un sound che <span class="text-orange">clap clap</span>, avete bisogno di eroi: o meglio, avete bisogno di noi.
-  </p>  
 
-  <Image src={heroImage} alt="A bird sitting on a nest of eggs."/>
+  <div id="block-1" class="w-2/3 h-screen relative ">
+    <div class="sticky top-full pb-10">
 
-  <section class="servizi text-3xl">
+      <p class="font-display text-orange text-7xl ">TA-DAH!</p>
+      <p class="text-white text-4xl ">
+        Noise Heroes è un gruppo di eroi con un super potere. Saper trasformare i rumori in suoni. E i suoni in storie. Siamo una casa di produzione audio con un’esperienza che è tutta un’altra storia. Se volete un sound che lasci tutti a bocca aperta, avete bisogno degli eroi: o meglio, dei Noise Heroes. </p>  
+      </div>
+    </div>
+    
+    <div id="block-2" class="h-auto   ">
+
+      <Image src={heroImage} alt="A bird sitting on a nest of eggs." class:list={'sticky top-16'}/>
+    </div>
+    
+    <div class="h-screen">
+
+      <div id="block-3" class="flex sticky top-full pb-10">
+        
+        <p class="text-white text-4xl w-2/3 ">
+          Perché Noise Heroes e non Noise Regular People? Perché il nostro non è un semplice lavoro, ma una vocazione. Nel nostro DNA abbiamo i  geni di qp! Noi non siamo semplici impiegati dell’audio. Siamo una banda di innamorati del suono con la missione di trasformare i rumori in storie. 
+        </p>  
+        <p class="text-white text-xl w-1/3">
+          <span class="text-orange">Sound design & Post production</span> / Storytelling  / TV / Digital / Radio / Podcast / Voice Talents — <span class="text-orange">Music production</span> / Composizione / Produzione tailor made / Network di artisti, musicisti, DJ e produttori — <span class="text-orange">Music supervision & Licensing</span> / Ricerca del sound più adatto /Sincronizzazione / Negoziazione</p>  
+        </div>
+      </div>
+        
+      <div class="h-screen">
+
+        <div id="block-4" class=" w-2/3 pt-20 sticky top-full pb-10">
+          <p class="text-white text-4xl">
+            <span class="text-purple pr-2">Puntuali</span>  Non si è mai visto un eroe arrivare in ritardo /  <span class="text-orange pr-2">Tailor made</span> Ogni sfida ha bisogno di una risposta adeguata / <span class="text-purple pr-2">Precisi</span>  Una volta stabilito l’obiettivo, lo centriamo al primo colpo / <span class="text-orange pr-2">Budget friendly</span>Gli eroi non fanno rapine… ma le sventano</p> 
+          </div>
+        </div>
+          
+          <!-- <section class="servizi text-3xl">
    { servizi.map((servizio)=> <span class="after:content-['/']  after:pr-1">{servizio}</span>)}
 
-  </section>
+  </section> -->
 
   <section class="work pt-10">
     <h2 class="before:content-['/'] before:pr-2">Work</h2>
 
-    <ul class="video-list grid gap-5 pb-5">
+    <ul class="video-list grid gap-5w pb-5">
       {allPosts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} imgUrl={post.data.image.url} vimeoId = {post.data.vimeoId} categorie = {post.data.tags}/>)}
     </ul>
   </section>
 </BaseLayout>
+
+<script>
+
+  // Get the elements
+var element1 = document.querySelector('#block-1');
+var element2 = document.querySelector('#block-2');
+var element3 = document.querySelector('#block-3');
+
+// Listen for the scroll event
+window.addEventListener('scroll', function() {
+  // Calculate the scroll rate
+  var scrollTop = window.scrollY || document.documentElement.scrollTop;
+  
+  // Apply the scroll rate to the elements
+  element1.style.transform = 'translateY(' + scrollTop * .4 + 'px)';
+  element2.style.transform = 'translateY(' + scrollTop * 0 + 'px)';
+  // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
+});
+
+
+
+</script>
