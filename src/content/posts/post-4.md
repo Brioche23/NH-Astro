@@ -10,7 +10,6 @@ crediti:
   soundDesign: "Luca Lo Tito"
   mix: "Luca Lo Tito"
 vimeoId: 717055649
-
 image:
   url: "https://docs.astro.build/default-og-image.png"
   alt: "The word astro against an illustration of planets and stars."
