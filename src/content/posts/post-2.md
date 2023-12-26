@@ -1,14 +1,18 @@
 ---
-title: "Aperol Spritz Together We Joy TVC 2021"
-agenzia: "Nome Cognome"
-regista: "Nome Cognome"
-casa: "Nome Cognome"
-description: "After learning some Astro, I couldn't stop!"
+title: "SKY – è bello tornare a casa con Sky 1'"
+pubDate: 2022-07-01
+description: "Lorem Ipsum Eccetera eccetera"
+crediti:
+  cliente: "Sky Italia"
+  agenzia: "Sky Creative"
+  regista: "Xavier Mairesse"
+  casa: "Akita Films"
+  soundDesign: "Luca Lo Tito"
+  mix: "Luca Lo Tito"
 vimeoId: 717418716
 image:
   url: "https://docs.astro.build/assets/arc.webp"
   alt: "Thumbnail of Astro arcs."
-pubDate: 2022-07-08
 credits: "director / Nome Cognome – Photographer / Nome Cognome"
 tags: ["post produzione audio", "sound design"]
 ---

@@ -1,10 +1,14 @@
 ---
-title: "FIAT 600"
+title: "SKY – è bello tornare a casa con Sky 1'"
 pubDate: 2022-07-01
 description: "Lorem Ipsum Eccetera eccetera"
-agenzia: "Nome Cognome"
-regista: "Nome Cognome"
-casa: "Nome Cognome"
+crediti:
+  cliente: "Sky Italia"
+  agenzia: "Sky Creative"
+  regista: "Xavier Mairesse"
+  casa: "Akita Films"
+  soundDesign: "Luca Lo Tito"
+  mix: "Luca Lo Tito"
 vimeoId: 796267985
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"

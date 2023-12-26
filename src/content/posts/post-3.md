@@ -1,14 +1,18 @@
 ---
-title: My Third Blog Post
-agenzia: "Nome Cognome"
-regista: "Nome Cognome"
-casa: "Nome Cognome"
-description: "I had some challenges, but asking in the community really helped!"
+title: "SKY – è bello tornare a casa con Sky 1'"
+pubDate: 2022-07-01
+description: "Lorem Ipsum Eccetera eccetera"
+crediti:
+  cliente: "Sky Italia"
+  agenzia: "Sky Creative"
+  regista: "Xavier Mairesse"
+  casa: "Akita Films"
+  soundDesign: "Luca Lo Tito"
+  mix: "Luca Lo Tito"
 vimeoId: 712102481
 image:
   url: "https://docs.astro.build/assets/rays.webp"
   alt: "Thumbnail of Astro rays."
-pubDate: 2022-07-15
 credits: "director / Nome Cognome – Photographer / Nome Cognome"
 tags: ["astro", "learning in public", "setbacks", "community"]
 ---
