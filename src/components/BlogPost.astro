@@ -41,8 +41,8 @@ function getRandomWidth() {
 }
 
 ---
-
-<li id={videoId} class={`video-card relative transition-all duration-500 ease-in-out ${getRandomWidth()}`} style="opacity: 1;">
+<a href={`#${videoId}`}>
+<li id={videoId} class={`video-card relative transition-all duration-500 ease-in-out  ${getRandomWidth()}`}>
      <Vimeo {vimeoId} {title}/>
      <div class="info-panel grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5">
      <div class=" w-full flex space-x-5 overflow-hidden">
@@ -80,19 +80,27 @@ function getRandomWidth() {
       </div>
      </div>
 </li>
+</a>
 
 <script >
      console.log('hello');
      const videoCards = document.querySelectorAll('li.video-card');
      const infoPanels = document.querySelectorAll('.info-panel');
+     const vimeoTitles = document.querySelectorAll('.vimeo-title');
      // Handle clicks on each button.
+     let prevIndex = "";
 
      videoCards.forEach((card, index) => {
       card.addEventListener('click', () => {
         toggleOpacity(videoCards, index);
         toggleInfo(infoPanels, index);
+        toggleTitle(vimeoTitles, index)
+
+        console.log("Prev Index:" + prevIndex);
+        console.log("Index:" + index);
+
+        prevIndex = index;
     
-     console.log('toggle');
   });
 });
 
@@ -100,12 +108,19 @@ function toggleOpacity(videoCards, index){
   videoCards.forEach((card, i) => {
    if(i!==index){
       card.style.width = card.style.width === '100%' ? '' : '';
-      card.style.opacity = card.style.opacity === '1' ? '.5' : '.5';
-      console.log(card.style.opacity);
+      
+      if(prevIndex == index){
+        card.classList.toggle("opacity-50");
+        console.log("true");
+      }else
+      card.classList.add("opacity-50");
     }
     else{
       card.style.width = card.style.width === '100%' ? '' : '100%';
-      card.style.opacity = card.style.opacity === '.5' ? '1' : '';
+      card.classList.remove("opacity-50");
+      card.classList.add("opacity-100");
+      
+
     }
 
 });
@@ -121,6 +136,17 @@ function toggleInfo(infoPanels, index){
       panel.classList.toggle("grid-rows-[0fr]");
       panel.classList.toggle("grid-rows-[1fr]");
    
+    }
+
+});
+}
+function toggleTitle(vimeoTitles, index){
+  vimeoTitles.forEach((title, i) => {
+   if(i!==index){
+      title.classList.remove("opacity-0");
+    }
+    else{
+      title.classList.toggle("opacity-0");   
     }
 
 });

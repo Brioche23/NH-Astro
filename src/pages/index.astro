@@ -29,12 +29,12 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
     
     <div class="h-screen">
 
-      <div id="block-3" class="flex sticky top-full pb-10">
+      <div id="block-3" class="md:flex sticky top-full pb-10">
         
         <p class="text-white text-3xl md:text-4xl md:w-2/3 ">
           Perché Noise Heroes e non Noise Regular People? Perché il nostro non è un semplice lavoro, ma una vocazione. Nel nostro DNA abbiamo i  geni di qp! Noi non siamo semplici impiegati dell’audio. Siamo una banda di innamorati del suono con la missione di trasformare i rumori in storie. 
         </p>  
-        <p class="text-white text-xl w-1/3">
+        <p class="text-white text-xl md:w-1/3">
           <span class="text-orange">Sound design & Post production</span> / Storytelling  / TV / Digital / Radio / Podcast / Voice Talents — <span class="text-orange">Music production</span> / Composizione / Produzione tailor made / Network di artisti, musicisti, DJ e produttori — <span class="text-orange">Music supervision & Licensing</span> / Ricerca del sound più adatto /Sincronizzazione / Negoziazione</p>  
         </div>
       </div>
@@ -46,11 +46,6 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
             <span class="text-purple pr-2">Puntuali</span>  Non si è mai visto un eroe arrivare in ritardo /  <span class="text-orange pr-2">Tailor made</span> Ogni sfida ha bisogno di una risposta adeguata / <span class="text-purple pr-2">Precisi</span>  Una volta stabilito l’obiettivo, lo centriamo al primo colpo / <span class="text-orange pr-2">Budget friendly</span>Gli eroi non fanno rapine… ma le sventano</p> 
           </div>
         </div>
-          
-          <!-- <section class="servizi text-3xl">
-   { servizi.map((servizio)=> <span class="after:content-['/']  after:pr-1">{servizio}</span>)}
-
-  </section> -->
 
   <section class="work pt-10">
     <h2 class="before:content-['/'] before:pr-2">Work</h2>
@@ -84,7 +79,7 @@ window.addEventListener('scroll', function() {
   var scrollTop = window.scrollY || document.documentElement.scrollTop;
   
   // Apply the scroll rate to the elements
-  element1.style.transform = 'translateY(' + scrollTop * .4 + 'px)';
+  element1.style.transform = 'translateY(' + scrollTop * .2 + 'px)';
   element2.style.transform = 'translateY(' + scrollTop * 0 + 'px)';
   // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
 });

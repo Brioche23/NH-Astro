@@ -3,23 +3,13 @@
   ---
 
   <astro-vimeo data-message={vimeoId} >
-          <!-- <iframe 
-          id={vimeoId}
-          class="vimeo-frame absolute top-0 left-0 h-screen w-full " 
-          src=`https://player.vimeo.com/video/${vimeoId}?portrait=0&muted=1&autoplay=1&loop=1&autopause=0&title=0&controls=0` 
-          allow="autoplay; fullscreen; picture-in-picture"    
-          title="">
-      </iframe> -->
       
       <div id={vimeoId} class="video-wrapper relative ">
         <button class="play-button absolute top-5 right-5 z-10">PLAY</button>
         <button class="mute-button absolute top-10 right-5 z-10">MUTE</button>
         
-        <button class="absolute top-5 left-5 z-10">{title}</button>
-        <!-- <button class="absolute bottom-5 left-5 z-10">Servizi</button> -->
-        <!-- <section class="absolute -bottom-20 left-5 z-10">
-          { categorie.map((categoria)=> <span class="after:content-['/'] last:after:content-['']  after:px-1">{categoria}</span>)}
-         </section> -->
+        <p class="vimeo-title transition-opacity duration-500 ease-in-out absolute top-5 left-5 z-10">{title}</p>
+
       </div>
   </astro-vimeo>
 
@@ -47,7 +37,6 @@
           width: 480
       };
 
-      // const iframe = document.querySelector(message);
       const player = new Vimeo.Player(message, options);
 
      const playButton = this.querySelector('button.play-button');
@@ -105,4 +94,5 @@
    left: 50%;
    transform: translate(-50%, -50%);
       }
+
   </style>
