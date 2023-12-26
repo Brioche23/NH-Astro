@@ -34,7 +34,7 @@ const newCrediti : Crediti ={
 
 const videoId = "video-"+vimeoId;
 
-const videoSizes = ["w-1/2 ml-auto mr-20", "w-1/2 ml-auto mL-20", "w-2/3 ml-auto mr-0", "w-2/3 mR-auto mL-0", "w-1/3 ml-auto mr-0", "w-1/3 mR-auto mL-0"]
+const videoSizes = ["md:w-1/2 md:ml-auto md:mr-20", "md:w-1/2 md:ml-auto md:ml-20", "md:w-2/3 md:ml-auto md:mr-0", "md:w-2/3 md:mr-auto md:ml-0", "md:w-1/3 md:ml-auto md:mr-0", "md:w-1/3 md:mr-auto md:ml-0"]
 
 function getRandomWidth() {
   return videoSizes[Math.floor(Math.random() * videoSizes.length)];
@@ -45,13 +45,13 @@ function getRandomWidth() {
 <li id={videoId} class={`video-card relative transition-all duration-500 ease-in-out ${getRandomWidth()}`} style="opacity: 1;">
      <Vimeo {vimeoId} {title}/>
      <div class="info-panel grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5">
-     <div class=" w-full flex overflow-hidden">
-      <div class="title w-1/3">
-        <p class="text-3xl">
+     <div class=" w-full flex space-x-5 overflow-hidden">
+      <div class="title w-1/2 md:w-1/3">
+        <p class="text-xl md:text-3xl">
           {title}
         </p>
       </div>
-      <div class="credits w-1/3">
+      <div class="credits w-1/2 md:w-1/3">
        <div class="pb-2">
         <p class="text-orange">Cliente</p>
         <p>{newCrediti.cliente}</p>
