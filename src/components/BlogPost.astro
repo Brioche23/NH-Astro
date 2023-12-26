@@ -10,21 +10,26 @@
 interface Props {
   title: string;
   vimeoId: number;
-  crediti: Crediti;
+  cliente: string,
+    agenzia: string,
+    regista: string,
+    casa: string,
+    soundDesign: string,
+    mix: string,
 }
 
 
 import Vimeo from './Vimeo.astro';
 
-const {title, vimeoId, crediti} = Astro.props
+const {title, vimeoId, cliente, agenzia, regista, casa, soundDesign, mix} = Astro.props
 
 const newCrediti : Crediti ={
-  cliente: crediti.cliente,
-    agenzia: crediti.agenzia,
-    regista: crediti.regista,
-    casa: crediti.casa,
-    soundDesign: crediti.soundDesign,
-    mix: crediti.mix,
+    cliente: cliente,
+    agenzia: agenzia,
+    regista: regista,
+    casa: casa,
+    soundDesign: soundDesign,
+    mix: mix,
 }
 
 const videoId = "video-"+vimeoId;
