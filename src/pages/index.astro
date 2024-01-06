@@ -13,7 +13,7 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
 ---
 <BaseLayout {pageTitle}>
 
-  <div id="block-1" class="md:w-2/3 h-screen relative ">
+  <div id="block-1" class="md:w-2/3 h-screen relative  ">
     <div class="sticky top-full pb-10">
 
       <p class="font-display text-orange  text-7xl ">TA-DAH!</p>
@@ -66,6 +66,7 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
   </section>
 </BaseLayout>
 
+<script is:inline src="https://player.vimeo.com/api/player.js"></script>
 <script>
 
   // Get the elements
@@ -83,7 +84,6 @@ window.addEventListener('scroll', function() {
   element2.style.transform = 'translateY(' + scrollTop * 0 + 'px)';
   // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
 });
-
 
 
 </script>

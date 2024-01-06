@@ -14,7 +14,6 @@
   </astro-vimeo>
 
 
-  <script is:inline src="https://player.vimeo.com/api/player.js"></script>
   <script>
 
       // Define the behaviour for our new type of HTML element.
@@ -30,7 +29,7 @@
           portrait:0,
           muted:0,
           autoplay:0,
-          autopause:0,
+          autopause:1,
           title:0,
           controls:0,
           responsive: 1,
@@ -70,7 +69,7 @@
 // });
 
       player.on('play', function() {
-          console.log('played the video!');
+        console.log('played the video!');
       });
     }
   }
