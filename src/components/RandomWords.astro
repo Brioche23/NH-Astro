@@ -1,0 +1,52 @@
+---
+---
+<div id="wordContainer" class="absolute font-display capitalize text-7xl z-40"></div>
+
+<script>
+    // Your array of words
+let words = ["BOOOOOM!", "CLAPCLAP!", "SBANG!", "OOOH!", "WOW!", "LOL!"];
+let wordsColor = ["text-orange", "text-purple"];
+
+// Get a reference to the container
+let container = document.getElementById('wordContainer');
+
+// Function to generate a random number
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// Loop through the words
+for (let i = 0; i < words.length; i++) {
+  // Create a new span element for each word
+  let newWord = document.createElement('span');
+  
+  // Set the text of the span to the word
+  newWord.innerText = words[i];
+  
+  // Generate random positions for the top and left properties
+  let randomTop = getRandomNumber(400, document.body.scrollHeight - 200);
+  let randomLeft = getRandomNumber(0, window.innerWidth - 250);
+  let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
+  
+  // Set the CSS properties
+  newWord.style.position = 'absolute';
+  newWord.style.top = randomTop + 'px';
+  newWord.style.left = randomLeft + 'px';
+  newWord.classList.add(randomColor);
+  
+  // Add the new span element to the container
+  container.appendChild(newWord);
+  let randomScroll = getRandomNumber(.2, .5);
+
+  // Listen for the scroll event
+window.addEventListener('scroll', function() {
+  // Calculate the scroll rate
+  var scrollTop = window.scrollY || document.documentElement.scrollTop;
+  
+  // Apply the scroll rate to the elements
+  newWord.style.transform = 'translateY(' + scrollTop * randomScroll  + 'px)';
+  // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
+});
+}
+
+</script>
