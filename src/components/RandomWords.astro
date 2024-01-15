@@ -24,7 +24,7 @@ for (let i = 0; i < words.length; i++) {
   newWord.innerText = words[i];
   
   // Generate random positions for the top and left properties
-  let randomTop = getRandomNumber(400, document.body.scrollHeight - 200);
+  let randomTop = getRandomNumber(400, document.body.scrollHeight/2 );
   let randomLeft = getRandomNumber(0, window.innerWidth - 250);
   let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
   
@@ -32,21 +32,36 @@ for (let i = 0; i < words.length; i++) {
   newWord.style.position = 'absolute';
   newWord.style.top = randomTop + 'px';
   newWord.style.left = randomLeft + 'px';
+  newWord.classList.add("floating-word");
   newWord.classList.add(randomColor);
   
-  // Add the new span element to the container
+//   // Add the new span element to the container
   container.appendChild(newWord);
-  let randomScroll = getRandomNumber(.2, .5);
+//   let randomScroll = getRandomNumber(.2, .5);
 
-  // Listen for the scroll event
-window.addEventListener('scroll', function() {
-  // Calculate the scroll rate
-  var scrollTop = window.scrollY || document.documentElement.scrollTop;
+//   // Listen for the scroll event
+// window.addEventListener('scroll', function() {
+//   // Calculate the scroll rate
+//   var scrollTop = window.scrollY || document.documentElement.scrollTop;
   
-  // Apply the scroll rate to the elements
-  newWord.style.transform = 'translateY(' + scrollTop * randomScroll  + 'px)';
-  // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
-});
+//   // Apply the scroll rate to the elements
+//   newWord.style.transform = 'translateY(' + scrollTop * randomScroll  + 'px)';
+//   // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
+// });
 }
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".floating-word", {
+  y: (i, el) => (1 - gsap.utils.random(0.3, 1)) * ScrollTrigger.maxScroll(window) ,
+  ease: "none",
+  scrollTrigger: {
+    start: 0,
+    end: "max",
+    invalidateOnRefresh: true,
+    scrub: 0
+  }
+});
+
 
 </script>

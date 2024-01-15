@@ -47,6 +47,40 @@ h2 {
 }
 /* nav styles */
 
+.mainContainer {
+  /* overflow-y: scroll; */
+  height: 100vh;
+  /* scroll-snap-type: y mandatory; */
+}
+
+.mainContainer section.intro {
+  height: 100svh;
+  color: #ffffff;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 0;
+  /* scroll-snap-align: start; */
+}
+.mainContainer section.work {
+  /* scroll-snap-align: start; */
+}
+
+footer {
+  display: block;
+  gap: 1rem;
+  margin-top: 2rem;
+  /* scroll-snap-align: start; */
+}
+
+.footer-logo {
+  font-size: 20em;
+  line-height: 1em;
+}
+
+.wordContainer {
+  overflow: visible;
+}
+
 .hamburger {
   padding-right: 20px;
   cursor: pointer;
