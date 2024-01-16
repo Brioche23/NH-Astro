@@ -53,13 +53,14 @@ for (let i = 0; i < words.length; i++) {
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".floating-word", {
-  y: (i, el) => (1 - gsap.utils.random(0.3, 1)) * ScrollTrigger.maxScroll(window) ,
+  y: (i, el) => (1 - gsap.utils.random(0.1, .9)) * ScrollTrigger.maxScroll(window) ,
   ease: "none",
   scrollTrigger: {
-    start: 0,
+    start: "top center",
     end: "max",
     invalidateOnRefresh: true,
-    scrub: 0
+    scrub: 0,
+    markers: 0,
   }
 });
 
