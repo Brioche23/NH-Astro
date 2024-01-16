@@ -27,19 +27,19 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
       <Image src={heroImage} alt="The Noise Heroes" class:list={'sticky top-16'}/>
     </div>
 
-    <section class="block intro">
+    <section id="block-3" class="block intro">
 
-      <div id="block-3" class="content md:flex md:space-x-4">
+      <div  class="content md:flex md:space-x-4">
 
-        <p class="text-2xl md:text-4xl md:w-2/3 ">
+        <p class="op text-2xl md:text-4xl md:w-2/3 pb-4 md:pb-0 ">
           Perché Noise Heroes e non Noise Regular People? Perché il nostro non è un semplice lavoro, ma una vocazione. Nel nostro DNA abbiamo i  geni di qp! Noi non siamo semplici impiegati dell’audio. Siamo una banda di innamorati del suono con la missione di trasformare i rumori in storie.
         </p>
-        <p class="text-lg md:text-xl md:w-1/3">
+        <p class="op text-lg md:text-xl md:w-1/3">
           <span class="text-orange">Sound design & Post production</span> / Storytelling  / TV / Digital / Radio / Podcast / Voice Talents — <span class="text-orange">Music production</span> / Composizione / Produzione tailor made / Network di artisti, musicisti, DJ e produttori — <span class="text-orange">Music supervision & Licensing</span> / Ricerca del sound più adatto /Sincronizzazione / Negoziazione</p>
         </div>
       </section>
 
-      <section id="block-4" class="block intro" >
+      <section id="block-4" class="block op intro" >
 
         <div  class="content md:w-2/3">
           <p class=" text-2xl md:text-4xl ">
@@ -71,30 +71,16 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
 <script is:inline src="https://player.vimeo.com/api/player.js"></script>
 <script>
 
-//   // Get the elements
-// var element1 = document.querySelector('#block-1');
-// var element2 = document.querySelector('#block-2');
-// var element3 = document.querySelector('#block-3');
-
-// // Listen for the scroll event
-// window.addEventListener('scroll', function() {
-//   // Calculate the scroll rate
-//   var scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-//   // Apply the scroll rate to the elements
-//   element1.style.transform = 'translateY(' + scrollTop * .2 + 'px)';
-//   element2.style.transform = 'translateY(' + scrollTop * 0 + 'px)';
-//   // element3.style.transform = 'translateY(' + scrollTop * -.2 + 'px)';
-// });
-
 gsap.registerPlugin(ScrollTrigger);
 
 // create a timeline
 let tl = gsap.timeline()
 
+let mm = gsap.matchMedia();
+
 
 tl.fromTo(".intro-text", 
-  { opacity: 0 }, { opacity: 1, duration: 3, stagger:0.5 }
+  { opacity: 0 }, { opacity: 1, delay:0.5, duration: 3, stagger:0.5 }
 );
 
 gsap.utils.toArray(".block").forEach((block, i)=>{
@@ -103,10 +89,24 @@ gsap.utils.toArray(".block").forEach((block, i)=>{
       trigger: block,
       start: "top top",
       pin:true,
-      scrub: true,
+      scrub: 1,
       markers:false
     },
 
+})
+})
+mm.add("(max-width: 768px)", () => {
+gsap.utils.toArray(".op").forEach((op, i)=>{
+  tl.from(op, {
+    scrollTrigger:{
+      trigger: op,
+      start: "top center",
+      scrub: 1,
+      markers:true
+    },
+opacity:0,
+stagger:0.5
+})
 })
 })
 </script>
