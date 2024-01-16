@@ -8,7 +8,8 @@
 
 @font-face {
   font-family: "Diatype Compressed";
-  src: url("../fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff") format("woff");
+  src: url("../fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff") format("woff"),
+    url("../fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -29,6 +30,12 @@ body {
   padding: 0rem 1rem;
   line-height: 1.5;
   max-width: 1440px;
+}
+
+.font-display {
+  font-family: "Diatype Compressed", sans-serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 * {
