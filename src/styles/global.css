@@ -26,7 +26,7 @@ html {
 body {
   margin: 0 auto;
   width: 100%;
-  padding: 1rem;
+  padding: 0rem 1rem;
   line-height: 1.5;
   max-width: 1440px;
 }
@@ -54,11 +54,11 @@ h2 {
 }
 
 .mainContainer section.intro {
-  height: 100svh;
+  height: 100vh;
   color: #ffffff;
   display: flex;
   align-items: flex-end;
-  padding: 40px 0;
+  padding: 1rem 0;
   /* scroll-snap-align: start; */
 }
 .mainContainer section.work {
@@ -69,6 +69,7 @@ footer {
   display: block;
   gap: 1rem;
   margin-top: 2rem;
+  padding-bottom: 1rem;
   /* scroll-snap-align: start; */
 }
 

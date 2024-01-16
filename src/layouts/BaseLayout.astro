@@ -21,9 +21,11 @@ const {pageTitle} = Astro.props;
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
     <!-- <Header /> -->
-    <RandomWords />  
-    <h1 class="font-display text-white text-6xl tracking-wide fixed z-30">{pageTitle}</h1>
-    <div id="#scrollContainer" class="mainContainer">
+    <RandomWords />
+    <a href="#scrollContainer" class="fixed z-30 pt-4">
+      <h1 class="font-display text-4xl md:text-6xl tracking-wide ">{pageTitle}</h1>
+    </a>
+    <div id="scrollContainer" class="mainContainer">
       <slot />
       <Footer />
   </div>
