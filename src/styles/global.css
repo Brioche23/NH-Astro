@@ -49,12 +49,12 @@ h2 {
 
 .mainContainer {
   /* overflow-y: scroll; */
-  height: 100vh;
+  height: 100svh;
   /* scroll-snap-type: y mandatory; */
 }
 
 .mainContainer section.intro {
-  height: 100vh;
+  height: 100svh;
   color: #ffffff;
   display: flex;
   align-items: flex-end;
