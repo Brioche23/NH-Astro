@@ -26,7 +26,7 @@ const video = await fetch(`https://api.vimeo.com/users/${user_id}/projects/${pro
 .     then(response => response.json())
       .then(data => {
       // The video description is available in the 'description' field of the returned data
-      console.log(data);
+      // console.log(data);
       videos = data;
       
 })

@@ -47,6 +47,16 @@ body {
   font-size: 5rem;
   color: #ff4600;
 } */
+div.line {
+  overflow: hidden;
+  line-height: 2.5rem;
+}
+@media (max-width: 768px) {
+  div.line {
+    line-height: 2rem;
+  }
+  /* … */
+}
 
 h2 {
   font-size: 30px;
