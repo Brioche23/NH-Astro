@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -23,15 +23,16 @@ const {pageTitle} = Astro.props;
     
     <!-- <Header /> -->
     <RandomWords />
-    <a href="#scrollContainer" class="fixed z-30 pt-4">
+    <a href="#home" class="fixed z-30 pt-4">
       <h1 class="font-display text-4xl md:text-6xl tracking-wide ">{pageTitle}</h1>
     </a>
-    <div id="scrollContainer" class="mainContainer">
+    <div id="home" class="mainContainer">
       <slot />
       <Footer />
   </div>
     <script>
       import "../scripts/menu.js";
+      import "../scripts/gsap.js";
     </script>
   </body>
 </html>

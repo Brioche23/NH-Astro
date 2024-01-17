@@ -1,0 +1,127 @@
+---
+
+interface Props {
+  title: string;
+  vimeoUrl: number;
+  description: string,
+}
+
+
+import Vimeo from './Vimeo.astro';
+
+const {title, vimeoUrl, description} = Astro.props
+
+const id = "video-"+title;
+
+const videoSizes = ["md:w-1/2 md:ml-auto md:mr-20", "md:w-1/2 md:ml-auto md:ml-20", "md:w-2/3 md:ml-auto md:mr-0", "md:w-2/3 md:mr-auto md:ml-0", "md:w-1/3 md:ml-auto md:mr-0", "md:w-1/3 md:mr-auto md:ml-0"]
+
+function getRandomWidth() {
+  return videoSizes[Math.floor(Math.random() * videoSizes.length)];
+}
+
+---
+<a href={`#${id}`} class="op">
+<li id={id} class={`video-card relative transition-all duration-500 ease-in-out  ${getRandomWidth()}`}>
+     <Vimeo {vimeoUrl} {title}/>
+     <div class="info-panel grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5">
+     <div class=" w-full flex space-x-5 overflow-hidden">
+      <div class="title w-1/2 md:w-1/3">
+        <p class="text-xl md:text-3xl">
+          {title}
+        </p>
+      </div>
+      <div class="credits w-1/2 md:w-1/3">
+       <div class="pb-2">
+        <p class="text-orange">Descrizione</p>
+        <p>{description}</p>
+       </div>
+       
+     </div>
+      </div>
+     </div>
+</li>
+</a>
+
+<script >
+     console.log('hello');
+     const videoCards = document.querySelectorAll('li.video-card');
+     const infoPanels = document.querySelectorAll('.info-panel');
+     const vimeoTitles = document.querySelectorAll('.vimeo-title');
+     // Handle clicks on each button.
+     let prevIndex = "";
+
+     videoCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        toggleOpacity(videoCards, index);
+        toggleInfo(infoPanels, index);
+        toggleTitle(vimeoTitles, index)
+
+        console.log("Prev Index:" + prevIndex);
+        console.log("Index:" + index);
+
+        prevIndex = index;
+    
+  });
+});
+
+function toggleOpacity(videoCards, index){
+  videoCards.forEach((card, i) => {
+   if(i!==index){
+      card.style.width = card.style.width === '100%' ? '' : '';
+      
+      if(prevIndex == index){
+        card.classList.toggle("opacity-50");
+        console.log("true");
+      }else
+      card.classList.add("opacity-50");
+    }
+    else{
+      card.style.width = card.style.width === '100%' ? '' : '100%';
+      card.classList.remove("opacity-50");
+      card.classList.add("opacity-100");
+      
+
+    }
+
+});
+}
+
+function toggleInfo(infoPanels, index){
+  infoPanels.forEach((panel, i) => {
+   if(i!==index){
+      panel.classList.add("grid-rows-[0fr]");
+      panel.classList.remove("grid-rows-[1fr]");
+    }
+    else{
+      panel.classList.toggle("grid-rows-[0fr]");
+      panel.classList.toggle("grid-rows-[1fr]");
+   
+    }
+
+});
+}
+function toggleTitle(vimeoTitles, index){
+  vimeoTitles.forEach((title, i) => {
+   if(i!==index){
+      title.classList.remove("opacity-0");
+    }
+    else{
+      title.classList.toggle("opacity-0");   
+    }
+
+});
+}
+
+</script>
+
+<style>
+.video-card::after {
+  content:"";
+  position:absolute;
+  z-index:2;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+}
+</style>

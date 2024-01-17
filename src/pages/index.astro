@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import heroImage from '../img/hero.svg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
+import VimeoGallery from '../components/VimeoGallery.astro';
 const allPosts = await getCollection('posts');
 const pageTitle = "NOISE HEROES";
 
@@ -51,7 +52,8 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
 
     <h2 class="before:content-['/'] before:pr-2">Work</h2>
 
-    <ul class="video-list grid gap-5w pb-5">
+    <VimeoGallery />
+    <!-- <ul class="video-list grid gap-5w pb-5">
       {allPosts.map((post) =>
       <BlogPost
         title={post.data.title}
@@ -63,50 +65,9 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
         soundDesign = {post.data.crediti.soundDesign}
         mix = {post.data.crediti.mix}
         />)}
-    </ul>
+    </ul> -->
   </section>
 
 </BaseLayout>
 
 <script is:inline src="https://player.vimeo.com/api/player.js"></script>
-<script>
-
-gsap.registerPlugin(ScrollTrigger);
-
-// create a timeline
-let tl = gsap.timeline()
-
-let mm = gsap.matchMedia();
-
-
-tl.fromTo(".intro-text", 
-  { opacity: 0 }, { opacity: 1, delay:0.5, duration: 3, stagger:0.5 }
-);
-
-gsap.utils.toArray(".block").forEach((block, i)=>{
-  tl.from(block, {
-    scrollTrigger:{
-      trigger: block,
-      start: "top top",
-      pin:true,
-      scrub: 1,
-      markers:false
-    },
-
-})
-})
-mm.add("(max-width: 768px)", () => {
-gsap.utils.toArray(".op").forEach((op, i)=>{
-  tl.from(op, {
-    scrollTrigger:{
-      trigger: op,
-      start: "top center",
-      scrub: 1,
-      markers:true
-    },
-opacity:0,
-stagger:0.5
-})
-})
-})
-</script>

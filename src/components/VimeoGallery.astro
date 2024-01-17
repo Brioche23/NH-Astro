@@ -1,0 +1,52 @@
+---
+
+import { Debug } from 'astro:components';
+import VimeoPost from '../components/VimeoPost.astro';
+import VimeoContainer from '../components/VimeoContainer.vue';
+
+
+const access_token = "8f7c62c8813f4d7254a1f5bdfaaa5000";
+const user_id = 145097752;
+const project_id = 19166725;
+const video_id = 717418716;
+
+let videos;
+
+let index = 0;
+
+
+const response = await fetch(`https://api.vimeo.com/users/${user_id}/folders/${project_id}`);
+const data = await response.json();
+
+const video = await fetch(`https://api.vimeo.com/users/${user_id}/projects/${project_id}/videos`, {
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      }
+      })
+.     then(response => response.json())
+      .then(data => {
+      // The video description is available in the 'description' field of the returned data
+      console.log(data);
+      videos = data;
+      
+})
+.catch(error => console.error('Error:', error));
+
+---
+
+<!-- <VimeoContainer data={videos.data} client:load/> -->
+
+   <ul class="video-list grid gap-5 pb-5">
+      {videos.data.map((vid) =>
+      <VimeoPost
+        title={vid.name}
+        vimeoUrl = {vid.link}
+        description = {vid.description}
+        />
+        )}
+    </ul>
+
+    <script>
+      import "../scripts/vimeoCards.js";
+    </script>
+<!-- <Debug {data} /> -->

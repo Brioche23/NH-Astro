@@ -1,10 +1,10 @@
   ---
-  const {vimeoId, title} = Astro.props;
+  const {vimeoUrl, title} = Astro.props;
   ---
 
-  <astro-vimeo data-message={vimeoId} >
+  <astro-vimeo data-url={vimeoUrl} data-title={title} >
       
-      <div id={vimeoId} class="video-wrapper relative ">
+      <div id={title} class="video-wrapper relative ">
         <!-- <button class="play-button absolute top-5 right-5 z-10">PLAY</button>
         <button class="mute-button absolute top-10 right-5 z-10">MUTE</button> -->
         
@@ -17,14 +17,17 @@
   <script>
 
       // Define the behaviour for our new type of HTML element.
+
+      
     class AstroVimeo extends HTMLElement {
       constructor() {
         super();
 
-        const message = this.dataset.message;
+        const url = this.dataset.url;
+        const title = this.dataset.title;
 
         const options = {
-          id: message,
+          url: url,
           loop: true,
           portrait:0,
           muted:0,
@@ -36,18 +39,29 @@
           width: 480
       };
 
-      const player = new Vimeo.Player(message, options);
+      const player = new Vimeo.Player(title, options);
       let isPlaying = false;
-
 
      const playButton = this.querySelector('button.play-button');
      const muteButton = this.querySelector('button.mute-button');
+
      
      const vimeoContent = this.querySelector('div.video-wrapper');
      vimeoContent.addEventListener("click", () => {
-      isPlaying ? player.pause() :  player.play();
-      isPlaying = !isPlaying;
-    });
+       isPlaying ? player.pause() :  player.play();
+       isPlaying = !isPlaying;
+      });
+
+      player.on('play', function() {
+         console.log('played the video!');
+         isPlaying = true;
+ 
+       });
+ 
+       player.on("pause", function () {
+       console.log("stop the video!");
+       isPlaying = false;
+ });
 
 //       playButton.addEventListener("click", () => {
 //         isPlaying ? player.pause() :  player.play();
@@ -68,9 +82,26 @@
 //         }
 // });
 
-      player.on('play', function() {
-        console.log('played the video!');
-      });
+
+
+      const access_token = "4bea732b8fbc04f64d94b667e913a8e5";
+
+//       // First, you need to fetch the video data from the Vimeo API
+//       fetch(`https://api.vimeo.com/videos/${message}`, {
+//       headers: {
+//         'Authorization': `Bearer ${access_token}`
+//       }
+//       })
+// .     then(response => response.json())
+//       .then(data => {
+//       // The video description is available in the 'description' field of the returned data
+//       console.log(data);
+//       console.log(data.name);
+//       console.log(data.description);
+// })
+// .catch(error => console.error('Error:', error));
+
+
     }
   }
     // Tell the browser to use our AstroVimeo class for <astro-vimeo> elements.
