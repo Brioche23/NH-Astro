@@ -56,9 +56,9 @@ function fadeOut() {
 
 const container = document.getElementById("hero-heroes");
 
-let animation = lottieWeb.loadAnimation({
+let hero_animation = lottieWeb.loadAnimation({
   container: container,
-  path: "./src/img/lottie/Heroes_Cerchio_Sito.json",
+  path: "./public/lottie/Heroes_Cerchio_Sito.json",
   renderer: "svg",
   loop: true,
   autoplay: true,
@@ -103,7 +103,7 @@ for (let i = 0; i < 5; i++) {
 
   let hero = lottieWeb.loadAnimation({
     container: hero_container,
-    path: `./src/img/lottie/heroes/Antieroe_0${i + 1}_ok.json`,
+    path: `./public/lottie/heroes/Antieroe_0${i + 1}_ok.json`,
     renderer: "svg",
     loop: true,
     autoplay: false,
@@ -130,7 +130,7 @@ toggleButton.addEventListener("click", toggleMute);
 
 // let hero_01 = lottieWeb.loadAnimation({
 //   container: hero_01_container,
-//   path: `./src/img/lottie/heroes/Antieroe_01_ok.json`,
+//   path: `./public/lottie/heroes/Antieroe_01_ok.json`,
 //   renderer: "svg",
 //   loop: true,
 //   autoplay: false,
