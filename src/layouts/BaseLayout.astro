@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
+
 import Header from '../components/Header.astro';
 import RandomWords from '../components/RandomWords.astro';
 import Footer from '../components/Footer.astro';
@@ -14,8 +15,9 @@ const {pageTitle} = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <ViewTransitions />
+    <!-- <ViewTransitions /> -->
     <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
@@ -23,10 +25,13 @@ const {pageTitle} = Astro.props;
     <script is:inline src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    
+    <button id="globalMuteToggle"  class="material-symbols-outlined hidden md:block transition-all duration-300 ease-in">
+        volume_off
+    </button>
     <!-- <Header /> -->
     <RandomWords />
     <div id="heroesContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
+
 
     <a href="#home" class="fixed z-30 pt-4">
       <h1 class="font-display text-4xl md:text-6xl tracking-wide ">{pageTitle}</h1>

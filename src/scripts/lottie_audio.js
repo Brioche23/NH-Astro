@@ -1,19 +1,34 @@
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
-let sound = true;
 
 let audio = new Audio(); // Create an audio object
+let isMuted = true; // Flag to track mute state
 
 // Function to play audio with fade in
 function playAudio(audioSrc) {
   audio.src = audioSrc;
   audio.play();
   audio.volume = 0; // Start with zero volume
-  fadeIn();
+  // fadeIn();
+  audio.volume = isMuted ? 0 : 1; // Adjust volume based on mute state
 }
 
 // Function to stop audio with fade out
 function stopAudio() {
   fadeOut();
+}
+
+// Function to toggle mute state
+function toggleMute() {
+  isMuted = !isMuted;
+  audio.volume = isMuted ? 0 : 1; // Adjust volume based on mute state
+  console.log(isMuted);
+  if (isMuted) {
+    toggleButton.innerHTML = "volume_off";
+    toggleButton.classList.remove("bg-orange");
+  } else {
+    toggleButton.innerHTML = "volume_up";
+    toggleButton.classList.add("bg-orange");
+  }
 }
 
 // Function to gradually increase the volume (fade in)
@@ -82,14 +97,6 @@ for (let i = 0; i < 5; i++) {
   newHero.style.left = randomLeft + "px";
   newHero.classList.add("floating-hero");
   newHero.classList.add("w-48");
-  // newHero.onmouseover = function () {
-  //   playAudio("./src/audio/ex_0" + (i + 1) + ".mp3");
-  // };
-  // newHero.onmouseout = function () {
-  //   stopAudio();
-  // };
-  // newHero.classList.add("bg-orange");
-  //   newHero.classList.add(randomColor);
   heroesContainer.appendChild(newHero);
 
   let hero_container = document.getElementById(`hero-0${i + 1}`);
@@ -113,6 +120,11 @@ for (let i = 0; i < 5; i++) {
     stopAudio();
   });
 }
+
+// Toggle mute on global button click
+let toggleButton = document.getElementById("globalMuteToggle");
+
+toggleButton.addEventListener("click", toggleMute);
 
 // const hero_01_container = document.getElementById("hero-01");
 

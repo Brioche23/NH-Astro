@@ -139,21 +139,17 @@ footer {
   display: unset;
 }
 
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
-  }
+#globalMuteToggle {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  padding: 1rem;
+  border-radius: 100%;
+  border: 1px solid;
+  border-color: #ffffff;
+  z-index: 50;
+}
 
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-
-  .hamburger {
-    display: none;
-  }
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
