@@ -1,0 +1,52 @@
+---
+---
+<div id="heroesContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
+
+<script>
+
+
+// Get a reference to the heroesContainer
+let heroesContainer = document.getElementById('heroesContainer');
+
+// Function to generate a random number
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// Loop through the words
+for (let i = 0; i < 5; i++) {
+  // Create a new span element for each word
+  let newHero = document.createElement('span');
+
+  // Generate random positions for the top and left properties
+  let randomTop = getRandomNumber(document.body.scrollHeight/2, document.body.scrollHeight );
+  let randomLeft = getRandomNumber(0, window.innerWidth - 250);
+//   let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
+  
+  // Set the CSS properties
+  newHero.style.position = 'absolute';
+  newHero.style.top = randomTop + 'px';
+  newHero.style.left = randomLeft + 'px';
+  newHero.classList.add("floating-hero");
+//   newHero.classList.add(randomColor);
+  
+//   // Add the new span element to the heroesContainer
+  heroesContainer.appendChild(newHero);
+
+}
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".floating-hero", {
+  y: (i, el) => (1 - gsap.utils.random(.1, .8)) * ScrollTrigger.maxScroll(window),
+  ease: "none",
+  scrollTrigger: {
+    start: "top center",
+    end: "max",
+    invalidateOnRefresh: true,
+    scrub: 0,
+    markers: 0,
+  }
+});
+
+
+</script>

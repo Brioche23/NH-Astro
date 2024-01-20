@@ -20,10 +20,14 @@ const {pageTitle} = Astro.props;
   <body>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     
     <!-- <Header /> -->
     <RandomWords />
+    <div id="heroesContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
+
     <a href="#home" class="fixed z-30 pt-4">
       <h1 class="font-display text-4xl md:text-6xl tracking-wide ">{pageTitle}</h1>
     </a>
@@ -33,6 +37,7 @@ const {pageTitle} = Astro.props;
   </div>
     <script>
       import "../scripts/menu.js";
+      import "../scripts/lottie_audio.js";
       import "../scripts/gsap.js";
     </script>
   </body>
