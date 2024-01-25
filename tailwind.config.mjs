@@ -9,6 +9,7 @@ export default {
       colors: {
         purple: "#5032A0",
         orange: "#FF4600",
+        green: "#00D9B5",
       },
       fontFamily: {
         sans: ["Neue Haas Grotesk", ...defaultTheme.fontFamily.sans],

@@ -128,30 +128,6 @@ let toggleButton = document.getElementById("globalMuteToggle");
 
 toggleButton.addEventListener("click", toggleMute);
 
-// const hero_01_container = document.getElementById("hero-01");
-
-// let hero_01 = lottieWeb.loadAnimation({
-//   container: hero_01_container,
-//   path: `.//lottie/heroes/Antieroe_01_ok.json`,
-//   renderer: "svg",
-//   loop: true,
-//   autoplay: false,
-//   name: "Hero Animation 1",
-// });
-
-// hero_01_container.addEventListener("mouseenter", function () {
-//   hero_01.play();
-//   console.log("Play!");
-// });
-// hero_01_container.addEventListener("mouseleave", function () {
-//   hero_01.pause();
-//   console.log("Stop!");
-// });
-
-// hero_01.addEventListener("mouseleave", function () {
-//   animation.gotoAndStop(0);
-// });
-
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".floating-hero", {
