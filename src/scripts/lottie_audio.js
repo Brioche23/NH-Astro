@@ -13,8 +13,10 @@ function playAudio(audioSrc) {
 }
 
 // Function to stop audio with fade out
-function stopAudio() {
-  fadeOut();
+function stopAudio(audioSrc) {
+  // fadeOut();
+  audio.src = audioSrc;
+  audio.pause();
 }
 
 // Function to toggle mute state
@@ -111,13 +113,13 @@ for (let i = 0; i < 5; i++) {
   });
 
   hero_container.addEventListener("mouseenter", function () {
-    playAudio("./src/audio/ex_0" + (i + 1) + ".mp3");
+    if (!isMuted) playAudio("/audio/ex_0" + (i + 1) + ".mp3");
     hero.goToAndPlay(0);
   });
 
   hero_container.addEventListener("mouseleave", function () {
+    if (!isMuted) stopAudio("/audio/ex_0" + (i + 1) + ".mp3");
     hero.pause();
-    stopAudio();
   });
 }
 
