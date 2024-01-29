@@ -19,6 +19,7 @@ const {pageTitle} = Astro.props;
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
     <script is:inline src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+ 
 
     <button id="globalMuteToggle"  class="material-symbols-outlined hidden md:block transition-all duration-300 ease-in">
         volume_off
@@ -34,10 +35,12 @@ const {pageTitle} = Astro.props;
       <slot />
       <Footer />
   </div>
-    <script>
-      import "../scripts/menu.js";
-      import "../scripts/lottie_audio.js";
-      import "../scripts/gsap.js";
-    </script>
+
+  <script >
+    import "../scripts/menu.js";
+    import "../scripts/services.js";
+    import "../scripts/lottie_audio.js";
+    import "../scripts/gsap.js";
+  </script>
   </body>
 </html>
