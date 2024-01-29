@@ -9,16 +9,13 @@
         <button class="mute-button absolute top-10 right-5 z-10">MUTE</button> -->
         
         <p class="vimeo-title transition-opacity duration-500 ease-in-out absolute top-5 left-5 z-10">{title}</p>
-
       </div>
   </astro-vimeo>
 
 
   <script>
 
-      // Define the behaviour for our new type of HTML element.
-
-      
+  // Define the behaviour for our new type of HTML element.
     class AstroVimeo extends HTMLElement {
       constructor() {
         super();
@@ -81,27 +78,6 @@
 
 //         }
 // });
-
-
-
-      const access_token = "4bea732b8fbc04f64d94b667e913a8e5";
-
-//       // First, you need to fetch the video data from the Vimeo API
-//       fetch(`https://api.vimeo.com/videos/${message}`, {
-//       headers: {
-//         'Authorization': `Bearer ${access_token}`
-//       }
-//       })
-// .     then(response => response.json())
-//       .then(data => {
-//       // The video description is available in the 'description' field of the returned data
-//       console.log(data);
-//       console.log(data.name);
-//       console.log(data.description);
-// })
-// .catch(error => console.error('Error:', error));
-
-
     }
   }
     // Tell the browser to use our AstroVimeo class for <astro-vimeo> elements.
@@ -125,7 +101,7 @@
       .video-wrapper::after {
   content:"";
   position:absolute;
-  z-index:3;
+  z-index:4;
   width:100%;
   height:100%;
   left:0;

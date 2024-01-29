@@ -107,7 +107,7 @@ for (let i = 0; i < 5; i++) {
     container: hero_container,
     path: `/lottie/heroes/Antieroe_0${i + 1}_ok.json`,
     renderer: "svg",
-    loop: true,
+    loop: false,
     autoplay: false,
     name: "Hero Animation" + i,
   });
@@ -119,7 +119,7 @@ for (let i = 0; i < 5; i++) {
 
   hero_container.addEventListener("mouseleave", function () {
     if (!isMuted) stopAudio("/audio/ex_0" + (i + 1) + ".mp3");
-    hero.pause();
+    // hero.pause();
   });
 }
 

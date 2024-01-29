@@ -6,11 +6,9 @@ interface Props {
   description: string,
 }
 
-
 import Vimeo from './Vimeo.astro';
 
 const {title, vimeoUrl, description} = Astro.props
-
 const id = "video-"+title;
 
 const videoSizes = ["md:w-1/2 md:ml-auto md:mr-20", "md:w-1/2 md:ml-auto md:ml-20", "md:w-2/3 md:ml-auto md:mr-0", "md:w-2/3 md:mr-auto md:ml-0", "md:w-1/3 md:ml-auto md:mr-0", "md:w-1/3 md:mr-auto md:ml-0"]
@@ -47,10 +45,13 @@ function getRandomWidth() {
 </script>
 
 <style>
+.video-card {
+  z-index:3;
+}
 .video-card::after {
   content:"";
   position:absolute;
-  z-index:2;
+  z-index:3;
   width:100%;
   height:100%;
   left:0;

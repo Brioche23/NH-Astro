@@ -22,6 +22,7 @@ function toggleOpacity(videoCards, index) {
   videoCards.forEach((card, i) => {
     if (i !== index) {
       card.style.width = card.style.width === "100%" ? "" : "";
+      card.style.zIndex = "4";
 
       if (prevIndex == index) {
         card.classList.toggle("opacity-50");

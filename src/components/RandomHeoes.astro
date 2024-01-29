@@ -1,10 +1,13 @@
 ---
 ---
-<div id="heroesContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
+<div id="heroesContainer" class="absolute font-display capitalize text-7xl hidden md:block"></div>
+<style>
+  #heroesContainer{
+    z-index: 2;
+  }
+</style>
 
 <script>
-
-
 // Get a reference to the heroesContainer
 let heroesContainer = document.getElementById('heroesContainer');
 
@@ -30,7 +33,7 @@ for (let i = 0; i < 5; i++) {
   newHero.classList.add("floating-hero");
 //   newHero.classList.add(randomColor);
   
-//   // Add the new span element to the heroesContainer
+// Add the new span element to the heroesContainer
   heroesContainer.appendChild(newHero);
 
 }
@@ -47,6 +50,4 @@ gsap.to(".floating-hero", {
     markers: 0,
   }
 });
-
-
 </script>

@@ -1,9 +1,15 @@
 ---
 ---
-<div id="wordContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
+<div id="wordContainer" class="absolute font-display capitalize text-7xl hidden md:block"></div>
+
+<style>
+  #wordContainer{
+    z-index: 2;
+  }
+</style>
 
 <script>
-    // Your array of words
+    // Array of words
 let words = ["BOOOOOM!", "CLAPCLAP!", "SBANG!", "OOOH!", "WOW!", "LOL!"];
 let wordsColor = ["text-orange", "text-green"];
 
@@ -37,10 +43,11 @@ for (let i = 0; i < words.length; i++) {
   newWord.classList.add("floating-word");
   newWord.classList.add(randomColor);
   
-//   // Add the new span element to the container
+  // Add the new span element to the container
   container.appendChild(newWord);
 }
 
+// GSAP for Parallax
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".floating-word", {
@@ -54,6 +61,5 @@ gsap.to(".floating-word", {
     markers: 0,
   }
 });
-
 
 </script>

@@ -1,0 +1,26 @@
+---
+const {service} = Astro.props;
+
+const serviceName = service.name;
+const subServ  = service.subServ;
+---
+
+<div class="service-list">
+
+    <h3 class="inline">
+        {serviceName}
+    </h3>
+    { subServ.map((serv) =>
+    <span class="service after:content-['/']">
+        <span class="service-name text-orange">{serv.name}
+            <span class="service-icon material-symbols-outlined">
+                arrow_outward
+            </span>
+        </span>
+        <span class="service-desc hidden">
+            {serv.desc}
+        </span>
+    </span>
+    )}
+</div>
+

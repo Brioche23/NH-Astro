@@ -1,21 +1,16 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-
-
-import Header from '../components/Header.astro';
 import RandomWords from '../components/RandomWords.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <!-- <ViewTransitions /> -->
     <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
@@ -28,7 +23,6 @@ const {pageTitle} = Astro.props;
     <button id="globalMuteToggle"  class="material-symbols-outlined hidden md:block transition-all duration-300 ease-in">
         volume_off
     </button>
-    <!-- <Header /> -->
     <RandomWords />
     <div id="heroesContainer" class="absolute font-display capitalize text-7xl z-40 hidden md:block"></div>
 
