@@ -22,7 +22,7 @@ function toggleOpacity(videoCards, index) {
   videoCards.forEach((card, i) => {
     if (i !== index) {
       card.style.width = card.style.width === "100%" ? "" : "";
-      card.style.zIndex = "4";
+      card.style.zIndex = card.style.zIndex == "5" ? "3" : "3";
 
       if (prevIndex == index) {
         card.classList.toggle("opacity-50");
@@ -30,6 +30,8 @@ function toggleOpacity(videoCards, index) {
       } else card.classList.add("opacity-50");
     } else {
       card.style.width = card.style.width === "100%" ? "" : "100%";
+      card.style.position = "relative";
+      card.style.zIndex = card.style.zIndex === "5" ? "3" : "5";
       card.classList.remove("opacity-50");
       card.classList.add("opacity-100");
     }

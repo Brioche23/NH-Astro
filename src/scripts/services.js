@@ -30,26 +30,6 @@ serviceNames.forEach((name) => {
         } else c.style.opacity = 1;
       }
     });
-    // ! Da sistemare
-    // serviceLists.forEach((s) => {
-    //   if (isOpen) {
-    //     if (s != parentNode.parentNode) {
-    //       s.style.opacity = 0.5;
-    //       //   s.childNodes.forEach((c) => {
-    //       //     console.log(c);
-    //       //     if (c.hasChildNodes()) c.style.opacity = 0.5;
-    //       //   });
-    //     } else s.style.opacity = 1;
-    //     // for (const c of parentBox.children) {
-    //     //   console.log(c);
-    //     //   if (isOpen) {
-    //     //     if (c != parentNode) {
-    //     //       c.style.opacity = 0.5;
-    //     //     } else c.style.opacity = 1;
-    //     //   } else c.style.opacity = 1;
-    //     // }
-    //   } else s.style.opacity = 1;
-    // });
   });
 });
 
