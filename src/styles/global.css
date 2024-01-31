@@ -29,7 +29,7 @@ body {
   width: 100%;
   padding: 0rem 1rem;
   line-height: 1.5;
-  max-width: 1440px;
+  max-width: 2400px;
 }
 
 .font-display {
@@ -62,12 +62,9 @@ h2 {
   font-size: 30px;
   color: #ffffff;
 }
-/* nav styles */
 
 .mainContainer {
-  /* overflow-y: scroll; */
   height: 100svh;
-  /* scroll-snap-type: y mandatory; */
 }
 
 .mainContainer section.intro {
@@ -76,10 +73,6 @@ h2 {
   display: flex;
   align-items: flex-end;
   padding: 1rem 0;
-  /* scroll-snap-align: start; */
-}
-.mainContainer section.work {
-  /* scroll-snap-align: start; */
 }
 
 footer {
@@ -87,7 +80,6 @@ footer {
   gap: 1rem;
   margin-top: 2rem;
   padding-bottom: 1rem;
-  /* scroll-snap-align: start; */
 }
 
 .footer-logo {
@@ -147,9 +139,9 @@ footer {
   border-radius: 100%;
   border: 1px solid;
   border-color: #ffffff;
-  z-index: 50;
+  z-index: 3;
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 0, "opsz" 24;
 }
