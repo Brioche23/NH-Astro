@@ -1,92 +1,101 @@
   ---
-  const {vimeoUrl, title} = Astro.props;
-  ---
 
-  <astro-vimeo data-url={vimeoUrl} data-title={title} >
-      
-      <div id={title} class="video-wrapper relative ">
-        <!-- <button class="play-button absolute top-5 right-5 z-10">PLAY</button>
-        <button class="mute-button absolute top-10 right-5 z-10">MUTE</button> -->
-        
-        <p class="vimeo-title uppercase transition-opacity duration-500 ease-in-out absolute top-5 left-5 z-10">{title}</p>
-      </div>
-  </astro-vimeo>
+  const {title, vimeoUrl, description} = Astro.props;
+  const id = "video-"+title;
 
+  const videoSizes = ["md:w-1/2 md:ml-auto md:mr-20", "md:w-1/2 md:ml-auto md:ml-20", "md:w-2/3 md:ml-auto md:mr-0", "md:w-2/3 md:mr-auto md:ml-0", "md:w-1/3 md:ml-auto md:mr-0", "md:w-1/3 md:mr-auto md:ml-0"];
 
-  <script>
-
-  // Define the behaviour for our new type of HTML element.
-    class AstroVimeo extends HTMLElement {
-      constructor() {
-        super();
-
-        const url = this.dataset.url;
-        const title = this.dataset.title;
-
-        const options = {
-          url: url,
-          loop: true,
-          portrait:0,
-          muted:0,
-          autoplay:0,
-          autopause:1,
-          title:0,
-          controls:0,
-          responsive: 1,
-          width: 480
-      };
-
-      const player = new Vimeo.Player(title, options);
-      let isPlaying = false;
-
-     const playButton = this.querySelector('button.play-button');
-     const muteButton = this.querySelector('button.mute-button');
-
-     
-     const vimeoContent = this.querySelector('div.video-wrapper');
-     vimeoContent.addEventListener("click", () => {
-       isPlaying ? player.pause() :  player.play();
-       isPlaying = !isPlaying;
-      });
-
-      player.on('play', function() {
-         console.log('played the video!');
-         isPlaying = true;
- 
-       });
- 
-       player.on("pause", function () {
-       console.log("stop the video!");
-       isPlaying = false;
- });
-
-//       playButton.addEventListener("click", () => {
-//         isPlaying ? player.pause() :  player.play();
-//         playButton.innerHTML = isPlaying ? "PLAY" : "PAUSE";
-//         isPlaying = !isPlaying;     
-// });
-
-//       muteButton.addEventListener("click", () => {
-//         if(muteButton.innerHTML == "MUTE" ){
-
-//           player.setVolume(0);
-//           muteButton.innerHTML = "UNMUTE"; 
-//         }
-//         else{
-//           player.setVolume(1);
-//           muteButton.innerHTML = "MUTE"; 
-
-//         }
-// });
-    }
+  function getRandomWidth() {
+    return videoSizes[Math.floor(Math.random() * videoSizes.length)];
   }
-    // Tell the browser to use our AstroVimeo class for <astro-vimeo> elements.
-    customElements.define('astro-vimeo', AstroVimeo);
-  </script>
 
-  <style>
+  ---
+  <a href={`#${id}`} class="op">
+    <li id={id} data-open="false" class={`video-card relative transition-all duration-500 ease-in-out ${getRandomWidth()}`}>
+      <astro-vimeo data-url={vimeoUrl} data-title={title} >
 
-    
+        <div class="vimeo-full relative"> 
+          <div class="controls-overlay absolute w-full h-full">
+            <!-- <button class="play-button absolute">PLAY</button> -->
+            <button class="close-button material-symbols-outlined absolute top-5 right-5">close</button>
+            
+            <div class="play-bar">
+              <svg height="6" width="100%" class="play-progress rounded-full mr-4" style="background-color:rgba(217, 217, 217, 0.5) ;">
+                <line class="progress-bar fill-orange absolute" x1="0" y1="3" x2="0%" y2="3" style="stroke:#FF4600;stroke-width:6" />
+              </svg>
+              
+              <button class="mute-button">
+                <img class="w-8" src="/icons/volume_on.svg" alt="Volume Icon">
+              </button>
+            </div>
+          </div>
+          <div id={title} class="video-wrapper relative ">
+            <p class="vimeo-title uppercase transition-opacity duration-500 ease-in-out absolute top-5 left-5 z-10">{title}</p>
+          </div>
+        </div>
+      </astro-vimeo>
+      <div class="info-panel grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5">
+        <div class=" w-full flex space-x-5 overflow-hidden">
+          <div class="title w-1/2 md:w-1/3">
+            <p class="text-xl md:text-3xl uppercase">
+              {title}
+            </p>
+          </div>
+          <div class="credits w-1/2 md:w-1/3">
+            <p class="text-orange">Description</p>
+            <p>{description}</p>
+          </div>
+        </div>
+      </div>
+    </li>
+  </a>
+
+<script>
+    import "../scripts/vimeoCards2.js";
+</script>
+
+<style>
+
+.play{
+  width: 100%;
+  opacity: 1;
+  z-index: 5;
+}
+.back{
+  opacity: .5;
+}
+
+.video-card {
+  width: "";
+  z-index:3;
+}
+.video-card::after {
+  content:"";
+  position:absolute;
+  z-index:3;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+}
+
+    .controls-overlay{
+      visibility: hidden;
+      z-index: 6;
+    }
+
+    .play-bar{
+      position: absolute;
+      bottom: 4px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0 1rem;
+      gap: 4px;
+
+    }
+
+
       .video-wrapper iframe {
         width: 100vw;
    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
@@ -107,4 +116,4 @@
   left:0;
   top:0;
 }
-  </style>
+</style>

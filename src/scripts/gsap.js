@@ -1,5 +1,8 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
-import SplitType from "split-type";
+// import SplitType from "split-type";
 
 // const ourText = new SplitType(".split", { types: "lines, chars" });
 // const chars = ourText.chars;

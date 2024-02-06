@@ -1,7 +1,7 @@
 ---
 
 import { Debug } from 'astro:components';
-import VimeoPost from '../components/VimeoPost.astro';
+import Vimeo from '../components/Vimeo.astro';
 
 // Token of the Vimeo APP
 const access_token = "8f7c62c8813f4d7254a1f5bdfaaa5000";
@@ -31,15 +31,15 @@ const video = await fetch(`https://api.vimeo.com/users/${user_id}/projects/${pro
 
 ---
    <ul class="video-list grid gap-5 pb-5">
-      {videos.data.map((vid) =>
-      <VimeoPost
+      {videos?.data.map((vid) =>
+      <Vimeo
         title={vid.name}
         vimeoUrl = {vid.link}
         description = {vid.description}
-        />
+        />  
         )}
     </ul>
 
     <script>
-      import "../scripts/vimeoCards.js";
+      // import "../scripts/vimeoCards.js";
     </script>

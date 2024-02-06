@@ -1,4 +1,6 @@
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 let audio = new Audio(); // Create an audio object
 let isMuted = true; // Flag to track mute state
