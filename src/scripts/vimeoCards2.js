@@ -22,7 +22,7 @@ class AstroVimeo extends HTMLElement {
     const player = new Vimeo.Player(title, options);
     let isPlaying = false;
 
-    // const playButton = this.querySelector("button.play-button");
+    const playButton = this.querySelector("button.play-button");
     const controlsOvelay = this.querySelector(".controls-overlay");
     const muteButton = this.querySelector("button.mute-button");
     const closeButton = this.querySelector("button.close-button");
@@ -64,7 +64,6 @@ class AstroVimeo extends HTMLElement {
 
     player.on("pause", function () {
       console.log("stop the video!");
-      controlsOvelay.style.visibility = "hidden";
       isPlaying = false;
     });
 
@@ -75,28 +74,29 @@ class AstroVimeo extends HTMLElement {
     //   playButton.style.top = e.clientY - playButton.offsetHeight / 2 + "px";
     // });
 
-    // playButton.addEventListener("click", () => {
-    //   isPlaying ? player.pause() : player.play();
-    //   playButton.innerHTML = isPlaying ? "PLAY" : "PAUSE";
-    //   isPlaying = !isPlaying;
-    // });
+    playButton.addEventListener("click", () => {
+      isPlaying ? player.pause() : player.play();
+      playButton.innerHTML = isPlaying ? "play" : "pause";
+      isPlaying = !isPlaying;
+    });
 
     muteButton.addEventListener("click", () => {
-      if (muteButton.classList.contains("muted")) {
+      console.log(muteButton.innerHTML);
+      if (muteButton.innerHTML === "unmute") {
+        muteButton.innerHTML = "mute";
         console.log("Unmute!");
-        muteButton.classList.remove("muted");
-        muteButton.childNodes[1].src = "/icons/volume_on.svg";
         player.setVolume(1);
-      } else {
+      } else if (muteButton.innerHTML === "mute") {
+        muteButton.innerHTML = "unmute";
         console.log("Mute!");
-        muteButton.classList.add("muted");
-        muteButton.childNodes[1].src = "/icons/volume_off.svg";
         player.setVolume(0);
       }
     });
 
     closeButton.addEventListener("click", () => {
       console.log("Closing Window");
+      controlsOvelay.style.visibility = "hidden";
+      isPlaying = false;
       player.pause();
       setAllCards("all");
     });
@@ -116,6 +116,7 @@ const setAllCards = (mode) => {
 
     if (mode == "back") {
       card.classList.add("back");
+      card.querySelector(".controls-overlay").style.visibility = "hidden";
     }
 
     if (mode == "all") {

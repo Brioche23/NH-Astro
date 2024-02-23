@@ -31,18 +31,18 @@ for (let i = 0; i < words.length; i++) {
   let randomTop = getRandomNumber(400, document.body.scrollHeight/2 );
   let randomLeft = getRandomNumber(0, window.innerWidth - 250);
   let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
-  let randomRotation = Math.round(getRandomNumber(-30, 30));
+  // let randomRotation = Math.round(getRandomNumber(-30, 30));
   
   // Set the CSS properties
   newWord.style.position = 'absolute';
   newWord.style.top = randomTop + 'px';
   newWord.style.left = randomLeft + 'px';
-  newWord.style.transform ="rotate("+ randomRotation + "deg)";
+  // newWord.style.transform ="rotate("+ randomRotation + "deg)";
   newWord.classList.add("floating-word");
   newWord.classList.add(randomColor);
   
   // Add the new span element to the container
-  container.appendChild(newWord);
+  container?.appendChild(newWord);
 }
 
 // GSAP for Parallax

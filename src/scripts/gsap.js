@@ -42,16 +42,16 @@ let mm = gsap.matchMedia();
 //   // },
 // });
 
-// tl.from("#block-1", {
-//   scrollTrigger: {
-//     trigger: "#block-1",
-//     start: "top top",
-//     pin: true,
-//     pinSpacing: false,
-//     scrub: 1,
-//     markers: false,
-//   },
-// });
+tl.to("#logo", {
+  width: 100,
+  duration: 3,
+  scrollTrigger: {
+    trigger: "#logo",
+    start: "top top",
+    scrub: 0,
+    markers: true,
+  },
+});
 
 // gsap.utils.toArray(".block").forEach((block, i) => {
 //   tl.from(block, {

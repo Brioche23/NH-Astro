@@ -2,6 +2,7 @@ import lottieWeb from "https://cdn.skypack.dev/lottie-web";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+/*
 let audio = new Audio(); // Create an audio object
 let isMuted = true; // Flag to track mute state
 
@@ -57,17 +58,18 @@ function fadeOut() {
     }
   }, 100); // Adjust the interval as needed
 }
+*/
 
-const container = document.getElementById("hero-heroes");
+// const container = document.getElementById("hero-heroes");
 
-let hero_animation = lottieWeb.loadAnimation({
-  container: container,
-  path: "/lottie/Heroes_Cerchio_Sito.json",
-  renderer: "svg",
-  loop: true,
-  autoplay: true,
-  name: "Hero Animation",
-});
+// let hero_animation = lottieWeb.loadAnimation({
+//   container: container,
+//   path: "/lottie/Heroes_Cerchio_Sito.json",
+//   renderer: "svg",
+//   loop: true,
+//   autoplay: true,
+//   name: "Hero Animation",
+// });
 
 // container.addEventListener("click", () => {
 //   animation.playSegments([0, 50], true);
@@ -115,20 +117,19 @@ for (let i = 0; i < 5; i++) {
   });
 
   hero_container.addEventListener("mouseenter", function () {
-    if (!isMuted) playAudio("/audio/ex_0" + (i + 1) + ".mp3");
+    // if (!isMuted) playAudio("/audio/ex_0" + (i + 1) + ".mp3");
     hero.goToAndPlay(0);
   });
 
   hero_container.addEventListener("mouseleave", function () {
-    if (!isMuted) stopAudio("/audio/ex_0" + (i + 1) + ".mp3");
+    // if (!isMuted) stopAudio("/audio/ex_0" + (i + 1) + ".mp3");
     // hero.pause();
   });
 }
 
 // Toggle mute on global button click
-let toggleButton = document.getElementById("globalMuteToggle");
-
-toggleButton.addEventListener("click", toggleMute);
+// let toggleButton = document.getElementById("globalMuteToggle");
+// toggleButton.addEventListener("click", toggleMute);
 
 gsap.registerPlugin(ScrollTrigger);
 

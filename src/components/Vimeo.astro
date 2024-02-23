@@ -17,16 +17,15 @@
         <div class="vimeo-full relative"> 
           <div class="controls-overlay absolute w-full h-full">
             <!-- <button class="play-button absolute">PLAY</button> -->
-            <button class="close-button material-symbols-outlined absolute top-5 right-5">close</button>
+            <button class="close-button absolute top-5 right-5">close</button>
             
             <div class="play-bar">
+              <button class="play-button">pause</button>
               <svg height="6" width="100%" class="play-progress rounded-full mr-4" style="background-color:rgba(217, 217, 217, 0.5) ;">
                 <line class="progress-bar fill-orange absolute" x1="0" y1="3" x2="0%" y2="3" style="stroke:#FF4600;stroke-width:6" />
               </svg>
               
-              <button class="mute-button">
-                <img class="w-8" src="/icons/volume_on.svg" alt="Volume Icon">
-              </button>
+              <button class="mute-button">mute</button>
             </div>
           </div>
           <div id={title} class="video-wrapper relative ">
@@ -56,6 +55,9 @@
 
 <style>
 
+.controls-overlay button{
+ @apply text-orange
+}
 .play{
   width: 100%;
   opacity: 1;
@@ -86,7 +88,7 @@
 
     .play-bar{
       position: absolute;
-      bottom: 4px;
+      bottom: 5px;
       display: flex;
       align-items: center;
       width: 100%;
