@@ -43,13 +43,13 @@ let mm = gsap.matchMedia();
 // });
 
 tl.to("#logo", {
-  width: 100,
-  duration: 3,
+  width: 150,
+  duration: 1,
   scrollTrigger: {
     trigger: "#logo",
     start: "top top",
-    scrub: 0,
-    markers: true,
+    scrub: 0.5,
+    markers: false,
   },
 });
 
@@ -73,8 +73,10 @@ mm.add("(max-width: 768px)", () => {
     tl.from(op, {
       scrollTrigger: {
         trigger: op,
-        start: "top center",
-        scrub: 1,
+        start: "center bottom",
+        end: "bottom bottom",
+        scrub: 0.5,
+        markers: true,
       },
       opacity: 0,
       stagger: 0.5,

@@ -31,9 +31,8 @@ const {pageTitle} = Astro.props;
     <RandomWords defer/>
     <RandomHeroes defer/>
     
-    <a href="#home" id="logo" class="fixed z-30 pt-4">
+    <a href="#home" id="logo" class="fixed z-30 pt-4 pr-4 w-auto">
       <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
-      <!-- <h1 class="font-display text-4xl md:text-6xl tracking-wide ">{pageTitle}</h1> -->
     </a>
     <div id="home" class="mainContainer">
       <slot />
