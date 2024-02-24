@@ -22,8 +22,29 @@ import VimeoGallery from '../components/VimeoGallery.astro';
 const pageTitle = "NOISE HEROES";
 
 const servizi = ["post produzione audio", "sound design", "consulenza e produzione","licensing"]
+
+import { contentfulClient } from "../lib/contentful";
+import type { Video } from "../lib/contentful";
+
+const entries = await contentfulClient.getEntries<Video>({
+  content_type: "video",
+});
+
+const posts = entries.items.map((item) => {
+  const { title, slug, video, description } = item.fields;
+  return {
+    title,
+    slug,
+    video,
+    description,
+  };
+});
+
+console.log(posts[0].video);
 ---
 <BaseLayout {pageTitle}>
+
+
 
   <section id="block-1" class="block intro">
     <div class="content md:w-2/3">
@@ -40,6 +61,17 @@ const servizi = ["post produzione audio", "sound design", "consulenza e produzio
         </span>
       </p>
       </div>
+  </section>
+
+  <section>
+    {posts.map((post) => (
+      <li>
+        <a href={`/videos/${post.slug}/`}>
+          <p>{post.title}</p>
+          </a>
+        </li>
+    
+    ))}
   </section>
 
       <!-- <div id="block-2" class="block h-auto">
