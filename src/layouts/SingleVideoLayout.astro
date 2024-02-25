@@ -2,9 +2,8 @@
 // import RandomWords from '../components/RandomWords.astro';
 // import RandomWords from '../components/RandomWords.jsx';
 // import RandomHeroes from '../components/RandomHeroes.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import {Image} from 'astro:assets';
-import logo from "../img/NH_Logo.svg"
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
@@ -31,9 +30,7 @@ const {pageTitle} = Astro.props;
     <!-- <RandomWords defer/>
     <RandomHeroes defer/> -->
     
-    <a href="/#home" id="logo-small" class="fixed z-30 pt-4 px-4 w-36">
-      <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
-    </a>
+    <Header/>
     <div class="mainContainer">
       <slot />
     </div>
@@ -50,7 +47,7 @@ const {pageTitle} = Astro.props;
   <script >
     // import "../scripts/services.js";
     // import "../scripts/lottie_audio.js";
-    import "../scripts/gsap.js";
+    // import "../scripts/gsap.js";
   </script>
   </body>
 </html>

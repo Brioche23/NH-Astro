@@ -1,11 +1,12 @@
 ---
-import Hamburger from './Hamburger.astro';
-import Navigation from '../components/Navigation.astro';
+import {Image} from 'astro:assets';
+import logo from "../img/NH_Logo.svg"
 ---
 
 <header>
     <nav>
-        <Hamburger />
-        <Navigation />
+        <a href="/#home" id="logo-small" class="fixed z-30 pt-4 px-4 w-36">
+            <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
+          </a>
     </nav>
 </header>
