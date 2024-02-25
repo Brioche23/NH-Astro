@@ -35,7 +35,6 @@ html {
 body {
   margin: 0 auto;
   width: 100%;
-  padding: 0rem 1rem;
   line-height: 1.5;
   max-width: 2400px;
 }
@@ -61,7 +60,7 @@ h2 {
 }
 
 .mainContainer {
-  height: 100svh;
+  min-height: 100svh;
 }
 
 .mainContainer section.intro {

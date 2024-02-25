@@ -2,6 +2,10 @@
 import { contentfulClient } from "../../lib/contentful";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { Video } from "../../lib/contentful";
+import SingleVideoLayout from '../../layouts/SingleVideoLayout.astro';
+
+import VideoInfo from "../../components/VideoInfo.astro";
+
 
 export async function getStaticPaths() {
   const entries = await contentfulClient.getEntries<Video>({
@@ -11,6 +15,7 @@ export async function getStaticPaths() {
   const pages = entries.items.map((item) => ({
     params: { slug: item.fields.slug },
     props: {
+      slug: item.fields.slug,
       title: item.fields.title,
       description: documentToHtmlString(item.fields.description),
       video: item.fields.video,
@@ -19,17 +24,16 @@ export async function getStaticPaths() {
   return pages;
 }
 
-const { title, description, video } = Astro.props;
+const { slug, title, description, video } = Astro.props;
 
-console.log(video.fields.file)
+
+console.log(title)
+console.log(video?.fields.file)
 ---
-<html lang="en">
-  <head>
-    <title>{title}</title>
-  </head>
-  <body>
+<SingleVideoLayout pageTitle={title}>
+
+    <VideoInfo title={title} videoUrl = {video?.fields.file.url} description={description} slug={slug} />
+    <!-- <video src={video?.fields.file.url} controls></video>
     <h1>{title}</h1>
-    <video src={video.fields.file.url}></video>
-    <article set:html={description} />
-  </body>
-</html>
+    <article set:html={description} /> -->
+</SingleVideoLayout>
