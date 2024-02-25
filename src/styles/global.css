@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Neue Haas Grotesk";
-  src: url("../fonts/Neue Haas Grot Disp.woff") format("woff");
+  src: url("/fonts/Neue Haas Grot Disp.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -8,8 +8,8 @@
 
 @font-face {
   font-family: "Diatype Compressed";
-  src: url("../fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff") format("woff"),
-    url("../fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff2") format("woff2");
+  src: url("/fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff") format("woff"),
+    url("/fonts/ABCDiatypeCompressed-BoldItalic-Trial.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
