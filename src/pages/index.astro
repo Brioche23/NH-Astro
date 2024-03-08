@@ -16,15 +16,19 @@ const service1 = {
     },
   ] 
 }
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceBlock from '../components/ServiceBlock.astro';
 import VimeoGallery from '../components/VimeoGallery.astro';
+import VideoList from '../components/VideoList.jsx';
 const pageTitle = "NOISE HEROES";
 
 const servizi = ["post produzione audio", "sound design", "consulenza e produzione","licensing"]
 
 import { contentfulClient } from "../lib/contentful";
 import type { Video } from "../lib/contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
 
 const entries = await contentfulClient.getEntries<Video>({
   content_type: "video",
@@ -36,7 +40,7 @@ const posts = entries.items.map((item) => {
     title,
     slug,
     video,
-    description,
+    description : documentToHtmlString(description),
   };
 });
 
@@ -61,17 +65,6 @@ console.log(posts[0].video);
         </span>
       </p>
       </div>
-  </section>
-
-  <section>
-    {posts.map((post) => (
-      <li>
-        <a href={`/videos/${post.slug}/`}>
-          <p>{post.title}</p>
-          </a>
-        </li>
-    
-    ))}
   </section>
 
       <!-- <div id="block-2" class="block h-auto">
@@ -134,7 +127,8 @@ console.log(posts[0].video);
 
     <h2>Work</h2>
 
-    <VimeoGallery />
+    <!-- <VimeoGallery /> -->
+    <VideoList posts={posts} client:visible />
 
   </section>
 
