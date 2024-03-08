@@ -18,7 +18,7 @@ const {pageTitle} = Astro.props;
     <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
-  <body>
+  <body class="grid content-center h-screen">
     <script is:inline type="text/javascript" src="https://player.vimeo.com/api/player.js"></script>
    <script>
 
@@ -28,22 +28,22 @@ const {pageTitle} = Astro.props;
         volume_off
     </button> -->
     
-    <RandomWords defer/>
+    <!-- <RandomWords defer/> -->
     <!-- <RandomHeroes defer/> -->
     
-    <a href="#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
+    <!-- <a href="#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
       <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
-    </a>
+    </a> 
     <div id="home" class="mainContainer">
       <slot />
+    </div> -->
       <Footer />
-  </div>
 
-  <style>
+  <!-- <style>
     body {
       padding: 0rem 1rem;
     }
-  </style>
+  </style> -->
 
   <script>
     import "../scripts/services.js";
