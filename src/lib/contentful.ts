@@ -7,6 +7,7 @@ export interface Video {
     title: EntryFieldTypes.Text;
     slug: EntryFieldTypes.Text;
     video: EntryFieldTypes.Object;
+    videoPoster: EntryFieldTypes.Object;
     description: EntryFieldTypes.RichText;
   };
 }
