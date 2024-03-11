@@ -3,33 +3,14 @@ import RandomWords from '../components/RandomWords.astro';
 // import RandomWords from '../components/RandomWords.jsx';
 import RandomHeroes from '../components/RandomHeroes.astro';
 
-import Footer from '../components/Footer.astro';
+import MainLayout from './MainLayout.astro'
 import { Image } from 'astro:assets';
 import logo from '../img/NH_Logo.svg'
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.ico" />
-    <link rel=icon href=/favicon/favicon-16x16.png sizes="16x16" type="image/png">
-    <link rel=icon href=/favicon/favicon-32x32.png sizes="32x32" type="image/png">
-    <link rel=icon href=/favicon/favicon-chrome-192x192.png sizes="192x192" type="image/png">
-    <link rel=icon href=/favicon/favicon-chrome-512x512.png sizes="512x512" type="image/png">
-    <link rel="apple-touch-icon-precomposed" href="/favicon/apple-touch-icon.png">
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  </head>
-  <body class="grid content-end h-screen px-4">
-    <script is:inline type="text/javascript" src="https://player.vimeo.com/api/player.js"></script>
-   <script>
+<MainLayout {pageTitle}>
 
-     import "../scripts/gsap.js";
-   </script>
     <!-- <button id="globalMuteToggle"  class="material-symbols-outlined hidden md:block transition-all duration-300 ease-in">
         volume_off
     </button> -->
@@ -37,24 +18,18 @@ const {pageTitle} = Astro.props;
     <!-- <RandomWords defer/> -->
     <!-- <RandomHeroes defer/> -->
     
-    <a href="#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
-      <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
-    </a> 
-    <div id="home" class="mainContainer">
+    <main id="home" class="mainContainer">
+      <a href="/#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
+        <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
+      </a> 
       <slot />
-      <Footer />
-    </div>
-
+    </main>
+    
   <style>
     body {
       padding: 0rem 1rem;
     }
   </style>
 
-  <script>
-    import "../scripts/services.js";
-    import "../scripts/lottie_audio.js";
-    // import "../scripts/gsap.js";
-  </script>
-  </body>
-</html>
+ 
+</MainLayout>

@@ -1,5 +1,8 @@
 import gsap from "gsap";
+import Swup from "swup";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const swup = new Swup();
 
 gsap.registerPlugin(ScrollTrigger);
 // import SplitType from "split-type";
@@ -42,15 +45,32 @@ let mm = gsap.matchMedia();
 //   // },
 // });
 
-tl.to("#logo", {
-  width: 150,
-  duration: 1,
-  scrollTrigger: {
-    trigger: "#logo",
-    start: "top top",
-    scrub: 0.5,
-    markers: false,
-  },
+document.addEventListener("DOMContentLoaded", () => {
+  // This runs on initial load
+  tl.to("#logo", {
+    width: 150,
+    duration: 1,
+    scrollTrigger: {
+      trigger: "#logo",
+      start: "top top",
+      scrub: 0.5,
+      markers: false,
+    },
+  });
+});
+
+swup.hooks.on("page:view", () => {
+  // This runs after every page change by swup
+  tl.to("#logo", {
+    width: 150,
+    duration: 1,
+    scrollTrigger: {
+      trigger: "#logo",
+      start: "top top",
+      scrub: 0.5,
+      markers: false,
+    },
+  });
 });
 
 // gsap.utils.toArray(".block").forEach((block, i) => {
