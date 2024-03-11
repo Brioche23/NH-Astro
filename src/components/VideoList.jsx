@@ -11,6 +11,7 @@ function VideoList({ posts }) {
           title={post.title}
           description={post.description}
           videoUrl={post.video.fields.file.url}
+          posterUrl={post.videoPoster.fields.file.url}
           isActive={index === activeVideoId}
           onClick={() => setActiveVideoId(index)}
         />
@@ -32,7 +33,7 @@ function getRandomWidth() {
   return videoSizes[Math.floor(Math.random() * videoSizes.length)];
 }
 
-function VideoPlayer({ slug, title, description, videoUrl }) {
+function VideoPlayer({ slug, title, description, videoUrl, posterUrl }) {
   const videoRef = useRef(null); // useRef for video element reference
   const [isPlaying, setIsPlaying] = useState(false); // Individual state
 
@@ -66,7 +67,12 @@ function VideoPlayer({ slug, title, description, videoUrl }) {
             </div>
           </div>
           <div id={title} className="video-wrapper relative ">
-            <video ref={videoRef} src={videoUrl} controls={false} />
+            <video
+              ref={videoRef}
+              poster={posterUrl}
+              src={videoUrl}
+              controls={false}
+            />
           </div>
         </div>
         <div

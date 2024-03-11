@@ -239,8 +239,8 @@ h2 {
   @apply text-green;
 }
 
-.service-wrapper {
-  @apply flex flex-wrap gap-8;
+.service-list {
+  @apply md:w-2/3;
 }
 
 .service-list h3,

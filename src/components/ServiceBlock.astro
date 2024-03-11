@@ -6,15 +6,13 @@ const subServ  = service.subServ;
 ---
 
 <div class="service-list">
-    <h3 class="inline">
+    <h3 class="inline text-green">
         {serviceName}
     </h3>
     { subServ.map((serv) =>
     <span class="service">
-        <span class="service-name cursor-pointer">{serv.name}
-            <span class="service-icon material-symbols-outlined">
-                north_east
-            </span>
+        <span class="service-name cursor-pointer">
+            {serv.name}
         </span>
         <span class="service-desc hidden">
             {serv.desc}
