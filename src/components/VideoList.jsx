@@ -48,7 +48,7 @@ function VideoPlayer({ slug, title, description, videoUrl, posterUrl }) {
   };
 
   return (
-    <a href={"videos/" + slug}>
+    <a href={"/videos/" + slug}>
       <li
         className={`video-card relative transition-all duration-500 ease-in-out ${getRandomWidth()}`}
       >

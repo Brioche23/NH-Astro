@@ -7,5 +7,20 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), swup()],
+  integrations: [
+    tailwind(),
+    react(),
+    swup({
+      theme: "slide",
+      smoothScrolling: true,
+      resolveUrl: (url) => {
+        if (url.startsWith("/videos/?")) {
+          return "/videos/";
+        }
+        console.log(url);
+        return url;
+      },
+      linkSelector: "a[href]",
+    }),
+  ],
 });
