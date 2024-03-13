@@ -1,11 +1,12 @@
 ---
 import {Image} from 'astro:assets';
 import logo from "../img/NH_Logo.svg"
+const {anchor} = Astro.props;
 ---
 
 <header>
     <nav>
-        <a id="logo" href="/" id="logo-small" class="fixed z-30 pt-4 px-4 w-36">
+        <a id="logo" href={"/#"+anchor}  class="fixed z-30 pt-4 px-4 w-36">
             <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
           </a>
     </nav>

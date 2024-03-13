@@ -11,8 +11,15 @@ export default defineConfig({
     tailwind(),
     react(),
     swup({
-      theme: "slide",
+      theme: false,
       smoothScrolling: true,
+      parallel: false,
+      routes: [
+        { name: "home", path: "/" },
+        { name: "video", path: "/videos/:slug" },
+      ],
+      reloadScripts: false,
+      native: true,
       resolveUrl: (url) => {
         if (url.startsWith("/videos/?")) {
           return "/videos/";
@@ -21,6 +28,7 @@ export default defineConfig({
         return url;
       },
       linkSelector: "a[href]",
+      skipPopStateHandling: (event) => event.state?.source !== "swup",
     }),
   ],
 });

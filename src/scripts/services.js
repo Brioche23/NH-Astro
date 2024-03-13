@@ -1,53 +1,67 @@
-console.log("Service");
+import Swup from "swup";
+const swup = new Swup();
 
-const serviceLists = document.querySelectorAll(".service-list");
-const serviceNames = document.querySelectorAll(".service-name");
-const serviceDescs = document.querySelectorAll(".service-desc");
-// const serviceIcons = document.querySelectorAll(".service-icon");
+// Run once when page loads
+if (document.readyState === "complete") {
+  init();
+} else {
+  document.addEventListener("DOMContentLoaded", () => init());
+}
+// Run after every additional navigation by swup
+swup.hooks.on("page:view", () => init());
 
-serviceNames.forEach((name) => {
-  name.addEventListener("click", () => {
-    let isOpen = false;
-    let parentNode = name.parentNode;
-    let parentBox = parentNode.parentNode;
-    let description = parentNode.querySelector(".service-desc");
-    // let icon = name.querySelector(".service-icon");
+function init() {
+  console.log("Service");
 
-    description.classList.toggle("hidden");
-    isOpen =
-      !isOpen && !description.classList.contains("hidden") ? true : false;
-    console.log(isOpen);
-    // icon.innerHTML = isOpen ? "south_east" : "north_east";
+  const serviceLists = document.querySelectorAll(".service-list");
+  const serviceNames = document.querySelectorAll(".service-name");
+  const serviceDescs = document.querySelectorAll(".service-desc");
+  const serviceIcons = document.querySelectorAll(".service-icon");
 
-    resetAll(description, parentBox);
+  serviceNames.forEach((name) => {
+    name.addEventListener("click", () => {
+      let isOpen = false;
+      let parentNode = name.parentNode;
+      let parentBox = parentNode.parentNode;
+      let description = parentNode.querySelector(".service-desc");
+      let icon = name.querySelector(".service-icon");
 
-    serviceLists.forEach((s) => {
-      for (const c of s.children) {
-        if (isOpen) {
-          if (c != parentNode) {
-            c.style.opacity = 0.5;
+      description.classList.toggle("hidden");
+      isOpen =
+        !isOpen && !description.classList.contains("hidden") ? true : false;
+      console.log(isOpen);
+      icon.innerHTML = isOpen ? "south_east" : "north_east";
+
+      resetAll(description, icon, parentBox);
+
+      serviceLists.forEach((s) => {
+        for (const c of s.children) {
+          if (isOpen) {
+            if (c != parentNode) {
+              c.style.opacity = 0.5;
+            } else c.style.opacity = 1;
           } else c.style.opacity = 1;
-        } else c.style.opacity = 1;
-      }
+        }
+      });
     });
   });
-});
 
-const resetAll = (d, p) => {
-  console.log("Hide class");
-  serviceDescs.forEach((desc) => {
-    if (!desc.classList.contains("hidden") && desc !== d) {
-      desc.classList.add("hidden");
+  const resetAll = (d, i, p) => {
+    console.log("Hide class");
+    serviceDescs.forEach((desc) => {
+      if (!desc.classList.contains("hidden") && desc !== d) {
+        desc.classList.add("hidden");
+      }
+    });
+    for (const c of p.children) {
+      if (c.style.opacity === 0.5 && c !== parentNode) {
+        c.style.opacity = 1;
+      }
     }
-  });
-  // serviceIcons.forEach((icon) => {
-  //   if (icon.innerHTML == "south_east" && icon !== i) {
-  //     icon.innerHTML = "north_east";
-  //   }
-  // });
-  for (const c of p.children) {
-    if (c.style.opacity === 0.5 && c !== parentNode) {
-      c.style.opacity = 1;
-    }
-  }
-};
+    serviceIcons.forEach((icon) => {
+      if (icon.innerHTML == "south_east" && icon !== i) {
+        icon.innerHTML = "north_east";
+      }
+    });
+  };
+}

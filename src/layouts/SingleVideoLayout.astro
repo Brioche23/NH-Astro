@@ -3,26 +3,18 @@ import MainLayout from './MainLayout.astro'
 
 import Header from '../components/Header.astro';
 import '../styles/global.css';
-const {pageTitle} = Astro.props;
----
-<MainLayout {pageTitle}>
+const {pageTitle, anchor} = Astro.props;
 
-    
-  <main class="mainContainer">
-      <Header/>
+console.log("Anchor: "+anchor)
+---
+<MainLayout {pageTitle} {anchor}>
+
+      <!-- <Header anchor={anchor}/> -->
       <slot />
-    </main>
-  
 
     <style>
         body {
-          padding: 0rem;
+          padding: 0rem 1rem;
         }
       </style>
-
-  <script >
-    // import "../scripts/services.js";
-    // import "../scripts/lottie_audio.js";
-    // import "../scripts/gsap.js";
-  </script>
 </MainLayout>

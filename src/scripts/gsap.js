@@ -4,13 +4,36 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const swup = new Swup();
 
+console.log("GSAP");
 gsap.registerPlugin(ScrollTrigger);
+
 let tl = gsap.timeline();
 
 let mm = gsap.matchMedia();
 
-document.addEventListener("DOMContentLoaded", () => {
+// Run once when page loads
+if (document.readyState === "complete") {
+  init();
+} else {
+  document.addEventListener("DOMContentLoaded", () => init());
+}
+
+// Run after every additional navigation by swup
+// swup.hooks.on("page:view", () => init());
+
+swup.hooks.on("content:replace", (event) => {
+  if (window.location.pathname === "/") {
+    bigLogo();
+  } else {
+    smallLogo();
+  }
+  // elementsFadeIn();
+});
+
+//! Find a way to remove this shit when not in the home
+function bigLogo() {
   // This runs on initial load
+  console.log("Trigger logo");
   tl.to("#logo", {
     width: 150,
     duration: 1,
@@ -21,24 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
       markers: false,
     },
   });
-});
+}
 
-swup.hooks.on("page:view", (visit) => {
-  // This runs after every page change by swup
+function smallLogo() {
+  console.log("Make logo smaller");
   tl.to("#logo", {
     width: 150,
     duration: 1,
-    scrollTrigger: {
-      trigger: "#logo",
-      start: "top top",
-      scrub: 0.5,
-      markers: false,
-    },
+    delay: 1,
   });
-  console.log("New page: ", visit);
-});
+}
 
-mm.add("(max-width: 768px)", () => {
+function elementsFadeIn() {
   gsap.utils.toArray(".op").forEach((op, i) => {
     tl.from(op, {
       scrollTrigger: {
@@ -46,10 +63,16 @@ mm.add("(max-width: 768px)", () => {
         start: "center bottom",
         end: "bottom bottom",
         scrub: 0.5,
-        markers: true,
+        markers: false,
       },
+      translateY: "50px",
       opacity: 0,
       stagger: 0.5,
     });
   });
-});
+}
+
+function init() {
+  bigLogo();
+  elementsFadeIn();
+}

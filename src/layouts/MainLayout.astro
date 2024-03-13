@@ -1,7 +1,13 @@
 ---
 import '../styles/global.css';
+import '../styles/transitions.css';
 import Footer from '../components/Footer.astro';
-const {pageTitle} = Astro.props;
+const {pageTitle, anchor} = Astro.props;
+
+import { Image } from 'astro:assets';
+import logo from '../img/NH_Logo.svg'
+import Header from '../components/Header.astro';
+
 
 ---
 <html lang="en">
@@ -20,11 +26,17 @@ const {pageTitle} = Astro.props;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
     <body>
-            <slot/>
-            <Footer>
-                   
-    <script>
+      
+      <a href="/#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
+          <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
+      </a> 
+
+      <main id="swup" class="mainContainer transition-main">
+        <slot/>
+      </main>
+      <Footer>                 
+      <script>
         import "../scripts/gsap.js"
-    </script>
+      </script>
     </body>
 </html>

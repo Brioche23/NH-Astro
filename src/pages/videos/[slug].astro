@@ -4,7 +4,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { Video } from "../../lib/contentful";
 import SingleVideoLayout from '../../layouts/SingleVideoLayout.astro';
 
-import VideoInfo from "../../components/VideoInfo.astro";
+import VideoInfo from "../../components/VideoInfo.jsx";
 
 
 export async function getStaticPaths() {
@@ -31,6 +31,6 @@ const { slug, title, description, video, videoPoster } = Astro.props;
 // console.log(videoPoster?.fields.file.url)
 // console.log(video?.fields.file)
 ---
-<SingleVideoLayout pageTitle={title}>
-    <VideoInfo title={title} videoUrl = {video?.fields.file.url} posterUrl={videoPoster?.fields.file.url} description={description} slug={slug} />
+<SingleVideoLayout pageTitle={title} anchor={slug}>
+    <VideoInfo client:visible title={title} videoUrl = {video?.fields.file.url} posterUrl={videoPoster?.fields.file.url} description={description} slug={slug} />
 </SingleVideoLayout>

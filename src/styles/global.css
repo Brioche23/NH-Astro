@@ -262,3 +262,58 @@ h2 {
 .floater {
   @apply absolute hidden md:block;
 }
+
+.controls-overlay button,
+.credits b {
+  @apply text-orange;
+}
+
+.play {
+  width: 100%;
+  opacity: 1;
+  z-index: 5;
+}
+.back {
+  opacity: 0.5;
+}
+
+.video-card {
+  width: "";
+  z-index: 3;
+}
+.video-card::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.controls-overlay {
+  z-index: 6;
+  cursor: none;
+}
+
+.play-button {
+  cursor: none;
+}
+
+.play-bar {
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 1rem;
+  gap: 4px;
+}
+
+.video-wrapper {
+  z-index: 1;
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: 100%;
+}

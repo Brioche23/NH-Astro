@@ -16,7 +16,9 @@ const id = 'video-'+slug;
       <div class="vimeo-full relative"> 
         <div class="controls-overlay absolute w-full h-full text-xl md:text-3xl">
           <button class="play-button absolute top-[50%] left-[50%]">play</button>
-          <!-- <button class="close-button absolute top-5 right-5">close</button> -->
+          <a href={"/"}>
+            <button class="close-button absolute top-5 right-5">close</button>
+          </a>
           
           <div class="play-bar ">
             <!-- <button class="play-button">play</button> -->
@@ -28,10 +30,9 @@ const id = 'video-'+slug;
           </div>
         </div>
         <div id={title} class="video-wrapper relative ">
-          <video poster={posterUrl} >
+          <video class="w-full" poster={posterUrl} >
             <source src={videoUrl}> 
         </video>
-          <!-- <p class="vimeo-title uppercase transition-opacity duration-500 ease-in-out absolute top-5 left-5 z-10">{title}</p> -->
         </div>
       </div>
     <div class="info-panel px-4 grid grid-rows-[1fr] transition-all duration-500 ease-in-out pt-5">
@@ -47,56 +48,8 @@ const id = 'video-'+slug;
     </div>
   </div>
 
-<script defer>
-//   import "../scripts/vimeoCards2.js";
-let isPlaying = false;
-
-const video = document.querySelector('video')
-const controlsOverlay = document.querySelector('.controls-overlay')
-const muteButton = document.querySelector("button.mute-button");
-const playButton = document.querySelector("button.play-button");
-
-controlsOverlay?.addEventListener("mousemove", (e) => {
-      playButton.style.left = e.clientX - playButton.offsetWidth / 2 + "px";
-      playButton.style.top = e.clientY - playButton.offsetHeight / 2 + "px";
-    });
-controlsOverlay?.addEventListener("mouseenter", (e) => {
-  playButton.style.visibility = "visible";
-    });
-controlsOverlay?.addEventListener("mouseleave", (e) => {
-  playButton.style.visibility = "hidden";
-    });
-
-playButton?.addEventListener("click", () => {
-       console.log("Play!");
-
-      isPlaying ? video?.pause() : video?.play();
-      playButton.innerHTML = isPlaying ? "play" : "pause";
-      isPlaying = !isPlaying;
-    });
-
-    muteButton?.addEventListener("mouseover", ()=>{
-      playButton.style.visibility = "hidden";
-    })
-    muteButton?.addEventListener("mouseleave", ()=>{
-      playButton.style.visibility = "visible";
-    })
-
-    muteButton?.addEventListener("click", () => {
-      console.log(muteButton.innerHTML);
-      if (muteButton.innerHTML === "unmute") {
-        muteButton.innerHTML = "mute";
-        console.log("Unmute!");
-        video.volume = 1;
-      } else if (muteButton.innerHTML === "mute") {
-        muteButton.innerHTML = "unmute";
-        console.log("Mute!");
-        video.volume = 0;
-
-      }
-    });
-
-
+<script>
+  import "../scripts/videoInfo.js"
 </script>
 
 <style>

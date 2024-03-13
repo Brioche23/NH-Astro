@@ -3,6 +3,8 @@ import RandomWords from '../components/RandomWords.astro';
 // import RandomWords from '../components/RandomWords.jsx';
 import RandomHeroes from '../components/RandomHeroes.astro';
 
+import Header from '../components/Header.jsx';
+
 import MainLayout from './MainLayout.astro'
 import { Image } from 'astro:assets';
 import logo from '../img/NH_Logo.svg'
@@ -18,12 +20,8 @@ const {pageTitle} = Astro.props;
     <!-- <RandomWords defer/> -->
     <!-- <RandomHeroes defer/> -->
     
-    <main id="home" class="mainContainer">
-      <a href="/#home" id="logo" class="fixed z-30 pt-4 pr-4 ">
-        <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
-      </a> 
+     
       <slot />
-    </main>
     
   <style>
     body {
