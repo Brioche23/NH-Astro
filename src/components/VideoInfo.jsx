@@ -107,7 +107,6 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
             poster={posterUrl}
             src={videoUrl}
             controls={false}
-            muted
           />
         </div>
       </div>
