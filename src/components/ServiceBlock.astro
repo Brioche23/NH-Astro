@@ -6,14 +6,14 @@ const subServ  = service.subServ;
 ---
 
 <div class="op service-list">
-    <h3 class="inline text-green">
+    <h3 class="inline text-green service-title">
         {serviceName}
     </h3>
     { subServ.map((serv) =>
-    <span class="service">
-        <span class="service-name cursor-pointer">
+    <span class="service group">
+        <span class="service-name cursor-pointer transition-all duration-500 group-hover:text-green">
             {serv.name}
-            <span class="service-icon material-symbols-outlined ">
+            <span class="service-icon material-symbols-outlined transition-all duration-500 group-hover:rotate-90  group-hover:text-green ">
                 north_east
             </span>
         </span>

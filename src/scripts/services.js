@@ -10,6 +10,11 @@ if (document.readyState === "complete") {
 // Run after every additional navigation by swup
 swup.hooks.on("page:view", () => init());
 
+swup.hooks.on("content:replace", () => {
+  // elementsFadeIn();
+  init();
+});
+
 function init() {
   console.log("Service");
 
@@ -25,19 +30,21 @@ function init() {
       let parentBox = parentNode.parentNode;
       let description = parentNode.querySelector(".service-desc");
       let icon = name.querySelector(".service-icon");
+      let serviceTitle = parentBox.querySelector(".service-title");
 
       description.classList.toggle("hidden");
       isOpen =
         !isOpen && !description.classList.contains("hidden") ? true : false;
       console.log(isOpen);
-      icon.innerHTML = isOpen ? "south_east" : "north_east";
+      // icon.innerHTML = isOpen ? "south_east" : "north_east";
+      icon.style.transform = isOpen ? "rotate(90deg)" : "rotate(0deg)";
 
       resetAll(description, icon, parentBox);
 
       serviceLists.forEach((s) => {
         for (const c of s.children) {
           if (isOpen) {
-            if (c != parentNode) {
+            if (c != parentNode && c != serviceTitle) {
               c.style.opacity = 0.5;
             } else c.style.opacity = 1;
           } else c.style.opacity = 1;
@@ -59,9 +66,14 @@ function init() {
       }
     }
     serviceIcons.forEach((icon) => {
-      if (icon.innerHTML == "south_east" && icon !== i) {
-        icon.innerHTML = "north_east";
+      if (icon.style.transform == "rotate(90deg)" && icon !== i) {
+        // icon.innerHTML = "north_east";
+        icon.removeAttribute("style");
+        // icon.style.transform = null;
       }
+      // if (icon.innerHTML == "south_east" && icon !== i) {
+      // icon.innerHTML = "north_east";
+      // }
     });
   };
 }
