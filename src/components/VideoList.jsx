@@ -8,6 +8,7 @@ function VideoList({ posts }) {
       {posts.map((post, index) => (
         <VideoPlayer
           key={post.slug}
+          index={index}
           slug={post.slug}
           title={post.title}
           description={post.description}
@@ -22,22 +23,30 @@ function VideoList({ posts }) {
   );
 }
 
-const videoSizes = [
-  "md:w-1/2 md:ml-auto md:mr-20",
-  "md:w-1/2 md:ml-auto md:ml-20",
-  "md:w-2/3 md:ml-auto md:mr-0",
-  "md:w-2/3 md:mr-auto md:ml-0",
-  "md:w-1/3 md:ml-auto md:mr-0",
-  "md:w-1/3 md:mr-auto md:ml-0",
-];
+const videoSizes = ["md:w-1/2 ", "md:w-2/3 ", "md:w-1/3 "];
+
+const videoMarginsRight = [];
 
 function getRandomWidth() {
   return videoSizes[Math.floor(Math.random() * videoSizes.length)];
 }
 
-function VideoPlayer({ slug, title, description, videoUrl, posterUrl, width }) {
+function VideoPlayer({
+  slug,
+  index,
+  title,
+  description,
+  videoUrl,
+  posterUrl,
+  width,
+}) {
   const videoRef = useRef(null); // useRef for video element reference
   const [isPlaying, setIsPlaying] = useState(false); // Individual state
+
+  const alignment =
+    index % 2 == 0 ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0";
+
+  console.log(alignment);
 
   const handlePlay = () => {
     const video = videoRef.current;
@@ -64,7 +73,7 @@ function VideoPlayer({ slug, title, description, videoUrl, posterUrl, width }) {
       <li
         onMouseEnter={handlePlay}
         onMouseLeave={handlePause}
-        className={`video-card relative transition-all duration-500 ease-in-out ${width}`}
+        className={`video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`}
       >
         <div className="vimeo-full relative">
           {/* <div className="controls-overlay absolute w-full h-full text-xl md:text-3xl hidden">
