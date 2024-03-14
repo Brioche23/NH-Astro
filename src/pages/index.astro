@@ -1,6 +1,6 @@
 ---
 const service1 = {
-  name: 'Sound design & post production',
+  name: 'Sound Design & Post Production',
   subServ : [
     {
     name: "Storytelling",
@@ -17,7 +17,7 @@ const service1 = {
   ] 
 }
 const service2 = {
-  name: 'Music production',
+  name: 'Music Production',
   subServ : [
     {
     name: "Composition",
@@ -34,7 +34,7 @@ const service2 = {
   ] 
 }
 const service3 = {
-  name: 'Music supervision & licensing',
+  name: 'Music Supervision & Licensing',
   subServ : [
     {
     name: "Finding the Perfect Sound",
@@ -83,7 +83,7 @@ console.log(posts[0].video);
 ---
 <BaseLayout {pageTitle}>
 
-  <section id="block-1" class="block intro">
+  <section id="block-1" class="intro">
     <div class="content md:w-2/3">
 
       <p class="ta-dah ">TA-DAH!</p>
@@ -103,11 +103,11 @@ console.log(posts[0].video);
       </div>
   </section>
 
-    <section id="block-3" class="block intro">
-      <div  class="content  ">
+    <section id="block-3" class="block">
+      <div  class="content grid gap-8 ">
 
           <div class="md:flex">
-          <h2>How we roll</h2>
+          <h2 class="op">How we roll</h2>
           
             <p class="op pb-4 md:pb-0  md:w-2/3">
               <span>
@@ -116,7 +116,7 @@ console.log(posts[0].video);
               Because what we do isn’t just a job, it’s a calling. We’re not your average sound jockeys, we are a crew of audio enthusiasts on a mission to turn noises into stories.
             </p>
           </div>
-          <p class="op pb-4 md:pb-0 pt-8 md:w-2/3">
+          <p class="op pb-4 md:pb-0 md:w-2/3">
             <span>
               Punctual: 
             </span>
@@ -137,11 +137,11 @@ console.log(posts[0].video);
        
       </section>
 
-      <section id="block-4" class="block op intro" >
+      <section id="block-4" class="block " >
 
-        <div class="content grid gap-10">
+        <div class="content grid gap-8">
           <div class="md:flex ">
-            <h2>Services</h2>
+            <h2 class="op">Services</h2>
             <ServiceBlock  service={service1}/>
           </div>
             <ServiceBlock service={service2}/>
@@ -155,9 +155,9 @@ console.log(posts[0].video);
        
       </section>
 
-  <section class="work h-auto pt-10">
+  <section class="work h-auto block">
 
-    <h2>Work</h2>
+    <h2 class="op">Work</h2>
 
     <!-- <VimeoGallery /> -->
     <VideoList posts={posts} client:visible  />

@@ -61,7 +61,7 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
     <div id="top" className={`video-card relative w-full`}>
       <div className="relative">
         <div
-          className="controls-overlay absolute w-full h-full text-xl md:text-3xl"
+          className="controls-overlay absolute w-full h-full text-xl md:text-3xl z-10"
           onMouseMove={handleMouseMove}
           onMouseEnter={showCursor}
           onMouseLeave={hideCursor}
@@ -91,7 +91,7 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
 
           <div className="play-bar ">
             <button
-              className="mute-button"
+              className="mute-button hidden md:block"
               onClick={handleMutedUnmute}
               onMouseEnter={hideCursor}
               onMouseLeave={showCursor}
@@ -100,7 +100,7 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
             </button>
           </div>
         </div>
-        <div id={title} className="video-wrapper relative">
+        <div id={title} className="video-wrapper relative z-0">
           <video
             className="w-full"
             ref={videoRef}
@@ -110,13 +110,15 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
           />
         </div>
       </div>
-      <div className={"info-panel px-4 grid grid-rows-[1fr] pt-5"}>
-        <div className="w-full md:flex md:space-x-5 overflow-hidden text-xl md:text-3xl">
-          <div className="title md:w-1/3">
+      <div
+        className={"info-panel px-4 grid grid-rows-[1fr] pt-5 pb-20 md:pb-56"}
+      >
+        <div className="w-full sm:flex sm:space-x-5 overflow-hidden text-xl md:text-3xl">
+          <div className="title sm:w-1/3">
             <p className=" uppercase">{title}</p>
           </div>
           <div
-            className="credits pt-5 md:pt-0 md:w-1/3"
+            className="credits pt-5 sm:pt-0 sm:w-2/3"
             dangerouslySetInnerHTML={{ __html: description }}
           ></div>
         </div>

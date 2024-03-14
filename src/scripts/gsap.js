@@ -22,12 +22,8 @@ if (document.readyState === "complete") {
 // swup.hooks.on("page:view", () => init());
 
 swup.hooks.on("content:replace", (event) => {
-  if (window.location.pathname === "/") {
-    bigLogo();
-  } else {
-    smallLogo();
-  }
   // elementsFadeIn();
+  init();
 });
 
 //! Find a way to remove this shit when not in the home
@@ -35,7 +31,7 @@ function bigLogo() {
   // This runs on initial load
   console.log("Trigger logo");
   tl.to("#logo", {
-    width: 150,
+    width: 300,
     duration: 1,
     scrollTrigger: {
       trigger: "#logo",
@@ -49,21 +45,23 @@ function bigLogo() {
 function smallLogo() {
   console.log("Make logo smaller");
   tl.to("#logo", {
-    width: 150,
+    width: 300,
     duration: 1,
     delay: 1,
   });
 }
 
 function elementsFadeIn() {
+  console.log("Elements fade in!");
+
   gsap.utils.toArray(".op").forEach((op, i) => {
     tl.from(op, {
       scrollTrigger: {
         trigger: op,
         start: "center bottom",
         end: "bottom bottom",
-        scrub: 0.5,
-        markers: false,
+        scrub: 2,
+        markers: 0,
       },
       translateY: "50px",
       opacity: 0,
@@ -73,6 +71,10 @@ function elementsFadeIn() {
 }
 
 function init() {
-  bigLogo();
-  elementsFadeIn();
+  if (window.location.pathname === "/") {
+    bigLogo();
+    elementsFadeIn();
+  } else {
+    smallLogo();
+  }
 }
