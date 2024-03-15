@@ -8,33 +8,59 @@ console.log("GSAP");
 gsap.registerPlugin(ScrollTrigger);
 
 let tl = gsap.timeline();
-
 let mm = gsap.matchMedia();
+
+let swupPageUrl = "";
+
+hideHeader();
+
+// Run after every additional navigation by swup
+swup.hooks.on("page:view", (visit) => {
+  console.log("New page loaded:", visit.to.url);
+  swupPageUrl = visit.to.url;
+  hideHeader();
+});
 
 // Run once when page loads
 if (document.readyState === "complete") {
   init();
+  hideHeader();
 } else {
   document.addEventListener("DOMContentLoaded", () => init());
 }
 
-// Run after every additional navigation by swup
-// swup.hooks.on("page:view", () => init());
+// swup.hooks.on("content:replace", (event) => {
+//   // elementsFadeIn();
+//   init();
+// });
 
-swup.hooks.on("content:replace", (event) => {
-  // elementsFadeIn();
-  init();
-});
+function hideHeader() {
+  let header = document.querySelector("header");
+  console.log(window.location.pathname);
+  if (header)
+    if (swupPageUrl === "") {
+      if (window.location.pathname !== "/") {
+        console.log("Hide header");
+        header.hidden = true;
+      } else {
+        console.log("Show header");
+        header.hidden = false;
+      }
+    } else if (swupPageUrl === "/") {
+      console.log("Show header");
+      header.hidden = false;
+    } else {
+      console.log("Hide header");
+      header.hidden = true;
+    }
+}
 
 swup.hooks.on("visit:start", (event) => {
-  let header = document.querySelector("header");
-  if (header && window.location.pathname === "/") {
-    console.log("Hide header");
-    header.hidden = true;
-  } else {
-    console.log("Show header");
-    header.hidden = false;
-  }
+  hideHeader();
+});
+
+swup.hooks.on("visit:end", () => {
+  init();
 });
 
 // swup.on('transitionEnd', (event) => {
@@ -108,8 +134,6 @@ function init() {
     bigLogo();
     elementsFadeIn();
     services();
-  } else {
-    smallLogo();
   }
 }
 

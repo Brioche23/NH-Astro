@@ -30,19 +30,17 @@ import Header from '../components/Header.astro';
       <!-- <Header/> -->
       
      
-    
       <header class="h-[50vh]" data-swup-update>
         <a href="/#home" id="logo" class="fixed z-30 py-4 pr-4">
           <Image src={logo} alt="NoiseHeroes Logo" class:list={'w-full'}/>
         </a>
       </header>
-       
     <main id="swup" class="mainContainer transition-main">
         <slot />
       </main>
-      <Footer>                 
+      <Footer>
+                         
       <script>
-      
         import "../scripts/gsap.js"
       </script>
     </body>
