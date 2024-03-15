@@ -106,7 +106,6 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
             ref={videoRef}
             poster={posterUrl}
             src={videoUrl}
-            controls={false}
           />
         </div>
       </div>

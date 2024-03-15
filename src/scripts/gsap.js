@@ -26,20 +26,53 @@ swup.hooks.on("content:replace", (event) => {
   init();
 });
 
+swup.hooks.on("visit:start", (event) => {
+  let header = document.querySelector("header");
+  if (header && window.location.pathname === "/") {
+    console.log("Hide header");
+    header.hidden = true;
+  } else {
+    console.log("Show header");
+    header.hidden = false;
+  }
+});
+
+// swup.on('transitionEnd', (event) => {
+//   const incomingElement = event.target;
+//   if (incomingElement.classList.contains('home')) {
+//     const header = document.createElement('header');
+//     // Add your header content here
+//     incomingElement.prepend(header);
+//   }
+// });
+
 //! Find a way to remove this shit when not in the home
 function bigLogo() {
   // This runs on initial load
   console.log("Trigger logo");
-  tl.to("#logo", {
-    width: 300,
-    duration: 1,
-    scrollTrigger: {
-      trigger: "#logo",
-      start: "top top",
-      scrub: 0.5,
-      markers: false,
+
+  let logoH = gsap.getProperty("#logo", "height");
+  tl.from("#logo", {
+    opacity: 0,
+    duration: 2,
+    delay: 1,
+  }).fromTo(
+    "#logo",
+    {
+      y: innerHeight - logoH,
     },
-  });
+    {
+      y: 0,
+      width: 300,
+      scrollTrigger: {
+        trigger: "#logo",
+        start: "0",
+        end: "500",
+        scrub: 0.5,
+        markers: true,
+      },
+    }
+  );
 }
 
 function smallLogo() {
@@ -74,7 +107,87 @@ function init() {
   if (window.location.pathname === "/") {
     bigLogo();
     elementsFadeIn();
+    services();
   } else {
     smallLogo();
   }
+}
+
+function services() {
+  console.log("Service");
+
+  const serviceLists = document.querySelectorAll(".service-list");
+  const serviceNames = document.querySelectorAll(".service-name");
+  const serviceDescs = document.querySelectorAll(".service-desc");
+  const serviceIcons = document.querySelectorAll(".service-icon");
+
+  serviceNames.forEach((name) => {
+    name.addEventListener("click", () => {
+      let isOpen = false;
+      let parentNode = name.parentNode;
+      let parentBox = parentNode.parentNode;
+      let description = parentNode.querySelector(".service-desc");
+      let icon = name.querySelector(".service-icon");
+      let serviceTitle = parentBox.querySelector(".service-title");
+
+      description.classList.toggle("hidden");
+      isOpen =
+        !isOpen && !description.classList.contains("hidden") ? true : false;
+      console.log(isOpen);
+      // icon.innerHTML = isOpen ? "south_east" : "north_east";
+      icon.style.transform = isOpen ? "rotate(90deg)" : "rotate(0deg)";
+
+      resetAll(description, icon, parentBox);
+
+      serviceLists.forEach((s) => {
+        for (const c of s.children) {
+          if (isOpen) {
+            if (c != parentNode && c != serviceTitle) {
+              gsap.to(c, {
+                opacity: 0.5,
+                duration: 0.8,
+                stagger: 0.2,
+              });
+              // c.style.opacity = 0.5;
+            } else
+              gsap.to(c, {
+                opacity: 1,
+                duration: 1,
+              });
+          } else
+            gsap.to(c, {
+              opacity: 1,
+              duration: 1,
+            });
+        }
+      });
+    });
+  });
+
+  const resetAll = (d, i, p) => {
+    console.log("Hide class");
+    serviceDescs.forEach((desc) => {
+      if (!desc.classList.contains("hidden") && desc !== d) {
+        desc.classList.add("hidden");
+      }
+    });
+    for (const c of p.children) {
+      if (c.style.opacity === 0.5 && c !== parentNode) {
+        gsap.to(c, {
+          opacity: 1,
+          duration: 1,
+        });
+      }
+    }
+    serviceIcons.forEach((icon) => {
+      if (icon.style.transform == "rotate(90deg)" && icon !== i) {
+        // icon.innerHTML = "north_east";
+        icon.removeAttribute("style");
+        // icon.style.transform = null;
+      }
+      // if (icon.innerHTML == "south_east" && icon !== i) {
+      // icon.innerHTML = "north_east";
+      // }
+    });
+  };
 }
