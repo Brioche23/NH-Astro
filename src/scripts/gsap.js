@@ -95,7 +95,7 @@ function bigLogo() {
         start: "0",
         end: "500",
         scrub: 0.5,
-        markers: true,
+        markers: false,
       },
     }
   );
