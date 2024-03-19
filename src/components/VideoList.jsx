@@ -69,7 +69,7 @@ function VideoPlayer({
   // };
 
   return (
-    <a id={slug} href={"/videos/" + slug}>
+    <a className="op" id={slug} href={"/videos/" + slug}>
       <li
         onMouseEnter={handlePlay}
         onMouseLeave={handlePause}
