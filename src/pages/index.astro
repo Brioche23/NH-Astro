@@ -1,63 +1,8 @@
 ---
-const service1 = {
-  name: 'Sound Design & Post Production',
-  subServ : [
-    {
-    name: "Storytelling",
-    desc: "Anyone can string sounds together; turning them into a story is a whole other ballgame. We're here to make sure your projects always sound like a happy ending"
-    },
-    {
-    name: "TV-Digital-Radio-Podcast",
-    desc: "On ground, at sea, ON AIR, ON LINE. No matter the medium, we can tackle any project that involves an audio track. As long as it's not on mute"
-    },
-    {
-    name: "Voice Talents",
-    desc: "Even the best story can turn into a nightmare if the wrong voice is narrating. Thanks to a network made of the best voices around, every project of yours will sound like a dream"
-    },
-  ] 
-}
-const service2 = {
-  name: 'Music Production',
-  subServ : [
-    {
-    name: "Composition",
-    desc: "Can't find a tune that suits your vibe anywhere in the world? No problem: we'll whip up a fresh one just for you"
-    },
-    {
-    name: "Tailor-Made Production",
-    desc: `4 minutes, 60", 30", 12 milliseconds. Any piece will be custom-crafted to fit your project's needs.`
-    },
-    {
-    name: "Network of Artists, DJs and Producers",
-    desc: "Got a crush on an artist and want their song just for you? Our TOP SECRET directory is loaded with TOP CONTACTS always ready to create"
-    },
-  ] 
-}
-const service3 = {
-  name: 'Music Supervision & Licensing',
-  subServ : [
-    {
-    name: "Finding the Perfect Sound",
-    desc: "Got a project but no clue how it should sound? Well, we've got you covered!"
-    },
-    {
-    name: "Synchronisation",
-    desc: "No one likes being offbeat, especially when it comes to music. We're here to make sure every element of your project is perfectly in sync"
-    },
-    {
-    name: "Negotiation",
-    desc: "Music is great until you start talking about rights. We're here to ensure that every party involved is always protected, happily ever after"
-    },
-  ] 
-}
-
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceBlock from '../components/ServiceBlock.astro';
-import VimeoGallery from '../components/VimeoGallery.astro';
 import VideoList from '../components/VideoList.jsx';
 const pageTitle = "NOISE HEROES";
-
-const servizi = ["post produzione audio", "sound design", "consulenza e produzione","licensing"]
 
 import { contentfulClient } from "../lib/contentful";
 import type { Video } from "../lib/contentful";
@@ -68,77 +13,67 @@ const entries = await contentfulClient.getEntries<Video>({
   content_type: "video",
 });
 
+const home_entries = await contentfulClient.getEntries<Home>({
+  content_type: "home",
+});
+
 const posts = entries.items.map((item) => {
-  const { title, slug, video, videoPoster, description } = item.fields;
+  const { title, slug, video, videoPoster, description, inHome } = item.fields;
   return {
     title,
     slug,
     video,
     videoPoster,
     description : documentToHtmlString(description),
+    inHome,
   };
 });
 
-console.log(posts[0].video);
+const homes = home_entries.items.map((item) => {
+  const { slug, onomatopeaIntro, openingText, valuesTitle, valuesText1,valuesText2, servicesTitle, services, workTitle} = item.fields;
+  return {
+    slug,
+    onomatopeaIntro,
+    openingText :documentToHtmlString(openingText),
+    valuesTitle,
+    valuesText1 : documentToHtmlString(valuesText1),
+    valuesText2 : documentToHtmlString(valuesText2),
+    servicesTitle,
+    services,
+    workTitle
+  };
+});
+
+console.log(homes[0]);
+
+const home = homes[0];
+
+const service1 = home.services.services.service1;
+const service2 = home.services.services.service2;
+const service3 = home.services.services.service3;
+
+// console.log(posts[0].video.fields.file.url);
 ---
 <BaseLayout {pageTitle}>
 
   <section id="block-1" class="intro">
     <div class="content md:w-2/3">
-
-      <p id="ta-dah" class="ta-dah op">TA-DAH!</p>
-      <p id="opening" class="text op">
-        Welcome to Noise Heroes, a squad that rocks a killer superpower: 
-        <span >
-          turning noises into sounds, 
-        </span>
-        <span class="text-orange">
-          and sounds into epic stories.
-        </span> 
-        We are the go-to audio production company with a backstory that’s out of this world. If you have any issues with sound nobody else can fix - and if you’re able to track us down -  
-        <span >
-          brace yourself when Noise Heroes step in!
-        </span>
-      </p>
-      </div>
+      <p id="ta-dah" class="ta-dah op uppercase">{home.onomatopeaIntro}</p>
+      <div id="opening" class="text op rt-green" set:html={home.openingText}/>
+    </div>
   </section>
 
     <section id="block-3" class="block">
-      <div  class="content grid gap-8 ">
-
+      <div class="content grid gap-8 ">
           <div class="md:flex">
-          <h2 class="op">How we roll</h2>
-          
-            <p class="op pb-4 md:pb-0  md:w-2/3">
-              <span>
-                Why Noise Heroes and not regular noise people?
-              </span>
-              Because what we do isn’t just a job, it’s a calling. We’re not your average sound jockeys, we are a crew of audio enthusiasts on a mission to turn noises into stories.
-            </p>
+            <h2 class="op">{home.valuesTitle}</h2>       
+            <div class="op pb-4 md:pb-0 md:w-2/3 rt-green" set:html={home.valuesText1} />           
           </div>
-          <p class="op pb-4 md:pb-0 md:w-2/3">
-            <span>
-              Punctual: 
-            </span>
-            There is no hero that shows up late /
-            <span>
-              Precise: 
-            </span>
-            Once a target is set, we hit the bullseye on first try /
-            <span>
-              Tailor-Made:
-            </span>
-            Every challenge needs a fitting response /
-            <span>
-              Budget-Friendly:
-            </span>
-            Heroes don’t pull heists... they prevent them
-          </p>
-       
-      </section>
+          <div class="op pb-4 md:pb-0 md:w-2/3 rt-green" set:html={home.valuesText2} />    
+      </div>
+    </section>
 
-      <section id="block-4" class="block " >
-
+      <section id="block-4" class="block" >
         <div class="content grid gap-8">
           <div class="md:flex ">
             <h2 class="op">Services</h2>
@@ -147,21 +82,14 @@ console.log(posts[0].video);
             <ServiceBlock service={service2}/>
             <div class="md:flex justify-end">
               
-              <ServiceBlock  service={service3}/>
+              <ServiceBlock service={service3}/>
             </div>
-        </div>
-          
-
-       
+        </div>   
       </section>
 
   <section class="work h-auto block">
-
-    <h2 class="op">Work</h2>
-
-    <!-- <VimeoGallery /> -->
+    <h2 class="op">{home.workTitle}</h2>
     <VideoList posts={posts} client:visible  />
-
   </section>
 
 </BaseLayout>

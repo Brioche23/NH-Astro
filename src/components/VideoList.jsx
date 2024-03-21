@@ -7,13 +7,14 @@ function VideoList({ posts }) {
     <ul className="grid gap-5">
       {posts.map((post, index) => (
         <VideoPlayer
+          inHome={post.inHome}
           key={post.slug}
           index={index}
           slug={post.slug}
           title={post.title}
           description={post.description}
-          videoUrl={post.video.fields.file.url}
-          posterUrl={post.videoPoster.fields.file.url}
+          videoUrl={post.video}
+          posterUrl={post.videoPoster}
           isActive={index === activeVideoId}
           onClick={() => setActiveVideoId(index)}
           width={getRandomWidth()}
@@ -32,6 +33,7 @@ function getRandomWidth() {
 }
 
 function VideoPlayer({
+  inHome,
   slug,
   index,
   title,
@@ -68,15 +70,16 @@ function VideoPlayer({
   //   setIsPlaying(!isPlaying);
   // };
 
-  return (
-    <a className="op" id={slug} href={"/videos/" + slug}>
-      <li
-        onMouseEnter={handlePlay}
-        onMouseLeave={handlePause}
-        className={`video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`}
-      >
-        <div className="vimeo-full relative">
-          {/* <div className="controls-overlay absolute w-full h-full text-xl md:text-3xl hidden">
+  if (inHome)
+    return (
+      <a className="op" id={slug} href={"/videos/" + slug}>
+        <li
+          onMouseEnter={handlePlay}
+          onMouseLeave={handlePause}
+          className={`video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`}
+        >
+          <div className="vimeo-full relative">
+            {/* <div className="controls-overlay absolute w-full h-full text-xl md:text-3xl hidden">
           <button className="play-button absolute">
             {isPlaying ? "Pause" : "Play"}
           </button>
@@ -87,18 +90,18 @@ function VideoPlayer({
             <button className="mute-button">mute</button>
           </div>
         </div> */}
-          <div id={title} className="video-wrapper relative ">
-            <video
-              className="w-full"
-              ref={videoRef}
-              poster={posterUrl}
-              src={videoUrl}
-              controls={false}
-              muted
-            />
+            <div id={title} className="video-wrapper relative ">
+              <video
+                className="w-full"
+                ref={videoRef}
+                poster={posterUrl.fields.file.url}
+                src={videoUrl.fields.file.url}
+                controls={false}
+                muted
+              />
+            </div>
           </div>
-        </div>
-        {/* <div
+          {/* <div
         className={
           "info-panel px-4 grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5"
         }
@@ -113,9 +116,9 @@ function VideoPlayer({
           ></div>
         </div>
       </div> */}
-      </li>
-    </a>
-  );
+        </li>
+      </a>
+    );
 }
 
 export default VideoList;

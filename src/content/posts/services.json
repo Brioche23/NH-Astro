@@ -1,0 +1,55 @@
+{
+  "services": {
+    "service1": {
+      "name": "Sound Design & Post Production",
+      "subServ": [
+        {
+          "name": "Storytelling",
+          "desc": "Anyone can string sounds together; turning them into a story is a whole other ballgame. We're here to make sure your projects always sound like a happy ending"
+        },
+        {
+          "name": "TV-Digital-Radio-Podcast",
+          "desc": "On ground, at sea, ON AIR, ON LINE. No matter the medium, we can tackle any project that involves an audio track. As long as it's not on mute"
+        },
+        {
+          "name": "Voice Talents",
+          "desc": "Even the best story can turn into a nightmare if the wrong voice is narrating. Thanks to a network made of the best voices around, every project of yours will sound like a dream"
+        }
+      ]
+    },
+    "service2": {
+      "name": "Music Production",
+      "subServ": [
+        {
+          "name": "Composition",
+          "desc": "Can't find a tune that suits your vibe anywhere in the world? No problem: we'll whip up a fresh one just for you"
+        },
+        {
+          "name": "Tailor-Made Production",
+          "desc": "4 minutes, 60&quot;, 30&quot;, 12 milliseconds. Any piece will be custom-crafted to fit your project's needs."
+        },
+        {
+          "name": "Network of Artists, DJs and Producers",
+          "desc": "Got a crush on an artist and want their song just for you? Our TOP SECRET directory is loaded with TOP CONTACTS always ready to create"
+        }
+      ]
+    },
+    "service3": {
+      "name": "Music Supervision & Licensing",
+      "subServ": [
+        {
+          "name": "Finding the Perfect Sound",
+          "desc": "Got a project but no clue how it should sound? Well, we've got you covered!"
+        },
+        {
+          "name": "Synchronisation",
+          "desc": "No one likes being offbeat, especially when it comes to music. We're here to make sure every element of your project is perfectly in sync"
+        },
+        {
+          "name": "Negotiation",
+          "desc": "Music is great until you start talking about rights. We're here to ensure that every party involved is always protected, happily ever after"
+        }
+      ]
+    }
+  }
+}

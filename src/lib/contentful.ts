@@ -9,6 +9,21 @@ export interface Video {
     video: EntryFieldTypes.Object;
     videoPoster: EntryFieldTypes.Object;
     description: EntryFieldTypes.RichText;
+    inHome: EntryFieldTypes.Boolean;
+  };
+}
+export interface Home {
+  contentTypeId: "home";
+  fields: {
+    slug: EntryFieldTypes.Text;
+    onomatopeaIntro: EntryFieldTypes.Text;
+    openingText: EntryFieldTypes.RichText;
+    valuesTitle: EntryFieldTypes.Text;
+    valuesText1: EntryFieldTypes.RichText;
+    valuesText2: EntryFieldTypes.RichText;
+    servicesTitle: EntryFieldTypes.Text;
+    services: EntryFieldTypes.Object;
+    workTitle: EntryFieldTypes.Text;
   };
 }
 
