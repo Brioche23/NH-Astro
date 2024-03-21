@@ -17,7 +17,8 @@ function VideoList({ posts }) {
           posterUrl={post.videoPoster}
           isActive={index === activeVideoId}
           onClick={() => setActiveVideoId(index)}
-          width={getRandomWidth()}
+          width={getRandom(videoSizes)}
+          alignment={getAlignement(index)}
         />
       ))}
     </ul>
@@ -26,10 +27,21 @@ function VideoList({ posts }) {
 
 const videoSizes = ["md:w-1/2 ", "md:w-2/3 ", "md:w-1/3 "];
 
-const videoMarginsRight = [];
+const videoMarginsLeft = ["md:ml-0 ", "md:ml-20 "];
+const videoMarginsRight = ["md:mr-0 ", "md:mr-20 "];
+function getRandom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
 
-function getRandomWidth() {
-  return videoSizes[Math.floor(Math.random() * videoSizes.length)];
+function getAlignement(index) {
+  console.log(index);
+  const alignment = index % 2 == 0 ? "md:mr-auto " : "md:ml-auto ";
+
+  const margin =
+    index % 2 == 0 ? getRandom(videoMarginsLeft) : getRandom(videoMarginsRight);
+
+  const final_al = alignment + margin;
+  return final_al;
 }
 
 function VideoPlayer({
@@ -41,14 +53,14 @@ function VideoPlayer({
   videoUrl,
   posterUrl,
   width,
+  alignment,
 }) {
   const videoRef = useRef(null); // useRef for video element reference
   const [isPlaying, setIsPlaying] = useState(false); // Individual state
 
-  const alignment =
-    index % 2 == 0 ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0";
+  const video_class = `video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`;
 
-  console.log(alignment);
+  console.log(video_class);
 
   const handlePlay = () => {
     const video = videoRef.current;
@@ -76,7 +88,7 @@ function VideoPlayer({
         <li
           onMouseEnter={handlePlay}
           onMouseLeave={handlePause}
-          className={`video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`}
+          className={video_class}
         >
           <div className="vimeo-full relative">
             {/* <div className="controls-overlay absolute w-full h-full text-xl md:text-3xl hidden">
