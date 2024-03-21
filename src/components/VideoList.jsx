@@ -34,7 +34,6 @@ function getRandom(array) {
 }
 
 function getAlignement(index) {
-  console.log(index);
   const alignment = index % 2 == 0 ? "md:mr-auto " : "md:ml-auto ";
 
   const margin =
@@ -59,8 +58,6 @@ function VideoPlayer({
   const [isPlaying, setIsPlaying] = useState(false); // Individual state
 
   const video_class = `video-card relative transition-all duration-500 ease-in-out ${width} ${alignment}`;
-
-  console.log(video_class);
 
   const handlePlay = () => {
     const video = videoRef.current;

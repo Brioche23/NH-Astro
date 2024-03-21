@@ -77,28 +77,66 @@ function bigLogo() {
   // This runs on initial load
   console.log("Trigger logo");
 
-  let logoH = gsap.getProperty("#logo", "height");
-  tl.from("#logo", {
-    opacity: 0,
-    duration: 2,
-    delay: 1,
-  }).fromTo(
-    "#logo",
-    {
-      y: innerHeight - logoH,
-    },
-    {
-      y: 0,
-      width: 300,
-      scrollTrigger: {
-        trigger: "#logo",
-        start: "0",
-        end: "500",
-        scrub: 0.5,
-        markers: false,
+  if (document.querySelector("#logo")) {
+    // let logoH = gsap.getProperty("#logo", "height");
+    let logoH = document.querySelector("#logo").offsetHeight;
+    console.log("Logo H: " + logoH);
+    tl.from(
+      "#logo",
+      {
+        opacity: 0,
+        duration: 3,
+        delay: 1,
+        ease: "power1.inOut",
       },
+      "fade-in"
+    );
+    tl.fromTo(
+      "#logo",
+      {
+        y: innerHeight - logoH,
+      },
+      {
+        y: 0,
+        width: 300,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#logo",
+          start: "0",
+          end: "500",
+          scrub: 2,
+          markers: false,
+          onUpdate: (self) => {
+            console.log("progress:", self.progress);
+            if (self.progress === 1) scrollNav();
+          },
+        },
+      },
+      "scroll-up"
+    );
+
+    function scrollNav() {
+      ScrollTrigger.create({
+        start: "top top",
+        end: "max",
+        onUpdate: (self) => {
+          self.direction === -1 ? showAnim.play() : showAnim.reverse();
+        },
+      });
     }
-  );
+
+    const showAnim = gsap
+      .from(
+        "#logo",
+        {
+          yPercent: -100,
+          paused: true,
+          duration: 0.2,
+        },
+        "scroll"
+      )
+      .progress(1);
+  }
 }
 
 function smallLogo() {
@@ -125,6 +163,7 @@ function elementsFadeIn() {
       translateY: "50px",
       opacity: 0,
       stagger: 0.5,
+      ease: "sine.inOut",
     });
   });
 }
