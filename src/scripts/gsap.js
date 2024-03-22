@@ -78,6 +78,28 @@ function bigLogo() {
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
+    const trigger = ScrollTrigger.create({
+      start: "top top",
+      end: "max",
+      onUpdate: (self) => {
+        self.direction === -1 ? showAnim.play() : showAnim.reverse();
+      },
+    });
+
+    trigger.disable();
+
+    const showAnim = gsap
+      .from(
+        "#logo_container",
+        {
+          yPercent: -100,
+          paused: true,
+          duration: 0.2,
+        },
+        "scroll_reveal"
+      )
+      .progress(1);
+
     // let logoH = gsap.getProperty("#logo", "height");
     let logoH = document.querySelector("#logo").offsetHeight;
     console.log("Logo H: " + logoH);
@@ -90,52 +112,26 @@ function bigLogo() {
         ease: "power1.inOut",
       },
       "fade-in"
-    );
-    tl.fromTo(
-      "#logo",
+    ).to(
+      "#logo_container",
       {
-        y: innerHeight - logoH,
-      },
-      {
-        y: 0,
-        width: 300,
+        height: 84,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: "#logo",
-          start: "0",
-          end: "500",
+          trigger: "#logo_container",
+          start: "top top",
+          end: innerHeight,
           scrub: 2,
-          markers: false,
+          markers: 0,
           onUpdate: (self) => {
             console.log("progress:", self.progress);
-            if (self.progress === 1) scrollNav();
+            if (self.progress === 1) trigger.enable();
+            else trigger.disable();
           },
         },
       },
-      "scroll-up"
+      "resize"
     );
-
-    function scrollNav() {
-      ScrollTrigger.create({
-        start: "top top",
-        end: "max",
-        onUpdate: (self) => {
-          self.direction === -1 ? showAnim.play() : showAnim.reverse();
-        },
-      });
-    }
-
-    const showAnim = gsap
-      .from(
-        "#logo",
-        {
-          yPercent: -100,
-          paused: true,
-          duration: 0.2,
-        },
-        "scroll"
-      )
-      .progress(1);
   }
 }
 
