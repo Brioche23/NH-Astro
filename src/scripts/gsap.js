@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import Swup from "swup";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import lottieWeb from "https://cdn.skypack.dev/lottie-web";
 
 const swup = new Swup();
 
@@ -164,14 +165,6 @@ function elementsFadeIn() {
   });
 }
 
-function init() {
-  if (window.location.pathname === "/") {
-    bigLogo();
-    elementsFadeIn();
-    services();
-  }
-}
-
 function services() {
   console.log("Service");
 
@@ -249,4 +242,73 @@ function services() {
       // }
     });
   };
+}
+
+function initLottie() {
+  // This needs to be refreshed
+  let audio = new Audio(); // Create an audio object
+  let isMuted = true; // Flag to track mute state
+
+  // Function to play audio with fade in
+  function playAudio(audioSrc) {
+    audio.src = audioSrc;
+    audio.play();
+    audio.volume = 0; // Start with zero volume
+    // fadeIn();
+    audio.volume = isMuted ? 0 : 1; // Adjust volume based on mute state
+  }
+
+  // Function to stop audio with fade out
+  function stopAudio(audioSrc) {
+    // fadeOut();
+    audio.src = audioSrc;
+    audio.pause();
+  }
+
+  // Function to toggle mute state
+  function toggleMute() {
+    isMuted = !isMuted;
+    audio.volume = isMuted ? 0 : 1; // Adjust volume based on mute state
+    console.log(isMuted);
+    if (isMuted) {
+      toggleButton.innerHTML = "volume_off";
+      toggleButton.classList.remove("bg-orange");
+    } else {
+      toggleButton.innerHTML = "volume_up";
+      toggleButton.classList.add("bg-orange");
+    }
+  }
+
+  // Toggle mute on global button click
+  let toggleButton = document.getElementById("globalMuteToggle");
+  toggleButton.addEventListener("click", toggleMute);
+
+  let heroContainer = document.getElementById("heroContainer");
+  let hero = lottieWeb.loadAnimation({
+    container: heroContainer,
+    path: `/lottie/heroes/Antieroe_03_ok.json`,
+    renderer: "svg",
+    loop: false,
+    autoplay: false,
+    name: "Hero Animation 1",
+  });
+
+  heroContainer.addEventListener("mouseenter", function () {
+    if (!isMuted) playAudio("/audio/ex_01.mp3");
+    hero.goToAndPlay(0);
+  });
+
+  heroContainer.addEventListener("mouseleave", function () {
+    if (!isMuted) stopAudio("/audio/ex_01.mp3");
+    hero.pause();
+  });
+}
+
+function init() {
+  if (window.location.pathname === "/") {
+    bigLogo();
+    elementsFadeIn();
+    services();
+    initLottie();
+  }
 }

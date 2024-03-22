@@ -13,12 +13,11 @@ const {pageTitle} = Astro.props;
 ---
 <MainLayout {pageTitle}>
 
-    <!-- <button id="globalMuteToggle"  class="material-symbols-outlined hidden md:block transition-all duration-300 ease-in">
-        volume_off
-    </button> -->
+ 
     
     <!-- <RandomWords defer/> -->
     <!-- <RandomHeroes defer/> -->
+<div id="heroContainer" class="floater w-1/2 op absolute right-10" />
   
      
       <slot />
@@ -28,6 +27,8 @@ const {pageTitle} = Astro.props;
       padding: 0rem 1rem;
     }
   </style>
+
+
 
  
 </MainLayout>

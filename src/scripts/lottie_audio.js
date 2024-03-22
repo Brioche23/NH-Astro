@@ -2,7 +2,7 @@ import lottieWeb from "https://cdn.skypack.dev/lottie-web";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/*
+// This needs to be refreshed
 let audio = new Audio(); // Create an audio object
 let isMuted = true; // Flag to track mute state
 
@@ -36,6 +36,31 @@ function toggleMute() {
   }
 }
 
+// Toggle mute on global button click
+let toggleButton = document.getElementById("globalMuteToggle");
+toggleButton.addEventListener("click", toggleMute);
+
+let heroContainer = document.getElementById("heroContainer");
+let hero = lottieWeb.loadAnimation({
+  container: heroContainer,
+  path: `/lottie/heroes/Antieroe_01_ok.json`,
+  renderer: "svg",
+  loop: false,
+  autoplay: false,
+  name: "Hero Animation 1",
+});
+
+heroContainer.addEventListener("mouseenter", function () {
+  if (!isMuted) playAudio("/audio/ex_01.mp3");
+  hero.goToAndPlay(0);
+});
+
+heroContainer.addEventListener("mouseleave", function () {
+  if (!isMuted) stopAudio("/audio/ex_01.mp3");
+  hero.pause();
+});
+
+/*
 // Function to gradually increase the volume (fade in)
 function fadeIn() {
   var fadeInterval = setInterval(function () {
@@ -58,22 +83,22 @@ function fadeOut() {
     }
   }, 100); // Adjust the interval as needed
 }
-*/
+
 
 // const container = document.getElementById("hero-heroes");
 
-// let hero_animation = lottieWeb.loadAnimation({
-//   container: container,
-//   path: "/lottie/Heroes_Cerchio_Sito.json",
-//   renderer: "svg",
-//   loop: true,
-//   autoplay: true,
-//   name: "Hero Animation",
-// });
+let hero_animation = lottieWeb.loadAnimation({
+  container: container,
+  path: "/lottie/Heroes_Cerchio_Sito.json",
+  renderer: "svg",
+  loop: true,
+  autoplay: true,
+  name: "Hero Animation",
+});
 
-// container.addEventListener("click", () => {
-//   animation.playSegments([0, 50], true);
-// });
+container.addEventListener("click", () => {
+  animation.playSegments([0, 50], true);
+});
 
 // Get a reference to the heroesContainer
 let heroesContainer = document.getElementById("heroesContainer");
@@ -127,9 +152,7 @@ for (let i = 0; i < 5; i++) {
   });
 }
 
-// Toggle mute on global button click
-// let toggleButton = document.getElementById("globalMuteToggle");
-// toggleButton.addEventListener("click", toggleMute);
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -145,3 +168,4 @@ gsap.to(".floating-hero", {
     markers: 0,
   },
 });
+*/
