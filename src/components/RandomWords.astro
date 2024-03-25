@@ -37,6 +37,7 @@ for (let i = 0; i < words.length; i++) {
   newWord.style.position = 'absolute';
   newWord.style.top = randomTop + 'px';
   newWord.style.left = randomLeft + 'px';
+  newWord.style.filter = 'blur(0px)';
   // newWord.style.opacity = "0";
   // newWord.style.transform ="rotate("+ randomRotation + "deg)";
   newWord.classList.add("floating-word");
@@ -45,6 +46,19 @@ for (let i = 0; i < words.length; i++) {
   newWord.classList.add("text-orange");
 else
   newWord.classList.add("text-green");
+
+  newWord.addEventListener("mouseover", ()=>{
+    gsap.to(newWord, {
+      filter:'blur(10px)',
+      duration: 1
+    })
+  })
+  newWord.addEventListener("mouseleave", ()=>{
+    gsap.to(newWord, {
+      filter:'blur(0px)',
+      duration: 1
+    })
+  })
   
   // Add the new span element to the container
   container?.appendChild(newWord);
