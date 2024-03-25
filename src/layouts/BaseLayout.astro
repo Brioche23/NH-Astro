@@ -1,37 +1,17 @@
 ---
-import RandomWords from '../components/RandomWords.astro';
-// import RandomWords from '../components/RandomWords.jsx';
-import RandomHeroes from '../components/RandomHeroes.astro';
-
-import Header from '../components/Header.jsx';
-
 import MainLayout from './MainLayout.astro'
-import { Image } from 'astro:assets';
-import logo from '../img/NH_Logo.svg'
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
 <MainLayout {pageTitle}>
-
- <div class="z-0">
-
-   
-   <RandomWords defer/>
-   <!-- <RandomHeroes defer/> -->
    <div id="heroContainer" class="floater w-1/4 op absolute right-10" />
-  </div>
-  
-     <div class="z-10">
-       <slot />
-      </div>
+   <div id="wordContainer" class="floater font-display uppercase text-9xl"></div>
+
+    <slot />
     
-  <style>
+  <style> 
     body {
       padding: 0rem 1rem;
     }
   </style>
-
-
-
- 
 </MainLayout>

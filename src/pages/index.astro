@@ -57,13 +57,13 @@ const service3 = home.services.services.service3;
 
   <section id="block-1" class="intro">
     <div class="content md:w-2/3">
-      <p id="ta-dah" class="ta-dah op uppercase">{home.onomatopeaIntro}</p>
-      <div id="opening" class="text op rt-green" set:html={home.openingText}/>
+      <p id="ta-dah" class="ta-dah op ">{home.onomatopeaIntro}</p>
+      <div id="opening" class="text op rt-green pt-8" set:html={home.openingText}/>
     </div>
   </section>
 
     <section id="block-3" class="block">
-      <div class="content grid gap-8 ">
+      <div class="content grid gap-20 ">
           <div class="md:flex">
             <h2 class="op">{home.valuesTitle}</h2>       
             <div class="op pb-4 md:pb-0 md:w-2/3 rt-green" set:html={home.valuesText1} />           
@@ -73,7 +73,7 @@ const service3 = home.services.services.service3;
     </section>
 
       <section id="block-4" class="block" >
-        <div class="content grid gap-8">
+        <div class="content grid gap-20">
           <div class="md:flex ">
             <h2 class="op">Services</h2>
             <ServiceBlock  service={service1}/>

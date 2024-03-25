@@ -6,7 +6,6 @@ const {pageTitle, anchor} = Astro.props;
 
 import { Image } from 'astro:assets';
 import logo from '../img/NH_Logo.svg'
-import Header from '../components/Header.astro';
 
 
 ---
@@ -25,14 +24,10 @@ import Header from '../components/Header.astro';
     <link rel="stylesheet" href="https://use.typekit.net/kyb3jfx.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
-    <body>
-      
-      <!-- <Header/> -->
-      
-     
+    <body>  
       <header class="h-screen" data-swup-update>
         <div id="logo_container" class="fixed z-30 py-4 pr-8 bg-black h-min w-full" > 
-          <a href="/#home" id="logo" class="relative text-left">
+          <a href="/#home" id="logo" class="relative text-left ">
             <Image src={logo} alt="NoiseHeroes Logo" class:list={'h-full w-auto'}/>
           </a>
         </div>
@@ -44,8 +39,7 @@ import Header from '../components/Header.astro';
     <main id="swup" class="mainContainer transition-main">
         <slot />
       </main>
-      <Footer>
-                         
+      <Footer>                    
     </body>
       <script>
         import "../scripts/gsap.js"

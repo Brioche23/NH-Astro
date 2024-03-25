@@ -234,7 +234,7 @@ h2 {
 }
 
 .content .ta-dah {
-  @apply text-orange text-7xl font-display;
+  @apply text-orange text-7xl md:text-9xl font-display uppercase;
 }
 
 .op span,
