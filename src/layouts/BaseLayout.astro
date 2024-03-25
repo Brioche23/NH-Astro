@@ -13,14 +13,17 @@ const {pageTitle} = Astro.props;
 ---
 <MainLayout {pageTitle}>
 
- 
-    
-    <RandomWords defer/>
-    <!-- <RandomHeroes defer/> -->
-<div id="heroContainer" class="floater w-1/2 op absolute right-10" />
+ <div class="z-0">
+
+   
+   <RandomWords defer/>
+   <!-- <RandomHeroes defer/> -->
+   <div id="heroContainer" class="floater w-1/4 op absolute right-10" />
+  </div>
   
-     
-      <slot />
+     <div class="z-10">
+       <slot />
+      </div>
     
   <style>
     body {

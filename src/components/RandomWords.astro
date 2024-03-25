@@ -1,6 +1,6 @@
 ---
 ---
-<div id="wordContainer" class="floater  font-display uppercase text-7xl -z-10"></div>
+<div id="wordContainer" class="floater font-display uppercase text-9xl"></div>
 
 
 <script>
@@ -29,8 +29,8 @@ for (let i = 0; i < words.length; i++) {
   
   // Generate random positions for the top and left properties
   let randomTop = getRandomNumber(0, document.body.scrollHeight );
-  let randomLeft = getRandomNumber(0, window.innerWidth - 250);
-  let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
+  let randomLeft = getRandomNumber(0, window.innerWidth - 400);
+  // let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
   // let randomRotation = Math.round(getRandomNumber(-30, 30));
   
   // Set the CSS properties
@@ -40,7 +40,11 @@ for (let i = 0; i < words.length; i++) {
   // newWord.style.opacity = "0";
   // newWord.style.transform ="rotate("+ randomRotation + "deg)";
   newWord.classList.add("floating-word");
-  newWord.classList.add(randomColor);
+  // newWord.classList.add(randomColor);
+  if(i%2 ===  0)
+  newWord.classList.add("text-orange");
+else
+  newWord.classList.add("text-green");
   
   // Add the new span element to the container
   container?.appendChild(newWord);
@@ -58,7 +62,7 @@ gsap.to(".floating-word", {
     end: "bottom",
     invalidateOnRefresh: true,
     scrub: 1,
-    markers: 1,
+    markers: false,
   }
 });
 

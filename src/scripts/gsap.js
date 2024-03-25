@@ -280,28 +280,28 @@ function initLottie() {
   }
 
   // Toggle mute on global button click
-  let toggleButton = document.getElementById("globalMuteToggle");
-  toggleButton.addEventListener("click", toggleMute);
+  // let toggleButton = document.getElementById("globalMuteToggle");
+  // toggleButton.addEventListener("click", toggleMute);
 
   let heroContainer = document.getElementById("heroContainer");
   let hero = lottieWeb.loadAnimation({
     container: heroContainer,
     path: `/lottie/heroes/Antieroe_03_ok.json`,
     renderer: "svg",
-    loop: false,
-    autoplay: false,
+    loop: true,
+    autoplay: true,
     name: "Hero Animation 1",
   });
 
-  heroContainer.addEventListener("mouseenter", function () {
-    if (!isMuted) playAudio("/audio/ex_01.mp3");
-    hero.goToAndPlay(0);
-  });
+  // heroContainer.addEventListener("mouseenter", function () {
+  //   if (!isMuted) playAudio("/audio/ex_01.mp3");
+  //   hero.goToAndPlay(0);
+  // });
 
-  heroContainer.addEventListener("mouseleave", function () {
-    if (!isMuted) stopAudio("/audio/ex_01.mp3");
-    hero.pause();
-  });
+  // heroContainer.addEventListener("mouseleave", function () {
+  //   if (!isMuted) stopAudio("/audio/ex_01.mp3");
+  //   hero.pause();
+  // });
 }
 
 function init() {
