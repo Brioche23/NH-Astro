@@ -328,7 +328,7 @@ function initWords() {
     // Generate random positions for the top and left properties
     let randomTop = getRandomNumber(
       screen.height + 200,
-      document.body.scrollHeight
+      document.body.scrollHeight - 200
     );
     let randomLeft = getRandomNumber(0, window.innerWidth - 400);
     // let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
