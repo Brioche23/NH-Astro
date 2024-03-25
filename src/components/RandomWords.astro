@@ -1,6 +1,6 @@
 ---
 ---
-<div id="wordContainer" class="floater  font-display uppercase text-7xl"></div>
+<div id="wordContainer" class="floater  font-display uppercase text-7xl -z-10"></div>
 
 
 <script>
@@ -28,7 +28,7 @@ for (let i = 0; i < words.length; i++) {
   newWord.innerText = words[i];
   
   // Generate random positions for the top and left properties
-  let randomTop = getRandomNumber(400, document.body.scrollHeight/2 );
+  let randomTop = getRandomNumber(0, document.body.scrollHeight );
   let randomLeft = getRandomNumber(0, window.innerWidth - 250);
   let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
   // let randomRotation = Math.round(getRandomNumber(-30, 30));
@@ -37,6 +37,7 @@ for (let i = 0; i < words.length; i++) {
   newWord.style.position = 'absolute';
   newWord.style.top = randomTop + 'px';
   newWord.style.left = randomLeft + 'px';
+  // newWord.style.opacity = "0";
   // newWord.style.transform ="rotate("+ randomRotation + "deg)";
   newWord.classList.add("floating-word");
   newWord.classList.add(randomColor);
@@ -49,14 +50,15 @@ for (let i = 0; i < words.length; i++) {
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".floating-word", {
-  y: (i, el) => (1 - gsap.utils.random(.1, .8)) * ScrollTrigger.maxScroll(window),
+  y: () => ( - gsap.utils.random(.1, .8)) * ScrollTrigger.maxScroll(window),
+  // opacity: 1,
   ease: "none",
   scrollTrigger: {
     start: "top center",
-    end: "max",
+    end: "bottom",
     invalidateOnRefresh: true,
-    scrub: 0,
-    markers: false,
+    scrub: 1,
+    markers: 1,
   }
 });
 
