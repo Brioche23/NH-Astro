@@ -109,6 +109,7 @@ function bigLogo() {
       "#logo",
       {
         opacity: 0,
+        filter: "blur(12px)",
         duration: 3,
         delay: 1,
         ease: "power1.inOut",
@@ -200,6 +201,7 @@ function services() {
             if (c != parentNode && c != serviceTitle) {
               gsap.to(c, {
                 opacity: 0.5,
+                filter: "blur(2px)",
                 duration: 0.8,
                 stagger: 0.2,
               });
@@ -207,10 +209,12 @@ function services() {
             } else
               gsap.to(c, {
                 opacity: 1,
+                filter: "blur(0px)",
                 duration: 1,
               });
           } else
             gsap.to(c, {
+              filter: "blur(0px)",
               opacity: 1,
               duration: 1,
             });
