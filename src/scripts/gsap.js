@@ -402,14 +402,14 @@ function initWords() {
   // });
   gsap.utils.toArray(".parallax").forEach((p, i) => {
     console.log(p);
-    const depth = i * 0.4;
+    const depth = i * 0.2;
     const movement = -(p.offsetHeight * depth);
-    gsap.to(p, {
+    tl.to(p, {
       scrollTrigger: {
         trigger: p.parentNode,
         start: "top top",
-        end: "bottom top",
-        scrub: 0,
+        end: "bottom bottom",
+        scrub: 2,
         markers: 0,
       },
       translateY: movement,
@@ -421,7 +421,7 @@ function initWords() {
     console.log(p);
     const depth = 0.5;
     const movement = p.offsetHeight * depth;
-    gsap.to(p, {
+    tl.to(p, {
       scrollTrigger: {
         trigger: "#pre-video",
         start: "top center",
@@ -429,7 +429,7 @@ function initWords() {
         scrub: 5,
         markers: 0,
       },
-      translateY: movement,
+      y: movement,
       ease: "none",
     });
   });
