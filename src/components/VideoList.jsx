@@ -72,7 +72,7 @@ function VideoPlayer({
 
   if (inHome)
     return (
-      <a className="op parallax" id={slug} href={"/videos/" + slug}>
+      <a className=" parallax" id={slug} href={"/videos/" + slug}>
         <li
           onMouseEnter={handlePlay}
           onMouseLeave={handlePause}

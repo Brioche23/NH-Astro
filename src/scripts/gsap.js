@@ -396,6 +396,22 @@ function initWords() {
       ease: "none",
     });
   });
+  gsap.utils.toArray(".parallax").forEach((p, i) => {
+    console.log(p);
+    const depth = 0.5;
+    const movement = -(p.offsetHeight * depth);
+    gsap.to(p, {
+      scrollTrigger: {
+        trigger: p.parentNode,
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 2,
+        markers: 0,
+      },
+      translateY: movement,
+      ease: "none",
+    });
+  });
 }
 
 function init() {
