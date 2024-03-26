@@ -72,14 +72,17 @@ function VideoPlayer({
 
   if (inHome)
     return (
-      <a className=" parallax" id={slug} href={"/videos/" + slug}>
+      <a className="op parallax group" id={slug} href={"/videos/" + slug}>
         <li
           onMouseEnter={handlePlay}
           onMouseLeave={handlePause}
           className={video_class}
         >
-          <div className="vimeo-full relative">
+          <div className="vimeo-full relative ">
             <div id={title} className="video-wrapper relative ">
+              <p className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                {title}
+              </p>
               <video
                 className="w-full"
                 ref={videoRef}

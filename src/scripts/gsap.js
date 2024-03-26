@@ -380,32 +380,49 @@ function initWords() {
   //   },
   // });
 
-  gsap.utils.toArray(".onomatopea").forEach((onomatopea, i) => {
-    console.log(onomatopea);
-    const depth = i * 1;
-    const movement = -(onomatopea.offsetHeight * depth);
-    gsap.to(onomatopea, {
-      scrollTrigger: {
-        trigger: onomatopea.parentNode,
-        start: "top center",
-        end: "bottom bottom",
-        scrub: 2,
-        markers: 0,
-      },
-      translateY: "50px",
-      ease: "none",
-    });
-  });
+  // gsap.utils.toArray(".onomatopea").forEach((onomatopea, i) => {
+  //   console.log(onomatopea);
+  //   const depth = i * 1;
+  //   const movement = -(onomatopea.offsetHeight * depth);
+  //   gsap.to(onomatopea, {
+  //     scrollTrigger: {
+  //       trigger: onomatopea.parentNode,
+  //       start: "top center",
+  //       end: "bottom bottom",
+  //       scrub: 2,
+  //       markers: 0,
+  //     },
+  //     translateY: "50px",
+  //     ease: "none",
+  //   });
+  // });
   gsap.utils.toArray(".parallax").forEach((p, i) => {
     console.log(p);
-    const depth = 0.5;
+    const depth = i * 0.4;
     const movement = -(p.offsetHeight * depth);
     gsap.to(p, {
       scrollTrigger: {
         trigger: p.parentNode,
+        start: "top top",
+        end: "bottom top",
+        scrub: 0,
+        markers: 0,
+      },
+      translateY: movement,
+      ease: "none",
+    });
+  });
+
+  gsap.utils.toArray(".inv-parallax").forEach((p, i) => {
+    console.log(p);
+    const depth = 0.5;
+    const movement = p.offsetHeight * depth;
+    gsap.to(p, {
+      scrollTrigger: {
+        trigger: "#pre-video",
         start: "top center",
         end: "bottom bottom",
-        scrub: 2,
+        scrub: 5,
         markers: 0,
       },
       translateY: movement,
