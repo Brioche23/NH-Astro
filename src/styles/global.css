@@ -262,9 +262,9 @@ h2 {
   @apply text-white;
 }
 
-.floater {
+/* .floater {
   @apply absolute hidden md:block;
-}
+} */
 
 .controls-overlay button,
 .credits b {
@@ -323,4 +323,8 @@ h2 {
 
 .rt-green b {
   @apply text-green;
+}
+
+.onomatopea {
+  @apply font-display uppercase text-7xl md:text-9xl pt-10 blur-0 hover:blur-md transition-all duration-1000 ease-in-out;
 }

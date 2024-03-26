@@ -34,7 +34,7 @@ function getRandom(array) {
 }
 
 function getAlignement(index) {
-  const alignment = index % 2 == 0 ? "md:mr-auto " : "md:ml-auto ";
+  const alignment = index % 2 === 0 ? "md:mr-auto " : "md:ml-auto ";
 
   const margin =
     index % 2 == 0 ? getRandom(videoMarginsLeft) : getRandom(videoMarginsRight);
@@ -69,36 +69,16 @@ function VideoPlayer({
     if (isPlaying) video.pause();
     setIsPlaying(false);
   };
-  // const handlePlayPause = () => {
-  //   const video = videoRef.current;
-  //   if (isPlaying) {
-  //     video.pause();
-  //   } else {
-  //     video.play();
-  //   }
-  //   setIsPlaying(!isPlaying);
-  // };
 
   if (inHome)
     return (
-      <a className="op" id={slug} href={"/videos/" + slug}>
+      <a className="op parallax" id={slug} href={"/videos/" + slug}>
         <li
           onMouseEnter={handlePlay}
           onMouseLeave={handlePause}
           className={video_class}
         >
           <div className="vimeo-full relative">
-            {/* <div className="controls-overlay absolute w-full h-full text-xl md:text-3xl hidden">
-          <button className="play-button absolute">
-            {isPlaying ? "Pause" : "Play"}
-          </button>
-          <button className="play-button absolute">play</button> 
-          <button className="close-button absolute top-5 right-5">close</button>
-
-          <div className="play-bar ">
-            <button className="mute-button">mute</button>
-          </div>
-        </div> */}
             <div id={title} className="video-wrapper relative ">
               <video
                 className="w-full"
@@ -110,21 +90,6 @@ function VideoPlayer({
               />
             </div>
           </div>
-          {/* <div
-        className={
-          "info-panel px-4 grid grid-rows-[0fr] transition-all duration-500 ease-in-out pt-5"
-        }
-      >
-        <div className="w-full flex space-x-5 overflow-hidden text-xl md:text-3xl">
-          <div className="title w-1/2 md:w-1/3">
-            <p className=" uppercase">{title}</p>
-          </div>
-          <div
-            className="credits w-1/2 md:w-1/3"
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></div>
-        </div>
-      </div> */}
         </li>
       </a>
     );

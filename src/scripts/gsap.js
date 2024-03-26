@@ -102,6 +102,7 @@ function bigLogo() {
       .progress(1);
 
     // let logoH = gsap.getProperty("#logo", "height");
+    let headerH = document.querySelector("header").offsetHeight;
     let logoH = document.querySelector("#logo").offsetHeight;
     console.log("Logo H: " + logoH);
     tl.from(
@@ -116,6 +117,7 @@ function bigLogo() {
     ).to(
       "#logo_container",
       {
+        y: 0,
         height: 84,
         ease: "power3.out",
         scrollTrigger: {
@@ -157,6 +159,7 @@ function elementsFadeIn() {
         scrub: 2,
         markers: 0,
       },
+      filter: "blur(12px)",
       translateY: "50px",
       opacity: 0,
       stagger: 0.5,
@@ -305,6 +308,7 @@ function initLottie() {
 }
 
 function initWords() {
+  /*
   // Array of words
   let words = ["BOOOOOM!", "CLAPCLAP!", "SBANG!", "OOOH!", "WOW!", "LOL!"];
   let wordsColor = ["text-orange", "text-green"];
@@ -361,21 +365,36 @@ function initWords() {
     // Add the new span element to the container
     container?.appendChild(newWord);
   }
+  */
+  // gsap.to(".floating-word", {
+  //   y: () =>
+  //     -gsap.utils.random(0.1, 0.8) * ScrollTrigger.maxScroll("#pre-video"),
+  //   // opacity: 1,
+  //   ease: "none",
+  //   scrollTrigger: {
+  //     start: "top center",
+  //     end: "bottom bottom",
+  //     invalidateOnRefresh: true,
+  //     scrub: 1,
+  //     markers: 1,
+  //   },
+  // });
 
-  // GSAP for Parallax
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.to(".floating-word", {
-    y: () => -gsap.utils.random(0.1, 0.8) * ScrollTrigger.maxScroll(window),
-    // opacity: 1,
-    ease: "none",
-    scrollTrigger: {
-      start: "top center",
-      end: "bottom",
-      invalidateOnRefresh: true,
-      scrub: 1,
-      markers: false,
-    },
+  gsap.utils.toArray(".onomatopea").forEach((onomatopea, i) => {
+    console.log(onomatopea);
+    const depth = i * 1;
+    const movement = -(onomatopea.offsetHeight * depth);
+    gsap.to(onomatopea, {
+      scrollTrigger: {
+        trigger: onomatopea.parentNode,
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 2,
+        markers: 0,
+      },
+      translateY: "50px",
+      ease: "none",
+    });
   });
 }
 
