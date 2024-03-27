@@ -110,7 +110,7 @@ function bigLogo() {
       {
         opacity: 0,
         filter: "blur(12px)",
-        duration: 3,
+        duration: 1.5,
         delay: 1,
         ease: "power1.inOut",
       },
@@ -421,15 +421,16 @@ function initWords() {
     console.log(p);
     const depth = 0.5;
     const movement = p.offsetHeight * depth;
-    tl.to(p, {
+    gsap.to(p, {
       scrollTrigger: {
         trigger: "#pre-video",
         start: "top center",
         end: "bottom bottom",
-        scrub: 5,
+        scrub: 2,
         markers: 0,
+        stagger: 1,
       },
-      y: movement,
+      translateY: movement,
       ease: "none",
     });
   });
