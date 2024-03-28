@@ -326,138 +326,52 @@ function initLottie() {
   // });
 }
 
-function initWords() {
-  /*
-  // Array of words
-  let words = ["BOOOOOM!", "CLAPCLAP!", "SBANG!", "OOOH!", "WOW!", "LOL!"];
-  let wordsColor = ["text-orange", "text-green"];
-
-  // Get a reference to the container
-  let container = document.getElementById("wordContainer");
-
-  // Function to generate a random number
-  function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  // Loop through the words
-  for (let i = 0; i < words.length; i++) {
-    // Create a new span element for each word
-    let newWord = document.createElement("span");
-
-    // Set the text of the span to the word
-    newWord.innerText = words[i];
-
-    // Generate random positions for the top and left properties
-    let randomTop = getRandomNumber(
-      screen.height + 200,
-      document.body.scrollHeight - 200
-    );
-    let randomLeft = getRandomNumber(0, window.innerWidth - 400);
-    // let randomColor = wordsColor[Math.round(getRandomNumber(0, 1))];
-    // let randomRotation = Math.round(getRandomNumber(-30, 30));
-
-    // Set the CSS properties
-    newWord.style.position = "absolute";
-    newWord.style.top = randomTop + "px";
-    newWord.style.left = randomLeft + "px";
-    newWord.style.filter = "blur(0px)";
-
-    newWord.classList.add("floating-word");
-    // newWord.classList.add(randomColor);
-    if (i % 2 === 0) newWord.classList.add("text-orange");
-    else newWord.classList.add("text-green");
-
-    newWord.addEventListener("mouseover", () => {
-      gsap.to(newWord, {
-        filter: "blur(10px)",
-        duration: 1,
-      });
-    });
-    newWord.addEventListener("mouseleave", () => {
-      gsap.to(newWord, {
-        filter: "blur(0px)",
-        duration: 1,
+function initParallax() {
+  mm.add("(min-width: 768px)", () => {
+    gsap.utils.toArray(".parallax").forEach((p, i) => {
+      console.log(p);
+      const depth = i * 0.2;
+      const movement = -(p.offsetHeight * depth);
+      tl.to(p, {
+        scrollTrigger: {
+          trigger: p.parentNode,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 2,
+          markers: 0,
+        },
+        translateY: movement,
+        ease: "none",
       });
     });
 
-    // Add the new span element to the container
-    container?.appendChild(newWord);
-  }
-  */
-  // gsap.to(".floating-word", {
-  //   y: () =>
-  //     -gsap.utils.random(0.1, 0.8) * ScrollTrigger.maxScroll("#pre-video"),
-  //   // opacity: 1,
-  //   ease: "none",
-  //   scrollTrigger: {
-  //     start: "top center",
-  //     end: "bottom bottom",
-  //     invalidateOnRefresh: true,
-  //     scrub: 1,
-  //     markers: 1,
-  //   },
-  // });
-
-  // gsap.utils.toArray(".onomatopea").forEach((onomatopea, i) => {
-  //   console.log(onomatopea);
-  //   const depth = i * 1;
-  //   const movement = -(onomatopea.offsetHeight * depth);
-  //   gsap.to(onomatopea, {
-  //     scrollTrigger: {
-  //       trigger: onomatopea.parentNode,
-  //       start: "top center",
-  //       end: "bottom bottom",
-  //       scrub: 2,
-  //       markers: 0,
-  //     },
-  //     translateY: "50px",
-  //     ease: "none",
-  //   });
-  // });
-  gsap.utils.toArray(".parallax").forEach((p, i) => {
-    console.log(p);
-    const depth = i * 0.2;
-    const movement = -(p.offsetHeight * depth);
-    tl.to(p, {
-      scrollTrigger: {
-        trigger: p.parentNode,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2,
-        markers: 0,
-      },
-      translateY: movement,
-      ease: "none",
-    });
-  });
-
-  gsap.utils.toArray(".onomatopea").forEach((p, i) => {
-    console.log(p);
-    const depth = (Math.random() + 0.5) * 1.5;
-    const movement = p.offsetHeight * depth;
-    gsap.to(p, {
-      scrollTrigger: {
-        trigger: p.parentNode,
-        start: "top center",
-        end: "bottom center",
-        scrub: 2,
-        markers: 0,
-        stagger: 1,
-      },
-      translateY: movement,
-      ease: "none",
-    });
-    p.addEventListener("mouseover", () => {
+    gsap.utils.toArray(".onomatopea").forEach((p, i) => {
+      console.log(p);
+      const depth = (Math.random() + 0.5) * 1.5;
+      const movement = p.offsetHeight * depth;
       gsap.to(p, {
-        filter: "blur(10px)",
-        duration: 1,
+        scrollTrigger: {
+          trigger: p.parentNode,
+          start: "top center",
+          end: "bottom center",
+          scrub: 2,
+          markers: 0,
+          stagger: 1,
+        },
+        translateY: movement,
+        ease: "none",
       });
-    });
-    p.addEventListener("mouseleave", () => {
-      gsap.to(p, {
-        filter: "blur(0px)",
-        duration: 1,
+      p.addEventListener("mouseover", () => {
+        gsap.to(p, {
+          filter: "blur(10px)",
+          duration: 1,
+        });
+      });
+      p.addEventListener("mouseleave", () => {
+        gsap.to(p, {
+          filter: "blur(0px)",
+          duration: 1,
+        });
       });
     });
   });
@@ -469,6 +383,6 @@ function init() {
     elementsFadeIn();
     services();
     initLottie();
-    initWords();
+    initParallax();
   }
 }
