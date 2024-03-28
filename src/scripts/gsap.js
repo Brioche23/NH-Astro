@@ -300,6 +300,21 @@ function initLottie() {
     name: "Hero Animation 1",
   });
 
+  //! Da capire
+  // hero.addEventListener("ready", () => {
+  //   LottieInteractivity.create({
+  //         mode:"scroll",
+  //         player: "#firstLottie",
+  //         actions: [
+  //         {
+  //             visibility:[0, 1.0],
+  //             type: "seek",
+  //             frames: [0, 300],
+  //         },
+  //         ]
+  //       });
+  // });
+
   // heroContainer.addEventListener("mouseenter", function () {
   //   if (!isMuted) playAudio("/audio/ex_01.mp3");
   //   hero.goToAndPlay(0);
@@ -417,21 +432,33 @@ function initWords() {
     });
   });
 
-  gsap.utils.toArray(".inv-parallax").forEach((p, i) => {
+  gsap.utils.toArray(".onomatopea").forEach((p, i) => {
     console.log(p);
-    const depth = 0.5;
+    const depth = (Math.random() + 0.5) * 1.5;
     const movement = p.offsetHeight * depth;
     gsap.to(p, {
       scrollTrigger: {
-        trigger: "#pre-video",
+        trigger: p.parentNode,
         start: "top center",
-        end: "bottom bottom",
+        end: "bottom center",
         scrub: 2,
         markers: 0,
         stagger: 1,
       },
       translateY: movement,
       ease: "none",
+    });
+    p.addEventListener("mouseover", () => {
+      gsap.to(p, {
+        filter: "blur(10px)",
+        duration: 1,
+      });
+    });
+    p.addEventListener("mouseleave", () => {
+      gsap.to(p, {
+        filter: "blur(0px)",
+        duration: 1,
+      });
     });
   });
 }
