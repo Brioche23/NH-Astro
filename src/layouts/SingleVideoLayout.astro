@@ -1,5 +1,7 @@
 ---
 import MainLayout from './MainLayout.astro'
+import Footer from '../components/Footer.astro';
+
 
 import Header from '../components/Header.astro';
 import '../styles/global.css';
@@ -11,6 +13,8 @@ console.log("Anchor: "+anchor)
 
       <!-- <Header anchor={anchor}/> -->
         <slot />
+        <!-- <Footer>                     -->
+
     <style>
         body {
           padding: 0rem 1rem;

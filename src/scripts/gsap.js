@@ -30,11 +30,6 @@ if (document.readyState === "complete") {
   document.addEventListener("DOMContentLoaded", () => init());
 }
 
-// swup.hooks.on("content:replace", (event) => {
-//   // elementsFadeIn();
-//   init();
-// });
-
 function hideHeader() {
   let header = document.querySelector("header");
   console.log(window.location.pathname);
@@ -73,7 +68,6 @@ swup.hooks.on("visit:end", () => {
 //   }
 // });
 
-//! Find a way to remove this shit when not in the home
 function bigLogo() {
   // This runs on initial load
   console.log("Trigger logo");
@@ -102,14 +96,18 @@ function bigLogo() {
       .progress(1);
 
     // let logoH = gsap.getProperty("#logo", "height");
-    let headerH = document.querySelector("header").offsetHeight;
-    let logoH = document.querySelector("#logo").offsetHeight;
-    console.log("Logo H: " + logoH);
-    tl.from(
+    // let headerH = document.querySelector("header").offsetHeight;
+    // let logoH = document.querySelector("#logo").offsetHeight;
+    // console.log("Logo H: " + logoH);
+    tl.fromTo(
       "#logo",
       {
         opacity: 0,
         filter: "blur(12px)",
+      },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
         duration: 1.5,
         delay: 1,
         ease: "power1.inOut",
@@ -128,7 +126,7 @@ function bigLogo() {
           scrub: 2,
           markers: 0,
           onUpdate: (self) => {
-            console.log("progress:", self.progress);
+            // console.log("progress:", self.progress);
             if (self.progress === 1) trigger.enable();
             else trigger.disable();
           },
@@ -159,6 +157,7 @@ function elementsFadeIn() {
         end: "bottom bottom",
         scrub: 2,
         markers: 0,
+        once: 1,
       },
       filter: "blur(12px)",
       translateY: "50px",
@@ -329,7 +328,6 @@ function initLottie() {
 function initParallax() {
   mm.add("(min-width: 768px)", () => {
     gsap.utils.toArray(".parallax").forEach((p, i) => {
-      console.log(p);
       const depth = i * 0.2;
       const movement = -(p.offsetHeight * depth);
       tl.to(p, {
@@ -346,21 +344,6 @@ function initParallax() {
     });
 
     gsap.utils.toArray(".onomatopea").forEach((p, i) => {
-      console.log(p);
-      const depth = (Math.random() + 0.5) * 1.5;
-      const movement = p.offsetHeight * depth;
-      gsap.to(p, {
-        scrollTrigger: {
-          trigger: p.parentNode,
-          start: "top center",
-          end: "bottom center",
-          scrub: 2,
-          markers: 0,
-          stagger: 1,
-        },
-        translateY: movement,
-        ease: "none",
-      });
       p.addEventListener("mouseover", () => {
         gsap.to(p, {
           filter: "blur(10px)",
@@ -373,6 +356,23 @@ function initParallax() {
           duration: 1,
         });
       });
+    });
+
+    gsap.set("[data-speed]", {
+      scale: (i, el) => 1 + parseFloat(el.getAttribute("data-speed")),
+    });
+
+    gsap.to("[data-speed]", {
+      y: (i, el) =>
+        -parseFloat(el.getAttribute("data-speed")) *
+        ScrollTrigger.maxScroll(window),
+      ease: "none",
+      scrollTrigger: {
+        start: 0,
+        end: "max",
+        scrub: 1,
+        markers: 0,
+      },
     });
   });
 }

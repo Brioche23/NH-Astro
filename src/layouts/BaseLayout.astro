@@ -1,5 +1,7 @@
 ---
 import MainLayout from './MainLayout.astro'
+import Footer from '../components/Footer.astro';
+
 import '../styles/global.css';
 const {pageTitle} = Astro.props;
 ---
@@ -7,6 +9,10 @@ const {pageTitle} = Astro.props;
    <!-- <div id="wordContainer" class="floater font-display uppercase text-9xl"></div> -->
 
     <slot />
+
+    <!-- <div class="h-screen grid content-end">
+      <Footer>                    
+   </div> -->
     
   <style> 
     body {

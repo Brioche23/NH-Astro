@@ -64,14 +64,14 @@ h2 {
 }
 
 .mainContainer section.intro {
-  height: 100svh;
+  /* height: 100svh; */
   color: #ffffff;
   display: flex;
   align-items: flex-end;
   padding: 1rem 0;
 }
 .mainContainer section.block {
-  padding-top: 10rem;
+  @apply pt-20 md:pt-0;
 }
 
 .content {
@@ -327,4 +327,8 @@ h2 {
 
 .onomatopea {
   @apply absolute font-display uppercase text-7xl md:text-9xl px-4 pt-10 z-40;
+}
+
+.onomat-wrapper {
+  @apply relative h-64 md:h-96;
 }
