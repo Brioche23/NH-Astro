@@ -363,7 +363,7 @@ function initParallax() {
     });
 
     gsap.to("[data-speed]", {
-      y: (i, el) =>
+      translateY: (i, el) =>
         -parseFloat(el.getAttribute("data-speed")) *
         ScrollTrigger.maxScroll(window),
       ease: "none",
