@@ -2,6 +2,21 @@ import gsap from "gsap";
 import Swup from "swup";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
+import Lenis from "@studio-freight/lenis";
+
+const lenis = new Lenis();
+
+lenis.on("scroll", (e) => {
+  console.log(e);
+});
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 500);
+});
+
+gsap.ticker.lagSmoothing(0);
 
 const swup = new Swup();
 
