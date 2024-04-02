@@ -6,9 +6,9 @@ import Lenis from "@studio-freight/lenis";
 
 const lenis = new Lenis();
 
-lenis.on("scroll", (e) => {
-  console.log(e);
-});
+// lenis.on("scroll", (e) => {
+//   console.log(e);
+// });
 
 lenis.on("scroll", ScrollTrigger.update);
 
@@ -186,10 +186,17 @@ function elementsFadeIn() {
 function services() {
   console.log("Service");
 
+  const preVideo = document.querySelector("#pre-video");
+
   const serviceLists = document.querySelectorAll(".service-list");
   const serviceNames = document.querySelectorAll(".service-name");
   const serviceDescs = document.querySelectorAll(".service-desc");
   const serviceIcons = document.querySelectorAll(".service-icon");
+
+  preVideo.onclick = function (e) {
+    console.log(e.target.tagName);
+    if (e.target.tagName !== "SPAN") reset();
+  };
 
   serviceNames.forEach((name) => {
     name.addEventListener("click", () => {
@@ -254,13 +261,30 @@ function services() {
     }
     serviceIcons.forEach((icon) => {
       if (icon.style.transform == "rotate(90deg)" && icon !== i) {
-        // icon.innerHTML = "north_east";
         icon.removeAttribute("style");
-        // icon.style.transform = null;
       }
-      // if (icon.innerHTML == "south_east" && icon !== i) {
-      // icon.innerHTML = "north_east";
-      // }
+    });
+  };
+
+  const reset = () => {
+    console.log("Reset");
+    serviceIcons.forEach((icon) => {
+      icon.removeAttribute("style");
+    });
+    serviceDescs.forEach((desc) => {
+      desc.classList.add("hidden");
+    });
+    serviceNames.forEach((name) => {
+      gsap.to(name.parentNode, {
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 1,
+      });
+      gsap.to(name.parentNode.parentNode.querySelector(".service-title"), {
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 1,
+      });
     });
   };
 }
