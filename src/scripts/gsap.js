@@ -129,8 +129,8 @@ function bigLogo() {
         {
           yPercent: -100,
           paused: true,
-          duration: 0.5,
-          ease: "power1.out",
+          duration: 0.3,
+          ease: "ease-out",
         },
         "scroll_reveal"
       )
@@ -170,7 +170,7 @@ function bigLogo() {
               trigger.enable();
               gsap.set("#logo_container", {
                 // height: 84,
-                delay: 0.5,
+                delay: 0.3,
               });
             } else trigger.disable();
           },
