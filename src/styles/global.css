@@ -71,6 +71,13 @@ html.lenis body {
   font-size: 5rem;
   color: #ff4600;
 } */
+
+#logo_container,
+#logo {
+  will-change: auto;
+  will-change: scroll-position;
+}
+
 div.line {
   overflow: hidden;
   line-height: 2.5rem;
@@ -354,5 +361,5 @@ h2 {
 }
 
 .onom-svg {
-  @apply w-full md:w-auto md:h-[360px] pt-20;
+  @apply w-full md:w-auto md:h-[360px] pt-24 md:pt-48;
 }

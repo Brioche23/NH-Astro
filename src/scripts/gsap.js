@@ -104,7 +104,8 @@ function bigLogo() {
         {
           yPercent: -100,
           paused: true,
-          duration: 0.2,
+          duration: 0.5,
+          ease: "power3.out",
         },
         "scroll_reveal"
       )
@@ -132,7 +133,7 @@ function bigLogo() {
       "#logo_container",
       {
         y: 0,
-        height: 84,
+        // height: 84,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "#logo_container",
@@ -140,10 +141,16 @@ function bigLogo() {
           end: innerHeight,
           scrub: 2,
           markers: 0,
+          once: 1,
           onUpdate: (self) => {
             // console.log("progress:", self.progress);
-            if (self.progress === 1) trigger.enable();
-            else trigger.disable();
+            if (self.progress >= 0.3) {
+              trigger.enable();
+              gsap.set("#logo_container", {
+                height: 84,
+                delay: 0.5,
+              });
+            } else trigger.disable();
           },
         },
       },
@@ -331,7 +338,7 @@ function initLottie() {
   let heroContainer = document.getElementById("heroContainer");
   let hero = lottieWeb.loadAnimation({
     container: heroContainer,
-    path: `/lottie/heroes/Antieroe_03_ok.json`,
+    path: `/lottie/heroes/Antieroe_01_ok.json`,
     renderer: "svg",
     loop: true,
     autoplay: true,

@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         purple: "#5032A0",
-        orange: "#FF4600",
+        orange: "#FF5500",
         green: "#00D9B5",
       },
       fontFamily: {
