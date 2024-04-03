@@ -4,26 +4,11 @@ import SwupScrollPlugin from "@swup/scroll-plugin";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
-// import Lenis from "@studio-freight/lenis";
-
-// const lenis = new Lenis();
-
-// lenis.on("scroll", (e) => {
-//   console.log(e);
-// });
-
-// lenis.on("scroll", ScrollTrigger.update);
-
-// gsap.ticker.add((time) => {
-//   lenis.raf(time * 500);
-// });
-
-// gsap.ticker.lagSmoothing(0);
 
 const swup = new Swup({
   plugins: [
     new SwupScrollPlugin({
-      doScrollingRightAway: false,
+      doScrollingRightAway: 0,
       animateScroll: window.matchMedia("(prefers-reduced-motion: reduce)")
         .matches
         ? false
@@ -52,6 +37,18 @@ swup.hooks.on("page:view", (visit) => {
   console.log("New page loaded:", visit.to.url);
   swupPageUrl = visit.to.url;
   hideHeader();
+});
+
+let scrollValues = {};
+
+swup.hooks.on("clickLink", () => {
+  scrollValues[window.location.href] = window.scrollY;
+});
+
+swup.hooks.on("popState", () => {
+  setTimeout(function () {
+    window.scrollTo(0, scrollValues[window.location.href]);
+  }, 1000);
 });
 
 swup.hooks.on("scroll:start", () => console.log("Swup started scrolling"));
@@ -97,22 +94,10 @@ swup.hooks.on("visit:end", () => {
   initBack();
 });
 
-// swup.on('transitionEnd', (event) => {
-//   const incomingElement = event.target;
-//   if (incomingElement.classList.contains('home')) {
-//     const header = document.createElement('header');
-//     // Add your header content here
-//     incomingElement.prepend(header);
-//   }
-// });
-
 function bigLogo() {
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
-    const logo = document.querySelector("#logo");
-
-    // logo.addEventListener("click", swup.scrollTo(0, true));
     const trigger = ScrollTrigger.create({
       start: "top top",
       end: "max",

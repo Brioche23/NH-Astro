@@ -11,6 +11,7 @@ export default defineConfig({
     tailwind(),
     react(),
     swup({
+      globalInstance: true,
       theme: false,
       smoothScrolling: true,
       parallel: false,
@@ -19,7 +20,7 @@ export default defineConfig({
         { name: "video", path: "/videos/:slug" },
       ],
       reloadScripts: false,
-      native: true,
+      native: false,
       resolveUrl: (url) => {
         if (url.startsWith("/videos/?")) {
           return "/videos/";
@@ -28,6 +29,7 @@ export default defineConfig({
         return url;
       },
       linkSelector: "a[href]",
+      linkToSelf: "navigate",
       skipPopStateHandling: (event) => event.state?.source !== "swup",
     }),
   ],

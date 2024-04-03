@@ -45,33 +45,6 @@ body {
   font-style: italic;
 }
 
-/* html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-} */
-
-/* h1 {
-  margin: 1rem 0;
-  font-size: 5rem;
-  color: #ff4600;
-} */
-
 #logo_container,
 #logo {
   will-change: auto;
@@ -295,10 +268,6 @@ h2 {
 .service span:nth-child(even) {
   @apply text-white;
 }
-
-/* .floater {
-  @apply absolute hidden md:block;
-} */
 
 .controls-overlay button,
 .credits b {
