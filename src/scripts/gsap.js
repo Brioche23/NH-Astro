@@ -119,10 +119,12 @@ function bigLogo() {
       "#logo",
       {
         opacity: 0,
+        webkitFilter: "blur(12px)",
         filter: "blur(12px)",
       },
       {
         opacity: 1,
+        webkitFilter: "blur(0px)",
         filter: "blur(0px)",
         duration: 1.5,
         delay: 1,
