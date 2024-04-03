@@ -45,7 +45,7 @@ body {
   font-style: italic;
 }
 
-html.lenis,
+/* html.lenis,
 html.lenis body {
   height: auto;
 }
@@ -64,7 +64,7 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
+} */
 
 /* h1 {
   margin: 1rem 0;

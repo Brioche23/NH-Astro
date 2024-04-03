@@ -79,7 +79,8 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
             {isPlaying ? "pause" : "play"}
           </button>
 
-          <a href={"/#" + slug}>
+          <a href={"/"} className="backlink">
+            {/* <a href={"/#" + slug}> */}
             <button
               className="close-button absolute top-5 right-5"
               onMouseEnter={hideCursor}

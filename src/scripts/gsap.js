@@ -1,24 +1,41 @@
 import gsap from "gsap";
 import Swup from "swup";
+import SwupScrollPlugin from "@swup/scroll-plugin";
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
-import Lenis from "@studio-freight/lenis";
+// import Lenis from "@studio-freight/lenis";
 
-const lenis = new Lenis();
+// const lenis = new Lenis();
 
 // lenis.on("scroll", (e) => {
 //   console.log(e);
 // });
 
-lenis.on("scroll", ScrollTrigger.update);
+// lenis.on("scroll", ScrollTrigger.update);
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 500);
+// gsap.ticker.add((time) => {
+//   lenis.raf(time * 500);
+// });
+
+// gsap.ticker.lagSmoothing(0);
+
+const swup = new Swup({
+  plugins: [
+    new SwupScrollPlugin({
+      doScrollingRightAway: false,
+      animateScroll: window.matchMedia("(prefers-reduced-motion: reduce)")
+        .matches
+        ? false
+        : { betweenPages: true, samePageWithHash: true, samePage: true },
+      scrollFriction: 0.5,
+      scrollAcceleration: 2,
+      offset: 0,
+      scrollContainers: `[data-swup-scroll-container]`,
+      shouldResetScrollPosition: (link) => !link.matches(".backlink"),
+    }),
+  ],
 });
-
-gsap.ticker.lagSmoothing(0);
-
-const swup = new Swup();
 
 console.log("GSAP");
 gsap.registerPlugin(ScrollTrigger);
@@ -36,6 +53,10 @@ swup.hooks.on("page:view", (visit) => {
   swupPageUrl = visit.to.url;
   hideHeader();
 });
+
+swup.hooks.on("scroll:start", () => console.log("Swup started scrolling"));
+swup.hooks.on("scroll:end", () => console.log("Swup finished scrolling"));
+
 console.log("ReadyState: " + document.readyState);
 // Run once when page loads
 if (document.readyState === "complete") {
@@ -73,7 +94,7 @@ swup.hooks.on("visit:start", (event) => {
 });
 
 swup.hooks.on("visit:end", () => {
-  init();
+  initBack();
 });
 
 // swup.on('transitionEnd', (event) => {
@@ -89,6 +110,9 @@ function bigLogo() {
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
+    const logo = document.querySelector("#logo");
+
+    // logo.addEventListener("click", swup.scrollTo(0, true));
     const trigger = ScrollTrigger.create({
       start: "top top",
       end: "max",
@@ -106,7 +130,7 @@ function bigLogo() {
           yPercent: -100,
           paused: true,
           duration: 0.5,
-          ease: "power3.out",
+          ease: "power1.out",
         },
         "scroll_reveal"
       )
@@ -417,6 +441,15 @@ function init() {
   if (window.location.pathname === "/") {
     bigLogo();
     elementsFadeIn();
+    services();
+    initLottie();
+    initParallax();
+  }
+}
+
+function initBack() {
+  if (window.location.pathname === "/") {
+    bigLogo();
     services();
     initLottie();
     initParallax();
