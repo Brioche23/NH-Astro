@@ -75,7 +75,14 @@ html.lenis body {
 #logo_container,
 #logo {
   will-change: auto;
+  will-change: transform;
   will-change: scroll-position;
+}
+
+#logo {
+  will-change: filter;
+  -webkit-filter: blur(12px);
+  filter: blur(12px);
 }
 
 div.line {
@@ -361,5 +368,8 @@ h2 {
 }
 
 .onom-svg {
-  @apply w-full md:w-auto md:h-[360px] pt-24 md:pt-48;
+  @apply w-auto h-16 md:h-[240px] mt-24 md:mt-64;
+}
+.onom-svg-no-margin {
+  @apply w-auto h-16 md:h-[240px];
 }

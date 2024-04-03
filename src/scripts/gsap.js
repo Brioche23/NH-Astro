@@ -36,12 +36,14 @@ swup.hooks.on("page:view", (visit) => {
   swupPageUrl = visit.to.url;
   hideHeader();
 });
-
+console.log("ReadyState: " + document.readyState);
 // Run once when page loads
 if (document.readyState === "complete") {
+  console.log("ReadyState: " + document.readyState);
   init();
   hideHeader();
 } else {
+  console.log("ReadyState: " + document.readyState);
   document.addEventListener("DOMContentLoaded", () => init());
 }
 
@@ -84,7 +86,6 @@ swup.hooks.on("visit:end", () => {
 // });
 
 function bigLogo() {
-  // This runs on initial load
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
@@ -111,20 +112,16 @@ function bigLogo() {
       )
       .progress(1);
 
-    // let logoH = gsap.getProperty("#logo", "height");
-    // let headerH = document.querySelector("header").offsetHeight;
-    // let logoH = document.querySelector("#logo").offsetHeight;
-    // console.log("Logo H: " + logoH);
+    console.log("Logo animation");
+
     tl.fromTo(
       "#logo",
       {
         opacity: 0,
-        webkitFilter: "blur(12px)",
         filter: "blur(12px)",
       },
       {
         opacity: 1,
-        webkitFilter: "blur(0px)",
         filter: "blur(0px)",
         duration: 1.5,
         delay: 1,
@@ -135,7 +132,6 @@ function bigLogo() {
       "#logo_container",
       {
         y: 0,
-        // height: 84,
         ease: "power3.out",
         scrollTrigger: {
           trigger: "#logo_container",
@@ -149,7 +145,7 @@ function bigLogo() {
             if (self.progress >= 0.3) {
               trigger.enable();
               gsap.set("#logo_container", {
-                height: 84,
+                // height: 84,
                 delay: 0.5,
               });
             } else trigger.disable();
@@ -159,15 +155,6 @@ function bigLogo() {
       "resize"
     );
   }
-}
-
-function smallLogo() {
-  console.log("Make logo smaller");
-  tl.to("#logo", {
-    width: 300,
-    duration: 1,
-    delay: 1,
-  });
 }
 
 function elementsFadeIn() {
@@ -376,7 +363,7 @@ function initLottie() {
 function initParallax() {
   mm.add("(min-width: 768px)", () => {
     gsap.utils.toArray(".parallax").forEach((p, i) => {
-      const depth = i * 0.2;
+      const depth = 0.3;
       const movement = -(p.offsetHeight * depth);
       tl.to(p, {
         scrollTrigger: {
