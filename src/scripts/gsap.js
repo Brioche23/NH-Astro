@@ -368,10 +368,11 @@ function initParallax() {
       tl.to(p, {
         scrollTrigger: {
           trigger: p.parentNode,
-          start: "top top",
-          end: "bottom bottom",
+          start: "top center",
+          end: "bottom center",
           scrub: 2,
           markers: 0,
+          once: 0,
         },
         translateY: movement,
         ease: "none",
@@ -393,22 +394,22 @@ function initParallax() {
       });
     });
 
-    gsap.set("[data-speed]", {
-      scale: (i, el) => 1 + parseFloat(el.getAttribute("data-speed")),
-    });
+    // gsap.set("[data-speed]", {
+    //   scale: (i, el) => 1 + parseFloat(el.getAttribute("data-speed")),
+    // });
 
-    gsap.to("[data-speed]", {
-      translateY: (i, el) =>
-        -parseFloat(el.getAttribute("data-speed")) *
-        ScrollTrigger.maxScroll(window),
-      ease: "none",
-      scrollTrigger: {
-        start: 0,
-        end: "max",
-        scrub: 1,
-        markers: 0,
-      },
-    });
+    // gsap.to("[data-speed]", {
+    //   translateY: (i, el) =>
+    //     -parseFloat(el.getAttribute("data-speed")) *
+    //     ScrollTrigger.maxScroll(window),
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     start: 0,
+    //     end: "max",
+    //     scrub: 1,
+    //     markers: 0,
+    //   },
+    // });
   });
 }
 
