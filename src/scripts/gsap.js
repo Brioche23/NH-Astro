@@ -1,12 +1,18 @@
 import gsap from "gsap";
 import Swup from "swup";
 import SwupScrollPlugin from "@swup/scroll-plugin";
+import SwupSlideTheme from "@swup/slide-theme";
+import SwupHeadPlugin from "@swup/head-plugin";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
 
 const swup = new Swup({
+  native: true,
+  accessibility: false,
   plugins: [
+    // new SwupSlideTheme(),
+    new SwupHeadPlugin(),
     new SwupScrollPlugin({
       doScrollingRightAway: 0,
       animateScroll: window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -16,7 +22,6 @@ const swup = new Swup({
       scrollFriction: 0.5,
       scrollAcceleration: 2,
       offset: 0,
-      scrollContainers: `[data-swup-scroll-container]`,
       shouldResetScrollPosition: (link) => !link.matches(".backlink"),
     }),
   ],
@@ -39,20 +44,36 @@ swup.hooks.on("page:view", (visit) => {
   hideHeader();
 });
 
-let scrollValues = {};
+// let scrollValues = {};
 
-swup.hooks.on("clickLink", () => {
-  scrollValues[window.location.href] = window.scrollY;
+swup.hooks.on("link:click", () => {
+  console.log("Click Link");
+  // scrollValues[window.location.href] = window.scrollY;
+  // console.log("Scroll to");
+  // window.scrollTo(0, scrollValues[window.location.href]);
 });
 
-swup.hooks.on("popState", () => {
-  setTimeout(function () {
-    window.scrollTo(0, scrollValues[window.location.href]);
-  }, 1000);
+// swup.hooks.on("history:popstate", () => {
+//   console.log("Pop State");
+//   setTimeout(function () {
+//     console.log("Scroll to");
+//     window.scrollTo(0, scrollValues[window.location.href]);
+//   }, 100);
+// });
+
+// swup.hooks.on("scroll:start", () => console.log("Swup started scrolling"));
+// swup.hooks.on("scroll:end", () => console.log("Swup finished scrolling"));
+
+swup.hooks.on("visit:start", (event) => {
+  console.log("Visit Start");
+  hideHeader();
 });
 
-swup.hooks.on("scroll:start", () => console.log("Swup started scrolling"));
-swup.hooks.on("scroll:end", () => console.log("Swup finished scrolling"));
+swup.hooks.on("visit:end", () => {
+  console.log("Visit End");
+  initBack();
+  // if (swupPageUrl !== "/") swup.scrollTo(0, false);
+});
 
 console.log("ReadyState: " + document.readyState);
 // Run once when page loads
@@ -67,7 +88,7 @@ if (document.readyState === "complete") {
 
 function hideHeader() {
   let header = document.querySelector("header");
-  console.log(window.location.pathname);
+  console.log("Pathname: " + window.location.pathname);
   if (header)
     if (swupPageUrl === "") {
       if (window.location.pathname !== "/") {
@@ -85,14 +106,6 @@ function hideHeader() {
       header.hidden = true;
     }
 }
-
-swup.hooks.on("visit:start", (event) => {
-  hideHeader();
-});
-
-swup.hooks.on("visit:end", () => {
-  initBack();
-});
 
 function bigLogo() {
   console.log("Trigger logo");
@@ -152,7 +165,7 @@ function bigLogo() {
           onUpdate: (self) => {
             // console.log("progress:", self.progress);
             if (self.progress >= 0.3) {
-              trigger.enable();
+              // trigger.enable();
               gsap.set("#logo_container", {
                 // height: 84,
                 delay: 0.3,

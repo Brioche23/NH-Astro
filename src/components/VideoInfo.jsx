@@ -25,7 +25,7 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
     const newX = clientX - textWidth / 2;
     const newY = clientY - textHeight / 2;
 
-    console.log(newX);
+    // console.log(newX);
 
     // Ensure text stays within the div boundaries (optional)
     const divRect = textRef.current.parentElement.getBoundingClientRect();
@@ -79,7 +79,7 @@ function VideoInfo({ slug, title, description, videoUrl, posterUrl }) {
             {isPlaying ? "pause" : "play"}
           </button>
 
-          <a href={"/"} className="backlink">
+          <a href={"/#" + slug} className="backlink">
             {/* <a href={"/#" + slug}> */}
             <button
               className="close-button absolute top-5 right-5"
