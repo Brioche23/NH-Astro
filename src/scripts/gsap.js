@@ -111,71 +111,77 @@ function bigLogo() {
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
-    const trigger = ScrollTrigger.create({
-      start: "top top",
-      end: "max",
-      onUpdate: (self) => {
-        self.direction === -1 ? showAnim.play() : showAnim.reverse();
-      },
-    });
+    // const trigger = ScrollTrigger.create({
+    //   start: "top top",
+    //   end: "max",
+    //   onUpdate: (self) => {
+    //     self.direction === -1 ? showAnim.play() : showAnim.reverse();
+    //   },
+    // });
 
-    trigger.disable();
+    // trigger.disable();
 
-    const showAnim = gsap
-      .from(
-        "#logo_container",
-        {
-          yPercent: -100,
-          paused: true,
-          duration: 0.3,
-          ease: "ease-out",
-        },
-        "scroll_reveal"
-      )
-      .progress(1);
+    // const showAnim = gsap
+    //   .from(
+    //     "#logo_svg",
+    //     {
+    //       yPercent: -100,
+    //       paused: true,
+    //       duration: 0.3,
+    //       ease: "ease-out",
+    //     },
+    //     "scroll_reveal"
+    //   )
+    //   .progress(1);
 
     console.log("Logo animation");
 
     tl.fromTo(
-      "#logo",
+      "#logo_svg",
       {
         opacity: 0,
+        "-webkit-filter": "blur(12px)",
         filter: "blur(12px)",
       },
       {
         opacity: 1,
+        "-webkit-filter": "blur(0px)",
         filter: "blur(0px)",
         duration: 1.5,
         delay: 1,
         ease: "power1.inOut",
-      },
-      "fade-in"
-    ).to(
-      "#logo_container",
-      {
-        y: 0,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#logo_container",
-          start: "top top",
-          end: innerHeight,
-          scrub: 2,
-          markers: 0,
-          once: 1,
-          onUpdate: (self) => {
-            // console.log("progress:", self.progress);
-            if (self.progress >= 0.3) {
-              // trigger.enable();
-              gsap.set("#logo_container", {
-                // height: 84,
-                delay: 0.3,
-              });
-            } else trigger.disable();
-          },
+        onComplete: (self) => {
+          console.log("Complete");
         },
       },
-      "resize"
+      "fade-in"
     );
+    // .to(
+    //   "#logo_container",
+    //   {
+    //     y: 0,
+    //     ease: "power3.out",
+    //     scrollTrigger: {
+    //       trigger: "#logo_container",
+    //       start: "top top",
+    //       end: innerHeight,
+    //       scrub: 2,
+    //       markers: 0,
+    //       once: 1,
+    //       onUpdate: (self) => {
+    //         // console.log("progress:", self.progress);
+    //         if (self.progress >= 0.3) {
+    //           // trigger.enable();
+    //           gsap.set("#logo_container", {
+    //             // height: 84,
+    //             delay: 0.3,
+    //           });
+    //         } else trigger.disable();
+    //       },
+    //     },
+    //   },
+    //   "resize"
+    // );
   }
 }
 

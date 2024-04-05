@@ -52,12 +52,6 @@ body {
   will-change: scroll-position;
 }
 
-#logo {
-  will-change: filter;
-  -webkit-filter: blur(12px);
-  filter: blur(12px);
-}
-
 div.line {
   overflow: hidden;
   line-height: 2.5rem;
