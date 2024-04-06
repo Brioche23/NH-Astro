@@ -188,21 +188,65 @@ function bigLogo() {
 function elementsFadeIn() {
   console.log("Elements fade in!");
 
-  gsap.utils.toArray(".op").forEach((op, i) => {
-    tl.from(op, {
-      scrollTrigger: {
-        trigger: op,
-        start: "center bottom",
-        end: "bottom bottom",
-        scrub: 2,
-        markers: 0,
-        once: 1,
-      },
-      filter: "blur(12px)",
-      translateY: "50px",
-      opacity: 0,
-      stagger: 0.5,
-      ease: "sine.inOut",
+  mm.add("(min-width: 768px)", () => {
+    gsap.utils.toArray(".op, .mobile-intro").forEach((op, i) => {
+      tl.from(op, {
+        scrollTrigger: {
+          trigger: op,
+          start: "center bottom",
+          end: "bottom bottom",
+          scrub: 2,
+          markers: 0,
+          once: 1,
+        },
+        filter: "blur(12px)",
+        translateY: "50px",
+        opacity: 0,
+        stagger: 0.5,
+        ease: "sine.inOut",
+      });
+    });
+  });
+
+  mm.add("(max-width: 768px)", () => {
+    gsap.utils.toArray(".op").forEach((op, i) => {
+      tl.from(op, {
+        scrollTrigger: {
+          trigger: op,
+          start: "center bottom",
+          end: "bottom bottom",
+          scrub: 2,
+          markers: 0,
+          once: 1,
+        },
+        filter: "blur(12px)",
+        translateY: "50px",
+        opacity: 0,
+        stagger: 0.5,
+        ease: "sine.inOut",
+      });
+    });
+    gsap.utils.toArray(".mobile-intro").forEach((mob, i) => {
+      gsap.fromTo(
+        mob,
+        {
+          filter: "blur(12px)",
+          translateY: "50px",
+          opacity: 0,
+        },
+        {
+          filter: "blur(0px)",
+          translateY: "0px",
+          opacity: 1,
+          duration: 1.5,
+          delay: 2,
+          stagger: 0.5,
+          ease: "sine.inOut",
+          onComplete: (self) => {
+            console.log("TADAH Complete");
+          },
+        }
+      );
     });
   });
 }
@@ -407,20 +451,20 @@ function initParallax() {
       });
     });
 
-    gsap.utils.toArray(".onomatopea").forEach((p, i) => {
-      p.addEventListener("mouseover", () => {
-        gsap.to(p, {
-          filter: "blur(10px)",
-          duration: 1,
-        });
-      });
-      p.addEventListener("mouseleave", () => {
-        gsap.to(p, {
-          filter: "blur(0px)",
-          duration: 1,
-        });
-      });
-    });
+    // gsap.utils.toArray(".onomatopea").forEach((p, i) => {
+    //   p.addEventListener("mouseover", () => {
+    //     gsap.to(p, {
+    //       filter: "blur(12px)",
+    //       duration: 1,
+    //     });
+    //   });
+    //   p.addEventListener("mouseleave", () => {
+    //     gsap.to(p, {
+    //       filter: "blur(0px)",
+    //       duration: 1,
+    //     });
+    //   });
+    // });
 
     // gsap.set("[data-speed]", {
     //   scale: (i, el) => 1 + parseFloat(el.getAttribute("data-speed")),
