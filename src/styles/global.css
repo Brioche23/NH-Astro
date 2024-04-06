@@ -70,7 +70,6 @@ h2 {
 }
 
 .mainContainer section.intro {
-  /* height: 100svh; */
   color: #ffffff;
   display: flex;
   align-items: flex-end;
@@ -89,6 +88,10 @@ footer {
   gap: 1rem;
   margin-top: 2rem;
   padding-bottom: 1rem;
+}
+
+footer a {
+  @apply transition-all duration-300 ease-in-out;
 }
 
 .footer-logo {

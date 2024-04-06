@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import Swup from "swup";
 import SwupScrollPlugin from "@swup/scroll-plugin";
-import SwupSlideTheme from "@swup/slide-theme";
 import SwupHeadPlugin from "@swup/head-plugin";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,7 +10,6 @@ const swup = new Swup({
   native: true,
   accessibility: false,
   plugins: [
-    // new SwupSlideTheme(),
     new SwupHeadPlugin(),
     new SwupScrollPlugin({
       doScrollingRightAway: 0,
@@ -44,25 +42,12 @@ swup.hooks.on("page:view", (visit) => {
   hideHeader();
 });
 
-// let scrollValues = {};
-
 swup.hooks.on("link:click", () => {
   console.log("Click Link");
   // scrollValues[window.location.href] = window.scrollY;
   // console.log("Scroll to");
   // window.scrollTo(0, scrollValues[window.location.href]);
 });
-
-// swup.hooks.on("history:popstate", () => {
-//   console.log("Pop State");
-//   setTimeout(function () {
-//     console.log("Scroll to");
-//     window.scrollTo(0, scrollValues[window.location.href]);
-//   }, 100);
-// });
-
-// swup.hooks.on("scroll:start", () => console.log("Swup started scrolling"));
-// swup.hooks.on("scroll:end", () => console.log("Swup finished scrolling"));
 
 swup.hooks.on("visit:start", (event) => {
   console.log("Visit Start");
@@ -111,29 +96,6 @@ function bigLogo() {
   console.log("Trigger logo");
 
   if (document.querySelector("#logo")) {
-    // const trigger = ScrollTrigger.create({
-    //   start: "top top",
-    //   end: "max",
-    //   onUpdate: (self) => {
-    //     self.direction === -1 ? showAnim.play() : showAnim.reverse();
-    //   },
-    // });
-
-    // trigger.disable();
-
-    // const showAnim = gsap
-    //   .from(
-    //     "#logo_svg",
-    //     {
-    //       yPercent: -100,
-    //       paused: true,
-    //       duration: 0.3,
-    //       ease: "ease-out",
-    //     },
-    //     "scroll_reveal"
-    //   )
-    //   .progress(1);
-
     console.log("Logo animation");
 
     tl.fromTo(
@@ -156,32 +118,6 @@ function bigLogo() {
       },
       "fade-in"
     );
-    // .to(
-    //   "#logo_container",
-    //   {
-    //     y: 0,
-    //     ease: "power3.out",
-    //     scrollTrigger: {
-    //       trigger: "#logo_container",
-    //       start: "top top",
-    //       end: innerHeight,
-    //       scrub: 2,
-    //       markers: 0,
-    //       once: 1,
-    //       onUpdate: (self) => {
-    //         // console.log("progress:", self.progress);
-    //         if (self.progress >= 0.3) {
-    //           // trigger.enable();
-    //           gsap.set("#logo_container", {
-    //             // height: 84,
-    //             delay: 0.3,
-    //           });
-    //         } else trigger.disable();
-    //       },
-    //     },
-    //   },
-    //   "resize"
-    // );
   }
 }
 
@@ -358,6 +294,7 @@ function services() {
 }
 
 function initLottie() {
+  /*
   // This needs to be refreshed
   let audio = new Audio(); // Create an audio object
   let isMuted = true; // Flag to track mute state
@@ -396,6 +333,8 @@ function initLottie() {
   // let toggleButton = document.getElementById("globalMuteToggle");
   // toggleButton.addEventListener("click", toggleMute);
 
+  */
+
   let heroContainer = document.getElementById("heroContainer");
   let hero = lottieWeb.loadAnimation({
     container: heroContainer,
@@ -405,31 +344,6 @@ function initLottie() {
     autoplay: true,
     name: "Hero Animation 1",
   });
-
-  //! Da capire
-  // hero.addEventListener("ready", () => {
-  //   LottieInteractivity.create({
-  //         mode:"scroll",
-  //         player: "#firstLottie",
-  //         actions: [
-  //         {
-  //             visibility:[0, 1.0],
-  //             type: "seek",
-  //             frames: [0, 300],
-  //         },
-  //         ]
-  //       });
-  // });
-
-  // heroContainer.addEventListener("mouseenter", function () {
-  //   if (!isMuted) playAudio("/audio/ex_01.mp3");
-  //   hero.goToAndPlay(0);
-  // });
-
-  // heroContainer.addEventListener("mouseleave", function () {
-  //   if (!isMuted) stopAudio("/audio/ex_01.mp3");
-  //   hero.pause();
-  // });
 }
 
 function initParallax() {

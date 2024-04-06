@@ -1,21 +1,13 @@
 ---
 import MainLayout from './MainLayout.astro'
-import Footer from '../components/Footer.astro';
-
-
-import Header from '../components/Header.astro';
-import '../styles/global.css';
 const {pageTitle, anchor} = Astro.props;
 
 console.log("Anchor: "+anchor)
 ---
 <MainLayout {pageTitle} {anchor}>
+      <slot />
 
-      <!-- <Header anchor={anchor}/> -->
-        <slot />
-        <!-- <Footer>                     -->
-
-    <style>
+      <style>
         body {
           padding: 0rem 1rem;
         }
