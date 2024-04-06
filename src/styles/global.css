@@ -215,7 +215,7 @@ footer {
 
 @media (max-width: 768px) {
   header#home {
-    height: calc(100vh - 95px);
+    height: calc(100svh - 95px);
   }
 
   div.line {
