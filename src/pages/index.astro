@@ -118,6 +118,12 @@ const service3 = home.services.services.service3;
   <section id="work" class="work h-auto block">
     <h2 class="op">{home.workTitle}</h2>
     <VideoList posts={posts} client:visible  />
+
+    { (posts.length > 5 ) &&
+    <a href="/videos">
+      <button class="btn">more this way</button>
+    </a>
+     }
   </section>
 
     

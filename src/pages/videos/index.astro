@@ -1,0 +1,74 @@
+---
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+import { contentfulClient } from "../../lib/contentful";
+import type { Video } from "../../lib/contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+const entries = await contentfulClient.getEntries<Video>({
+  content_type: "video",
+});
+
+const posts = entries.items.map((item) => {
+  const { title, slug, video, videoPoster, description, inHome } = item.fields;
+  return {
+    title,
+    slug,
+    video,
+    videoPoster,
+    description : documentToHtmlString(description),
+    inHome,
+  };
+});
+
+console.log(posts[1].video)
+
+
+const pageTitle = "NOISE HEROES";
+
+import BOOOOM from "../../img/onomatopee/BOOOOM.svg"
+
+
+---
+
+<BaseLayout {pageTitle}>
+    <Image src={BOOOOM} alt="Onomatopea BOOOOM!" class:list={'onom-svg op'}/>
+    <section id="archive" class=" h-auto block">
+        <h2 class="op">Archive</h2>
+    
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+        {posts.map((post, index) => (
+             <a class="group" id={post.slug} href={"/videos/" + post.slug}>
+
+            <div class="video-wrapper relative">
+                    <p class="absolute top-4 left-4">
+                {post.title}
+              </p>
+                <video src=
+                {post.video.fields.file.url}
+                ></video>
+                
+            </div>
+                </a>
+            // <VideoPlayer
+            //   inHome={post.inHome}
+            //   key={post.slug}
+            //   index={index}
+            //   slug={post.slug}
+            //   title={post.title}
+            //   description={post.description}
+            //   videoUrl={post.video}
+            //   posterUrl={post.videoPoster}
+            //   isActive={index === activeVideoId}
+            //   onClick={() => setActiveVideoId(index)}
+            //   width={getRandom(videoSizes)}
+            //   alignment={getAlignement(index)}
+            // />
+          ))}
+     </div>
+     
+     </section>
+    <Image src={BOOOOM} alt="Onomatopea BOOOOM!" class:list={'onom-svg op'}/>
+</BaseLayout>

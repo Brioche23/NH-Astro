@@ -238,7 +238,7 @@ h2,
 }
 
 h2 {
-  @apply before:content-['/'] before:pr-2;
+  @apply after:content-['/'] after:pl-2;
 }
 
 .content h2 {
@@ -342,8 +342,12 @@ h2 {
 }
 
 .onom-svg {
-  @apply w-auto h-16 md:h-[240px] mt-24 md:mt-64;
+  @apply w-auto h-36 md:h-[240px] mt-24 md:mt-64;
 }
 .onom-svg-no-margin {
-  @apply w-auto h-16 md:h-[240px];
+  @apply w-auto h-36 md:h-[240px];
+}
+
+.btn {
+  @apply p-3  text-black bg-green hover:bg-orange hover:tracking-widest rounded-full transition-all duration-500 ease-in-out;
 }
